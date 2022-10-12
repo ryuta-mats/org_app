@@ -38,19 +38,19 @@ include_once __DIR__ . '/../common/functions.php';
             <div class="job-row">
                 <div class="job-1 job-content">
                     <h3 class="company-name">会社名</h3>
-                    <img class="job-image" src="images/c1.jpg" alt="job1のimage">
+                    <img class="job-image" src="../images/c1.jpg" alt="job1のimage">
                     <p class="job-text">仕事内容テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
                     <a href="" class="detail">詳しく見る<i class="fa-sharp fa-solid fa-circle-chevron-right"></i></a>
                 </div>
                 <div class="job-2 job-content">
                     <h3 class="company-name">会社名</h3>
-                    <img class="job-image" src="images/c1.jpg" alt="job2のimage">
+                    <img class="job-image" src="../images/c1.jpg" alt="job2のimage">
                     <p class="job-text">仕事内容テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
                     <a href="" class="detail">詳しく見る<i class="fa-sharp fa-solid fa-circle-chevron-right"></i></a>
                 </div>
                 <div class="job-3 job-content">
                     <h3 class="company-name">会社名</h3>
-                    <img class="job-image" src="images/c1.jpg" alt="job3のimage">
+                    <img class="job-image" src="../images/c1.jpg" alt="job3のimage">
                     <p class="job-text">仕事内容テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
                     <a href="" class="detail">詳しく見る<i class="fa-sharp fa-solid fa-circle-chevron-right"></i></a>
                 </div>
