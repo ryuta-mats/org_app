@@ -1,0 +1,174 @@
+@charset "UTF-8";
+/*
+font-family: 'Luckiest Guy', cursive;
+font-family: 'Noto Sans JP', sans-serif;
+font-family: 'Reggae One', cursive;
+font-family: 'RocknRoll One', sans-serif;
+font-family: 'Roboto', sans-serif
+*/
+
+html {
+    font-size: 100%;
+}
+body {
+    color: #002d03;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+a {
+    text-decoration: none;
+    color: #002d03;
+}
+ul {
+    list-style-position: inside;
+}
+li {
+    list-style: none;
+}
+p {
+    font-weight: 300;
+}
+.wrapper {
+    width: 100%;
+    padding: 1% 5%;
+}
+
+select,
+input[type="text"] {
+    border: 1px solid #002d03;
+    width: 250px;
+}
+input[type="submit"] {
+    border: #002d03;
+}
+
+/*header
+--------------------------------------*/
+#menu {
+    background-color: #a6e4ffe1;
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+.logo-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3em;
+}
+.logo-sub-text {
+    font-size: 0.9rem;
+}
+.menu-nav {
+    height: 100%;
+    display: flex;
+    font-size: 0.8rem;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 3% 0;
+}
+.menu-nav li {
+    margin: 0 15px;
+}
+.status-logout {
+    background-color: #a0a0a0;
+    color: #ffffff;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*main
+--------------------------------------*/
+
+#main {
+    margin-top: 100px;
+}
+.serch {
+    padding: 3%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.serch-btn {
+    border: 1px solid #000000;
+    border-radius: 3px;
+    background-color: #ddd;
+    width: 70px;
+    display: inline-block;
+    text-align: center;
+}
+
+#job {
+    background-color: #e5f7ffc4;
+}
+
+.job-row {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.job-content {
+    border-radius: 3%;
+    background-color: #ffffff;
+    height: 400px;
+    width: 25%;
+    padding: 1%;
+    margin: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 1px 15px 0 rgba(62, 119, 129, 0.25);
+
+}
+.company-name {
+    margin-bottom: 3%;
+}
+.job-image {
+    width: 108%;
+    height: 200px;
+    object-fit: cover;
+}
+.job-text {
+    margin-bottom: 3%;
+}
+.detail {
+    display: flex;
+    width: 80%;
+    background-color: #fcfede;
+    border: #edff4b;
+    border-radius: 5%;
+    padding: 3%;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid #c5be34;
+}
+.detail:hover {
+    margin-top: 3px;
+    color: #000;
+    background: #f9ffa2;
+    border-bottom: 2px solid #c5be34;
+}
+.detail i {
+    margin-left: 3%;
+}
+
+/*footer
+--------------------------------------*/
+.page_footer {
+    background-color: #a6e4ffe1;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-text {
+    text-align: center;
+}
