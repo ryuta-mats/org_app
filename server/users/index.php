@@ -1,12 +1,12 @@
 <?php
-include_once __DIR__ . '/functions.php';
+include_once __DIR__ . '/../common/functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-<?php include_once __DIR__ . "/_head.html" ?>
+<?php include_once __DIR__ . "/../common/_head.html" ?>
 
 <body>
-<?php include_once __DIR__ . "/_header.php" ?>
+<?php include_once __DIR__ . "/../common/_header.php" ?>
 
     <div id="main">
         <div class="serch wrapper">
@@ -59,6 +59,6 @@ include_once __DIR__ . '/functions.php';
     </div>
 </body>
 
-<?php include_once __DIR__ . "/_footer.html" ?>
+<?php include_once __DIR__ . "/../common/_footer.html" ?>
 
 </html>
