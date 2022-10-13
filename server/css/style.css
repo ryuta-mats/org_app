@@ -176,6 +176,7 @@ align-items: center;
 --------------------------------------*/
 .form_title {
     display: inline-block;
+    margin-left: 30px;
 }
 
 
@@ -194,8 +195,15 @@ align-items: center;
     margin-left: 50px;
     margin-bottom: 50px;
 }
+.input_item_small {
+    width: 50px;
+    margin-left: 50px;
+}
+.input_item_wrapper {
+    display: flex;
+}
 
-.user_login_btn{
+.user_btn{
     background-color: #52cbffe1;
     display: inline-block;
     border-radius: 5%;
