@@ -41,6 +41,18 @@ input[type="submit"] {
     border: #002d03;
 }
 
+.form {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.title {
+    padding-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
 /*header
 --------------------------------------*/
 #menu {
@@ -160,6 +172,40 @@ input[type="submit"] {
     margin-left: 3%;
 }
 
+/*user_login
+--------------------------------------*/
+.form_title {
+    display: inline-block;
+}
+
+
+.required {
+    color: #fff;
+    background-color: red;
+    font-size: 0.5rem;
+    padding: 2px 5px;
+    margin-left: 10px;
+}
+.input_item {
+    border: 1px solid #000;
+    border-radius: 2px;
+    display: block;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+.user_login_btn{
+    background-color: #52cbffe1;
+    display: inline-block;
+    border-radius: 5%;
+    margin: 50px;
+    width: 200px;
+    height: 60px;
+    font-size: 2rem;
+    justify-content: center;
+    text-align: center;
+}
 /*footer
 --------------------------------------*/
 .page_footer {
