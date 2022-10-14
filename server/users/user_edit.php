@@ -17,7 +17,7 @@ $user_sex = '';
 <body>
     <?php include_once __DIR__ . "/../common/_header.php" ?>
     <div id="main">
-        <h1 class="title">ユーザー情報変更</h1>
+        <h2 class="title">ユーザー情報変更</h2>
         <form class="form" method="post" action="">
             <label for="user_signup_name">
                 <div class="form_title">氏名</div><span class="required">必須</span>
@@ -36,7 +36,7 @@ $user_sex = '';
 
             <label for="user_signup_post_code">
                 <div class="form_title">郵便番号</div><span class="required">必須</span>
-                <input class="input_item edit_item" id="user_signup_post_code" type="number" name="user_signup_post_code"  value="<?= $user_post_code ?>">
+                <input class="input_item edit_item" id="user_signup_post_code" type="number" name="user_signup_post_code" value="<?= $user_post_code ?>">
             </label>
 
             <label for="user_signup_address">
