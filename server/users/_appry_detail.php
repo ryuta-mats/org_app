@@ -1,6 +1,6 @@
 <table class="table ">
     <tbody>
-        <tr>
+        <tr class="element">
             <th>会社名</th>
             <td>
                 <div class="job_info_item">
