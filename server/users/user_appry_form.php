@@ -16,7 +16,7 @@ $job_page = '';
     <div id="main">
         <div class="job_detail wrapper">
             <h2 class="title">求人詳細</h2>
-            <?php include_once __DIR__ . "/../common/_appry_detail.php" ?>
+            <?php include_once __DIR__ . "/_appry_detail.php" ?>
         </div>
     </div>
 
