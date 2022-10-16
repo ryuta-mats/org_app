@@ -12,7 +12,7 @@ html {
 }
 body {
     color: #002d03;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 a {
     text-decoration: none;
@@ -53,6 +53,9 @@ input[type="submit"] {
     margin: 0 auto 50px;
     text-align: center;
     width: fit-content;
+    font-weight: 200;
+    font-size: 1.5rem;
+
 }
 
 /*header
@@ -210,22 +213,28 @@ input[type="submit"] {
     background-color: #e7e7e7;
 }
 
+#user_login_send {
+    display: flex;
+}
+
 .user_btn {
     background-color: #52cbffe1;
     display: inline-block;
-    border-radius: 5px;
+    border-radius: 50rem;
     margin: 50px;
     width: 200px;
     height: 60px;
-    font-size: 2rem;
+    font-size: 1.2rem;
+    display: flex;
     justify-content: center;
-    text-align: center;
-    box-shadow: 0 1px 15px 0 rgba(62, 119, 129, 0.25);
-
+    align-items: center;
+    box-shadow: 0 0px 20px 0 rgba(62, 119, 129, 0.5);
+    font-weight: 300;
 }
 
 #user_edit_btn {
-    background-color: #ba52ffe1;
+    background-color: #ce85ffe1;
+    color: #fff;
 }
 
 /*user_appry_form
@@ -238,7 +247,8 @@ input[type="submit"] {
     max-width: 1000px;
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #808080;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #808080;
     margin: 0 auto 50px;
 }
 
@@ -254,7 +264,6 @@ input[type="submit"] {
 .table tr th {
     font-weight: 300;
     width: 11rem;
-    border-right: #808080 solid 1px;
 }
 .user_motivation {
     height: 10rem;
@@ -270,22 +279,24 @@ input[type="submit"] {
 --------------------------------------*/
 .user_app_list_table {
     width: 100%;
-    border-spacing:0px;
+    border-spacing: 0px;
+    font-size: 1.2vw;
+    letter-spacing: 0.1rem;
+    font-weight: 300;
 }
 .user_app_list_table th {
     background-color: #f0f0f0;
     padding: 1% 0;
     min-width: 150px;
+    font-weight: 300;
 
-}
-.user_app_list_table tr {
 }
 
 .user_app_list_table tr td {
-    display:table-cell;
+    display: table-cell;
     padding: 1% 1%;
     font-size: 0.7rem;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #808080;
 }
 
 .icon_td {
@@ -297,6 +308,48 @@ input[type="submit"] {
 .icon {
     font-size: 1.5rem;
     margin: 5%;
+}
+
+/*user_message
+--------------------------------------*/
+
+.msg_wrap {}
+
+.message {
+    margin: 1% 0;
+    display: grid;
+
+}
+.my_message {
+    justify-content: right;
+}
+
+.message_body {
+    width: max(35vw, 300px);
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    padding: 1vw;
+    font-size: 0.8rem;
+}
+
+.my_message_body {
+    background-color: #7ee87ec0;
+}
+
+.message_datetime {
+    font-size: 0.5rem;
+    margin-left: 1vw;
+}
+#send_message_body {
+    width: max(35vw, 300px);
+    border: 1px solid #a0a0a0;
+    border-radius: 1rem;
+    padding: 1vw;
+}
+
+.user_message_btn {
+    width: 95%;
+    margin-left: 0;
 }
 
 /*footer
