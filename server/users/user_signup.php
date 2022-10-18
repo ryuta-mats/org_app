@@ -6,7 +6,7 @@ include_once __DIR__ . '/../common/functions.php';
 <?php include_once __DIR__ . "/../common/_head.html" ?>
 
 <body>
-    <?php include_once __DIR__ . "/../common/_header.php" ?>
+    <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main">
         <h1 class="title">ユーザー新規登録</h1>
         <form class="form" method="post" action="">
@@ -56,8 +56,7 @@ include_once __DIR__ . '/../common/functions.php';
 
     </form>
     </div>
-
-    <?php include_once __DIR__ . "/../common/_footer.html" ?>
+    <?php include_once __DIR__ . "/../common/_footer_user.html" ?>
 </body>
 
 </html>

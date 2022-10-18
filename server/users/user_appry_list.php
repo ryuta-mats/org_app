@@ -7,7 +7,7 @@ include_once __DIR__ . '/../common/functions.php';
 <?php include_once __DIR__ . "/../common/_head.html" ?>
 
 <body>
-    <?php include_once __DIR__ . "/../common/_header.php" ?>
+    <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main">
         <div class="wrapper">
             <h2 class="title">応募中求人一覧</h2>
@@ -49,8 +49,7 @@ include_once __DIR__ . '/../common/functions.php';
 
         </div>
     </div>
-
-    <?php include_once __DIR__ . "/../common/_footer.html" ?>
+    <?php include_once __DIR__ . "/../common/_footer_user.html" ?>
 </body>
 
 </html>

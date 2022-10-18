@@ -12,7 +12,7 @@ $job_page = '';
 <?php include_once __DIR__ . "/../common/_head.html" ?>
 
 <body>
-    <?php include_once __DIR__ . "/../common/_header.php" ?>
+    <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main">
         <div class="job_detail wrapper">
             <h2 class="title">求人詳細</h2>
@@ -34,7 +34,7 @@ $job_page = '';
         </form>
     </div>
 
-    <?php include_once __DIR__ . "/../common/_footer.html" ?>
+    <?php include_once __DIR__ . "/../common/_footer_user.html" ?>
 </body>
 
 </html>
