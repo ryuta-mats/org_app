@@ -30,7 +30,7 @@ $job_page = '';
                 <div class="form_title">履歴書</div><span class="required">必須</span>
                 <input class="input_item user_resume" id="user_resume" type="file" accept="application/pdf" name="user_resume">
             </label>
-            <input class="user_btn" type="submit" value="応募送信">
+            <input class="bg_btn user_btn" type="submit" value="応募送信">
         </form>
     </div>
 

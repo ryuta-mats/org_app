@@ -51,7 +51,7 @@ include_once __DIR__ . '/../common/functions.php';
                 </label>
             </div>
 
-            <input id="user_login_btn" class="user_btn" type="submit" value="新規登録">
+            <input id="user_login_btn" class="bg_btn user_btn" type="submit" value="新規登録">
     </div>
 
     </form>
