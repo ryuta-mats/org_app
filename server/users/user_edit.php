@@ -60,7 +60,7 @@ $user_sex = '';
                 </label>
             </div>
 
-            <input id="user_edit_btn" class="user_btn" type="submit" value="変更">
+            <input id="user_edit_btn" class="bg_btn edit_btn" type="submit" value="変更">
     </div>
 
     </form>

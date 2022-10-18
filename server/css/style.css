@@ -57,20 +57,42 @@ input[type="submit"] {
     font-size: 1.5rem;
 
 }
-
-.user_btn {
-    background-color: #52cbffe1;
+.bg_btn {
     display: inline-block;
     border-radius: 50rem;
     margin: 50px;
     width: 200px;
-    height: 60px;
+    height: 40px;
     font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0px 20px 0 rgba(62, 119, 129, 0.5);
-    font-weight: 300;
+    box-shadow: 0 0px 0px 0 rgba(62, 119, 129, 0.5);
+    font-weight: 500;
+}
+
+.user_btn {
+    color: #ffffff;
+    background-image: linear-gradient(120deg, #2af2f5 0%, #bc36ff 100%);
+}
+.user_btn:hover {
+    text-decoration: none;
+    background-image: linear-gradient(-30deg, #2af2f5 0%, #bc36ff 100%);
+}
+
+.edit_btn {
+    color: #ffffff;
+    background-image: linear-gradient(120deg, #f52ab1 0%, #af36ff 100%);
+}
+
+.company_btn {
+    color: #ffffff;
+    background-image: linear-gradient(120deg, #71c8ff 0%, #2aab10 100%);
+}
+.company_btn:hover {
+    text-decoration: none;
+    background-image: linear-gradient(-30deg, #86cffc 0%, #4fd634 100%);
+    
 }
 
 
@@ -87,19 +109,22 @@ input[type="submit"] {
 }
 
 .page_header_user {
-    background-color: #a6e4ffe1;
+    background-image: linear-gradient(90deg, #4772ff 0%, #a0f6ff 100%);
 }
 
 .page_header_company {
-    background-color: #b3ffa6e1;
+    background-image: linear-gradient(90deg, #25c800 0%, #a0ffdc 100%);
 }
 
 .logo-text {
     font-family: 'Roboto', sans-serif;
     font-size: 1.3em;
+    color: #ffffff;
 }
 .logo-sub-text {
     font-size: 0.9rem;
+    color: #ffffff;
+
 }
 .menu-nav {
     height: 100%;
@@ -209,8 +234,8 @@ input[type="submit"] {
 }
 
 .required {
-    color: #fff;
-    background-color: red;
+    color: #ffffff;
+    background-color: #ff4973;
     font-size: 0.5rem;
     padding: 2px 5px;
     margin-left: 10px;
@@ -237,7 +262,7 @@ input[type="submit"] {
     background-color: #e7e7e7;
 }
 
-#user_login_send {
+#login_send_wrap {
     display: flex;
 }
 
@@ -370,16 +395,17 @@ input[type="submit"] {
     align-items: center;
 }
 
-.page_footer_user{
-    background-color: #a6e4ffe1;
+.page_footer_user {
+    background-image: linear-gradient(90deg, #a0f6ff 0%, #4772ff 100%);
 
 }
 
-.page_footer_company{
-    background-color: #b3ffa6e1;
+.page_footer_company {
+    background-image: linear-gradient(90deg, #a0ffdc 0%, #25c800 100%);
 
 }
 
 .footer-text {
     text-align: center;
+    color: #ebebeb;
 }
