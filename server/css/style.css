@@ -58,10 +58,25 @@ input[type="submit"] {
 
 }
 
+.user_btn {
+    background-color: #52cbffe1;
+    display: inline-block;
+    border-radius: 50rem;
+    margin: 50px;
+    width: 200px;
+    height: 60px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0px 20px 0 rgba(62, 119, 129, 0.5);
+    font-weight: 300;
+}
+
+
 /*header
 --------------------------------------*/
 #menu {
-    background-color: #a6e4ffe1;
     display: flex;
     justify-content: space-between;
     height: 100px;
@@ -70,6 +85,15 @@ input[type="submit"] {
     left: 0;
     z-index: 9999;
 }
+
+.page_header_user {
+    background-color: #a6e4ffe1;
+}
+
+.page_header_company {
+    background-color: #b3ffa6e1;
+}
+
 .logo-text {
     font-family: 'Roboto', sans-serif;
     font-size: 1.3em;
@@ -217,21 +241,6 @@ input[type="submit"] {
     display: flex;
 }
 
-.user_btn {
-    background-color: #52cbffe1;
-    display: inline-block;
-    border-radius: 50rem;
-    margin: 50px;
-    width: 200px;
-    height: 60px;
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0px 20px 0 rgba(62, 119, 129, 0.5);
-    font-weight: 300;
-}
-
 #user_edit_btn {
     background-color: #ce85ffe1;
     color: #fff;
@@ -355,12 +364,22 @@ input[type="submit"] {
 /*footer
 --------------------------------------*/
 .page_footer {
-    background-color: #a6e4ffe1;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.page_footer_user{
+    background-color: #a6e4ffe1;
+
+}
+
+.page_footer_company{
+    background-color: #b3ffa6e1;
+
+}
+
 .footer-text {
     text-align: center;
 }

@@ -7,7 +7,7 @@ $company_name = 'ニセコ株式会社';
 <?php include_once __DIR__ . "/../common/_head.html" ?>
 
 <body>
-    <?php include_once __DIR__ . "/../common/_header.php" ?>
+    <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main">
         <div class="wrapper">
             <h2><?= $company_name ?>さんとのメッセージ</h2>
@@ -49,8 +49,7 @@ $company_name = 'ニセコ株式会社';
 
         </div>
     </div>
-
-    <?php include_once __DIR__ . "/../common/_footer.html" ?>
+    <?php include_once __DIR__ . "/../common/_footer_user.html" ?>
 </body>
 
 </html>
