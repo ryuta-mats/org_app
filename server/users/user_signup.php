@@ -7,7 +7,7 @@ include_once __DIR__ . '/../common/functions.php';
 
 <body>
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
-    <div id="main">
+    <div id="main" class="wrapper">
         <h1 class="title">ユーザー新規登録</h1>
         <form class="form" method="post" action="">
             <label for="user_signup_name">
