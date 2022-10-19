@@ -48,29 +48,60 @@ input[type="submit"] {
 }
 
 .title {
-    padding-top: 50px;
-    margin-bottom: 50px;
+    padding-top: 30px;
     margin: 0 auto 50px;
-    text-align: center;
+    text-align: left;
     width: fit-content;
     font-weight: 200;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    background: linear-gradient(transparent 80%, #a7f9ff 90%);
 }
-
-.user_btn {
-    background-color: #52cbffe1;
+.bg_btn {
     display: inline-block;
     border-radius: 50rem;
     margin: 50px;
     width: 200px;
-    height: 60px;
+    height: 40px;
     font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0px 20px 0 rgba(62, 119, 129, 0.5);
-    font-weight: 300;
+    box-shadow: 0 0px 0px 0 rgba(62, 119, 129, 0.5);
+    font-weight: 500;
 }
+
+.user_btn {
+    color: #ffffff;
+    background-image: linear-gradient(120deg, #2af2f5 0%, #bc36ff 100%);
+}
+.user_btn:hover {
+    text-decoration: none;
+    background-image: linear-gradient(-30deg, #2af2f5 0%, #bc36ff 100%);
+}
+
+.edit_btn {
+    color: #ffffff;
+    background-image: linear-gradient(120deg, #f52ab1 0%, #af36ff 100%);
+}
+
+.company_btn {
+    color: #ffffff;
+    background-image: linear-gradient(120deg, #71c8ff 0%, #2aab10 100%);
+}
+.company_btn:hover {
+    text-decoration: none;
+    background-image: linear-gradient(-30deg, #86cffc 0%, #4fd634 100%);
+
+}
+
+.required {
+    color: #ffffff;
+    background-color: #ff0000;
+    font-size: 0.5rem;
+    padding: 2px 5px;
+    margin-left: 10px;
+}
+
 
 
 /*header
@@ -78,32 +109,40 @@ input[type="submit"] {
 #menu {
     display: flex;
     justify-content: space-between;
-    height: 100px;
+    height: 80px;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
 }
+.logo-wrap {
+    display: flex;
+    align-items: center;
 
+}
 .page_header_user {
-    background-color: #a6e4ffe1;
+    background-image: linear-gradient(90deg, #4772ff 0%, #a0f6ff 100%);
 }
 
 .page_header_company {
-    background-color: #b3ffa6e1;
+    background-image: linear-gradient(90deg, #25c800 0%, #a0ffdc 100%);
 }
 
 .logo-text {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.3em;
+    font-size: 1.7rem;
+    color: #ffffff;
 }
 .logo-sub-text {
-    font-size: 0.9rem;
+    font-size: 0.5rem;
+    color: #ffffff;
+
 }
 .menu-nav {
     height: 100%;
     display: flex;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     justify-content: flex-end;
     align-items: center;
     font-weight: 500;
@@ -207,13 +246,6 @@ input[type="submit"] {
     margin-left: 30px;
 }
 
-.required {
-    color: #fff;
-    background-color: red;
-    font-size: 0.5rem;
-    padding: 2px 5px;
-    margin-left: 10px;
-}
 
 .input_item {
     border: 1px solid #000;
@@ -236,7 +268,7 @@ input[type="submit"] {
     background-color: #e7e7e7;
 }
 
-#user_login_send {
+#login_send_wrap {
     display: flex;
 }
 
@@ -369,16 +401,17 @@ input[type="submit"] {
     align-items: center;
 }
 
-.page_footer_user{
-    background-color: #a6e4ffe1;
+.page_footer_user {
+    background-image: linear-gradient(90deg, #a0f6ff 0%, #4772ff 100%);
 
 }
 
-.page_footer_company{
-    background-color: #b3ffa6e1;
+.page_footer_company {
+    background-image: linear-gradient(90deg, #a0ffdc 0%, #25c800 100%);
 
 }
 
 .footer-text {
     text-align: center;
+    color: #ebebeb;
 }

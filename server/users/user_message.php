@@ -44,7 +44,7 @@ $company_name = 'ニセコ株式会社';
 
             <form class="message my_message" action="" method="POST">
                 <textarea name="send_message_body" id="send_message_body" cols="50" rows="10" placeholder="メッセージを入力して下さい。"></textarea>
-                <input class="user_btn user_message_btn" type="submit">
+                <input class="bg_btn user_btn user_message_btn" type="submit">
             </form>
 
         </div>

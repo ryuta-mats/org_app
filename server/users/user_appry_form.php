@@ -13,7 +13,7 @@ $job_page = '';
 
 <body>
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
-    <div id="main">
+    <div id="main" class="wrapper">
         <div class="job_detail wrapper">
             <h2 class="title">求人詳細</h2>
             <?php include_once __DIR__ . "/_appry_detail.php" ?>
@@ -30,7 +30,7 @@ $job_page = '';
                 <div class="form_title">履歴書</div><span class="required">必須</span>
                 <input class="input_item user_resume" id="user_resume" type="file" accept="application/pdf" name="user_resume">
             </label>
-            <input class="user_btn" type="submit" value="応募送信">
+            <input class="bg_btn user_btn" type="submit" value="応募送信">
         </form>
     </div>
 

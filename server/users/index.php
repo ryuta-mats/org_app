@@ -8,7 +8,7 @@ include_once __DIR__ . '/../common/functions.php';
 <body>
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
 
-    <div id="main">
+    <div id="main" class="wrapper">
         <div class="serch wrapper">
             <form class="serch_category" action="" method="post">
                 <label for="serch_category_select">カデコリ検索<br>
