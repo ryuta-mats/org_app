@@ -27,9 +27,9 @@ include_once __DIR__ . '/../common/functions.php';
                 <input class="input_item" id="company_signup_post_code" type="number" name="company_signup_post_code">
             </label>
 
-            <label for="user_signup_address">
+            <label for="company_signup_address">
                 <div class="form_title">住所</div><span class="required">必須</span>
-                <input class="input_item" id="user_signup_address" type="text" name="user_signup_address">
+                <input class="input_item" id="company_signup_address" type="text" name="company_signup_address">
             </label>
 
             <label for="company_signup_manager_name">
