@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
+$user_name ='松本竜太';
 
 ?>
 <!DOCTYPE html>
@@ -10,8 +11,8 @@ include_once __DIR__ . '/../common/functions.php';
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main">
         <div class="wrapper">
-            <h2 class="title">応募中求人一覧</h2>
-            <table class="user_app_list_table" >
+            <h2><?= $user_name ?>さん 応募中の求人一覧</h2>
+            <table class="base_table" >
                 <thead>
                     <tr class="headline">
                         <th>会社名</th>

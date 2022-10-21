@@ -327,14 +327,14 @@ input[type="submit"] {
 
 /*user_appry_list
 --------------------------------------*/
-.user_app_list_table {
+.base_table {
     width: 100%;
     border-spacing: 0px;
     font-size: 1.2vw;
     letter-spacing: 0.1rem;
     font-weight: 300;
 }
-.user_app_list_table th {
+.base_table th {
     background-color: #f0f0f0;
     padding: 1% 0;
     min-width: 150px;
@@ -342,11 +342,15 @@ input[type="submit"] {
 
 }
 
-.user_app_list_table tr td {
+.base_table tr td {
     display: table-cell;
     padding: 1% 1%;
     font-size: 0.7rem;
     border-bottom: 1px solid #808080;
+}
+
+.td_center {
+    text-align: center;
 }
 
 .icon_td {
