@@ -354,14 +354,30 @@ input[type="submit"] {
 }
 
 .icon_td {
-    display: flex;
-    justify-content: space-around;
+    text-align: center;
     height: 100%;
 }
 
 .icon {
     font-size: 1.5rem;
     margin: 5%;
+}
+
+.fa-message {
+color: #25c800;
+}
+
+.fa-circle-info {
+color: #79afff;
+}
+.fa-trash{
+color: #808080;
+}
+.fa-pen {
+color: #af36ff;
+}
+.fa-square-xmark {
+color: #808080;
 }
 
 /*user_message
