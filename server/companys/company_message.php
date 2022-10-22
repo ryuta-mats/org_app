@@ -23,34 +23,37 @@ $messages = array(
         'name' => $company_name,
     ),
 );
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <?php include_once __DIR__ . "/../common/_head.html" ?>
 
 <body>
-    <?php include_once __DIR__ . "/../common/_header_user.php" ?>
+
+    <?php include_once __DIR__ . "/../common/_header_company.php" ?>
+
     <div id="main" class="wrapper">
-        <div class="wrapper">
-            <h2><?= $company_name ?>さんとのメッセージ</h2>
-            <hr>
-            <div class="msg_wrap">
-                <?php foreach ($messages as $message) : ?>
-                    <div class="message <?php echo $message['class'] == 0 ? 'opposite_message' : 'my_message'; ?>">
-                        <div class="message_body <?php echo $message['class'] == 0 ? 'opposite_message_body' : 'my_message_body'; ?>">
-                            <p><?= h($message['body']) ?></p>
-                        </div>
-                        <p class="message_datetime"><?= $message['datetime'] ?> <?= $message['name'] ?></p>
+        <h2><?= $user_name ?>さんとのメッセージ</h2>
+        <hr>
+        <div class="msg_wrap">
+            <?php foreach ($messages as $message) : ?>
+                <div class="message <?php echo $message['class'] == 1 ? 'opposite_message' : 'my_message'; ?>">
+                    <div class="message_body <?php echo $message['class'] == 1 ? 'opposite_message_body' : 'my_message_body'; ?>">
+                        <p><?= h($message['body']) ?></p>
                     </div>
-                <?php endforeach; ?>
-                <form class="message my_message" action="" method="POST">
-                    <textarea name="send_message_body" id="send_message_body" cols="50" rows="10" placeholder="メッセージを入力して下さい。"></textarea>
-                    <input class="bg_btn user_btn message_send_btn" type="submit">
-                </form>
-            </div>
+                    <p class="message_datetime"><?= $message['datetime'] ?> <?= $message['name'] ?></p>
+                </div>
+            <?php endforeach; ?>
+            <form class="message my_message" action="" method="POST">
+                <textarea name="send_message_body" id="send_message_body" cols="50" rows="10" placeholder="メッセージを入力して下さい。"></textarea>
+                <input class="bg_btn company_btn message_send_btn" type="submit">
+            </form>
         </div>
     </div>
-    <?php include_once __DIR__ . "/../common/_footer_user.html" ?>
+
+    <?php include_once __DIR__ . "/../common/_footer_company.html" ?>
 </body>
 
 </html>

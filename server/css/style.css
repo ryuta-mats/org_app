@@ -106,8 +106,6 @@ input[type="submit"] {
     margin-left: 10px;
 }
 
-
-
 /*header
 --------------------------------------*/
 #menu {
@@ -141,7 +139,6 @@ input[type="submit"] {
 .logo-sub-text {
     font-size: 0.5rem;
     color: #ffffff;
-
 }
 .menu-nav {
     height: 100%;
@@ -253,7 +250,8 @@ input[type="submit"] {
 
 .input_item {
     font-size: 0.9rem;
-    font-family: 'Noto Sans JP', sans-serif; ;
+    font-family: 'Noto Sans JP', sans-serif;
+    ;
     border: 1px solid #000;
     border-radius: 2px;
     display: block;
@@ -364,20 +362,20 @@ input[type="submit"] {
 }
 
 .fa-message {
-color: #25c800;
+    color: #25c800;
 }
 
 .fa-circle-info {
-color: #79afff;
+    color: #79afff;
 }
-.fa-trash{
-color: #808080;
+.fa-trash {
+    color: #808080;
 }
 .fa-pen {
-color: #af36ff;
+    color: #af36ff;
 }
 .fa-square-xmark {
-color: #808080;
+    color: #808080;
 }
 
 /*user_message
@@ -417,9 +415,11 @@ color: #808080;
     padding: 1vw;
 }
 
-.user_message_btn {
-    width: 95%;
+.message_send_btn {
+    width: 100%;
     margin-left: 0;
+    margin-top: 5%;
+
 }
 
 /*footer
