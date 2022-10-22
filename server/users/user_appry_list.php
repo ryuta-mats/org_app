@@ -1,6 +1,22 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
-$user_name ='松本竜太';
+$user_name = '松本竜太';
+$jobs = array(
+    0 => array(
+        'company_name' => 'ニセコ株式会社',
+        'category' => '営業職',
+        'salary' => 250000,
+        'content' => '楽しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト',
+        'ofer' => 1,
+    ),
+    1 => array(
+        'company_name' => 'ニセコ株式会社',
+        'category' => '事務職',
+        'salary' => 230000,
+        'content' => '厳しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト',
+        'ofer' => 2,
+    )
+);
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +28,7 @@ $user_name ='松本竜太';
     <div id="main">
         <div class="wrapper">
             <h2><?= $user_name ?>さん 応募中の求人一覧</h2>
-            <table class="base_table" >
+            <table class="base_table">
                 <thead>
                     <tr class="headline">
                         <th>会社名</th>
@@ -23,28 +39,19 @@ $user_name ='松本竜太';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>ニセコ株式会社</td>
-                        <td>営業職</td>
-                        <td>25万円</td>
-                        <td>楽しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト</td>
-                        <td class="icon_td">
-                            <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-circle-info"></i></a>
-                            <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-trash"></i></a>
-                            <a href="" class="icon icon_appry_detail"><i class="fa-regular fa-message"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>株式会社ニセコリゾート観光協会</td>
-                        <td>営業職</td>
-                        <td>25万円</td>
-                        <td>楽しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト楽しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト楽しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト楽しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト</td>
-                        <td class="icon_td">
-                            <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-circle-info"></i></a>
-                            <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-trash"></i></a>
-                            <a href="" class="icon icon_appry_detail"><i class="fa-regular fa-message"></i></a>                        </td>
-                    </tr>
-
+                    <?php foreach ($jobs as $job) : ?>
+                        <tr>
+                            <td class="td_center"><?= h($job['company_name']) ?></td>
+                            <td class="td_center"><?= h($job['category']) ?></td>
+                            <td class="td_center"><?= h($job['salary']) ?>円</td>
+                            <td><?= h($job['content']) ?></td>
+                            <td class="icon_td">
+                                <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-circle-info"></i></a>
+                                <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-trash"></i></a>
+                                <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-message"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
 
