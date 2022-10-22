@@ -57,7 +57,6 @@ $users = array(
                 <?php endforeach; ?>
             </tbody>
         </table>
-
     </div>
 
     <?php include_once __DIR__ . "/../common/_footer_company.html" ?>
