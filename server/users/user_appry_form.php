@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
+$login_user = '';
 
 $company_name = '';
 $job_category = '';
@@ -28,7 +29,7 @@ $job_page = '';
             </label>
             <label for="user_resume">
                 <div class="form_title">履歴書</div><span class="required">必須</span>
-                <input class="input_item user_resume" id="user_resume" type="file" accept="application/pdf" name="user_resume">
+                <input class="input_item up_load" id="user_resume" type="file" accept="application/pdf" name="user_resume">
             </label>
             <input class="bg_btn user_btn" type="submit" value="応募送信">
         </form>

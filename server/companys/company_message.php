@@ -1,6 +1,8 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
 $user_name = '松本竜太';
+$login_company ='株式会社ニセコリゾート観光協会';
+
 $company_name = 'ニセコ株式会社';
 
 $messages = array(
@@ -8,7 +10,7 @@ $messages = array(
         'body' => 'この度は弊社求人へのご応募誠にありがとうございます。是非面接させていただきたいのですが、平日はお時間はありますか？オンラインでも可能です。ニセコ株式会社人事部松本',
         'datetime' => '2022.9.21 13:00',
         'class' => 0,
-        'name' => $company_name,
+        'name' => $login_company,
     ),
     1 => array(
         'body' => 'こんにちは。連絡してくれてめっちゃ嬉しいです。まじ感謝です。平日は仕事なんで無理っす。土日でお願いできますか？よろしくっす。',
@@ -20,7 +22,7 @@ $messages = array(
         'body' => 'ご返信ありがとうございます。ご都合がつかないようですので、今回は結構です。ありがとうございました。ニセコ株式会社人事部松本',
         'datetime' => '2022.9.23 9:00',
         'class' => 0,
-        'name' => $company_name,
+        'name' => $login_company,
     ),
 );
 

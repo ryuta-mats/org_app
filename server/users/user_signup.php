@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
+$login_user = '';
 ?>
 <!DOCTYPE html>
 <html lang="ja">

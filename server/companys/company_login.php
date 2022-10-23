@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
+$login_company ='株式会社ニセコリゾート観光協会';
 ?>
 <!DOCTYPE html>
 <html lang="ja">

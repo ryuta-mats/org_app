@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
-$user_name = '松本竜太';
+$login_user = '松本竜太';
+
 $jobs = array(
     0 => array(
         'company_name' => 'ニセコ株式会社',
@@ -27,7 +28,7 @@ $jobs = array(
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main">
         <div class="wrapper">
-            <h2><?= $user_name ?>さん 応募中の求人一覧</h2>
+            <h2><?= $login_user ?>さん 応募中の求人一覧</h2>
             <table class="base_table">
                 <thead>
                     <tr class="headline">
@@ -44,11 +45,22 @@ $jobs = array(
                             <td class="td_center"><?= h($job['company_name']) ?></td>
                             <td class="td_center"><?= h($job['category']) ?></td>
                             <td class="td_center"><?= h($job['salary']) ?>円</td>
-                            <td><?= h($job['content']) ?></td>
+                            <td class="long_text"><?= h($job['content']) ?></td>
                             <td class="icon_td">
-                                <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-circle-info"></i></a>
-                                <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-trash"></i></a>
-                                <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-message"></i></a>
+                                <div class="icons_wrap">
+                                    <a href="" class="icon icon_appry_detail icon_wrap">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                        <p>詳細</p>
+                                    </a>
+                                    <a href="" class="icon icon_appry_detail icon_wrap">
+                                        <i class="fa-solid fa-trash"></i>
+                                        <p>削除</p>
+                                    </a>
+                                    <a href="" class="icon icon_appry_detail icon_wrap">
+                                        <i class="fa-solid fa-message"></i>
+                                        <p>メッセージ</p>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>
