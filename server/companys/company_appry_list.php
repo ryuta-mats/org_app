@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
+$login_company ='株式会社ニセコリゾート観光協会';
 $users = array(
     0 => array(
         'name' => 'ニセコ太郎',
@@ -50,8 +51,16 @@ $users = array(
                         <td><?= h($user['motivation']) ?></td>
 
                         <td class="icon_td">
-                            <a href="" class="icon icon_appry_detail"><i class="fa-regular fa-file"></i></a>
-                            <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-message"></i></a>
+                            <div class="icons_wrap">
+                                <a href="" class="icon icon_appry_detail icon_wrap">
+                                    <i class="fa-solid fa-file"></i>
+                                    <p>履歴書</p>
+                                </a>
+                                <a href="" class="icon icon_appry_detail icon_wrap">
+                                    <i class="fa-solid fa-message"></i>
+                                    <p>メッセージ</p>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>

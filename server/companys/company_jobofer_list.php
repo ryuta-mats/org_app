@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
-$company_name = 'ニセコ株式会社';
+$login_company ='株式会社ニセコリゾート観光協会';
+
 $jobs = array(
     0 => array(
         'company_name' => 'ニセコ株式会社',
@@ -28,7 +29,7 @@ $jobs = array(
     <?php include_once __DIR__ . "/../common/_header_company.php" ?>
 
     <div id="main" class="wrapper">
-        <h2><?= h($company_name) ?>様の 求人リスト</h2>
+        <h2><?= h($login_company) ?>様の 求人リスト</h2>
 
         <table class="base_table">
             <thead>
@@ -48,9 +49,20 @@ $jobs = array(
                         <td><?= h($job['content']) ?></td>
                         <td class="td_center"><?= $job['ofer'] ?></td>
                         <td class="icon_td">
-                            <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-pen"></i></i></a>
-                            <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-square-xmark"></i></a>
-                            <a href="" class="icon icon_appry_detail"><i class="fa-solid fa-message"></i></a>
+                            <div class="icons_wrap">
+                                <a href="" class="icon icon_appry_detail icon_wrap">
+                                    <i class="fa-solid fa-pen"></i>
+                                    <p>編集</p>
+                                </a>
+                                <a href="" class="icon icon_appry_detail icon_wrap">
+                                    <i class="fa-solid fa-square-xmark"></i>
+                                    <p>削除</p>
+                                </a>
+                                <a href="" class="icon icon_appry_detail icon_wrap">
+                                    <i class="fa-solid fa-message"></i>
+                                    <p>メッセージ</p>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>

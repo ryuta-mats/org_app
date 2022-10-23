@@ -1,5 +1,7 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
+$login_company ='';
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,7 +12,7 @@ include_once __DIR__ . '/../common/functions.php';
     <?php include_once __DIR__ . "/../common/_header_company.php" ?>
 
     <div id="main" class="wrapper">
-            <h1 class="title">事業者新規登録</h1>
+            <h2 class="title">事業者新規登録</h2>
         <form class="form" method="post" action="">
             <label for="company_signup_name">
                 <div class="form_title">会社名</div><span class="required">必須</span>

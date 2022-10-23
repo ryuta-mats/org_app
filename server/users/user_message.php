@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
-$user_name = '松本竜太';
+$login_user = '松本竜太';
+
 $company_name = 'ニセコ株式会社';
 
 $messages = array(
@@ -14,7 +15,7 @@ $messages = array(
         'body' => 'こんにちは。連絡してくれてめっちゃ嬉しいです。まじ感謝です。平日は仕事なんで無理っす。土日でお願いできますか？よろしくっす。',
         'datetime' => '2022.9.22 23:00',
         'class' => 1,
-        'name' => $user_name,
+        'name' => $login_user,
     ),
     2 => array(
         'body' => 'ご返信ありがとうございます。ご都合がつかないようですので、今回は結構です。ありがとうございました。ニセコ株式会社人事部松本',

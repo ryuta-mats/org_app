@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
+$login_user = '松本竜太';
 
 $user_name = '';
 $user_email = '';

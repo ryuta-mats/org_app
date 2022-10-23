@@ -31,6 +31,10 @@ p {
     width: 100%;
     padding: 1% 5%;
 }
+select {
+    -moz-appearance: menulist;
+    -webkit-appearance: menulist;
+}
 
 select,
 input[type="text"] {
@@ -42,6 +46,8 @@ input[type="submit"] {
 }
 
 .form {
+    max-width: 800px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,30 +78,45 @@ input[type="submit"] {
 
 .user_btn {
     color: #ffffff;
-    background-image: linear-gradient(120deg, #2af2f5 0%, #bc36ff 100%);
+    background: linear-gradient(270deg, #2af2f5 0%, #af36ff 50%, #2af2f5 100%);
+    background-position: 1% 50%;
+    background-size: 200% auto;
+    transition: all 0.3s ease-out;
 }
 .user_btn:hover {
     text-decoration: none;
-    background-image: linear-gradient(-30deg, #2af2f5 0%, #bc36ff 100%);
+    background-position: 99% 50%;
+    transform: scale(0.95);
+    color: #fffb00;
 }
 
 .edit_btn {
     color: #ffffff;
-    background-image: linear-gradient(120deg, #f52ab1 0%, #af36ff 100%);
+    background: linear-gradient(270deg, #f52ab1 0%, #af36ff 50%, #f52ab1 100%);
+    background-position: 1% 50%;
+    background-size: 200% auto;
+    transition: all 0.3s ease-out;
 }
 .edit_btn:hover {
     text-decoration: none;
-    background-image: linear-gradient(120deg, #af36ff 0%, #f52ab1 100%);
+    background-position: 99% 50%;
+    transform: scale(0.95);
+    color: #fffb00;
 }
 
 .company_btn {
     color: #ffffff;
-    background-image: linear-gradient(120deg, #71c8ff 0%, #2aab10 100%);
+    background: linear-gradient(270deg, #2af2f5 0%, #2aab10 50%, #2af2f5 100%);
+    background-position: 1% 50%;
+    background-size: 200% auto;
+    transition: all 0.3s ease-out;
+
 }
 .company_btn:hover {
     text-decoration: none;
-    background-image: linear-gradient(-30deg, #86cffc 0%, #4fd634 100%);
-
+    background-position: 99% 50%;
+    transform: scale(0.95);
+    color: #fffb00;
 }
 
 .required {
@@ -151,18 +172,53 @@ input[type="submit"] {
     padding: 3% 0;
 }
 .menu-nav li {
-    margin: 0 15px;
+    margin: 0 10px;
 }
-.status-logout {
-    background-color: #a0a0a0;
-    color: #ffffff;
-    width: 100px;
-    height: 30px;
+.nav_link {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.nav_link::after {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: #333;
+    transform: scale(0, 1);
+    transform-origin: left top;
+    transition: transform .3s;
+}
+.nav_link:hover::after {
+    transform: scale(1, 1);
+}
+.login_flag {
+    width: 120px;
+    height: 40px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.status_logout {
+    background-color: #a0a0a0;
+    color: #ffffff;
+}
+.status_login {
+    /*    background-color: #003cff;*/
+    /*    background: linear-gradient(270deg, #ff7070 0%, #ccfff3 50%, #ff7070 100%);*/
+    color: #000000;
+}
+.login_image {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right: 7px;
+}
+
 
 /*main
 --------------------------------------*/
@@ -265,7 +321,8 @@ input[type="submit"] {
 }
 .user_input_small {
     width: 100px;
-    padding: 4%;
+    padding: 2px;
+    margin-right: 20px;
 }
 
 .input_item_wrapper {
@@ -278,11 +335,6 @@ input[type="submit"] {
 
 #login_send_wrap {
     display: flex;
-}
-
-#user_edit_btn {
-    background-color: #ce85ffe1;
-    color: #fff;
 }
 
 /*user_appry_form
@@ -318,9 +370,10 @@ input[type="submit"] {
     width: 500px;
 }
 
-.user_resume {
+.up_load {
     display: block;
     width: max-content;
+    border: none;
 }
 
 /*user_appry_list
@@ -350,6 +403,9 @@ input[type="submit"] {
 .td_center {
     text-align: center;
 }
+.long_text {
+    max-width: 300px;
+}
 
 .icon_td {
     text-align: center;
@@ -358,13 +414,29 @@ input[type="submit"] {
 
 .icon {
     font-size: 1.5rem;
-    margin: 5%;
+    transition: all 0.3s ease-out;
+}
+.icon:hover {
+    font-size: 1.8rem;
+}
+.icons_wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon_wrap {
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+}
+.icon_wrap p {
+    font-size: 10px;
+    transform: scale(0.6);
 }
 
 .fa-message {
     color: #25c800;
 }
-
 .fa-circle-info {
     color: #79afff;
 }
@@ -377,12 +449,12 @@ input[type="submit"] {
 .fa-square-xmark {
     color: #808080;
 }
+.fa-file {
+    color: #808080;
+}
 
 /*user_message
 --------------------------------------*/
-
-.msg_wrap {}
-
 .message {
     margin: 1% 0;
     display: grid;
@@ -419,6 +491,24 @@ input[type="submit"] {
     width: 100%;
     margin-left: 0;
     margin-top: 5%;
+}
+/*company_job_create
+--------------------------------------*/
+
+.jpy_wrap {
+    display: flex;
+}
+.jpy_wrap p {
+    height: fit-content;
+    margin-top: 16px;
+}
+
+.date_item {
+width: 120px;
+}
+
+.time_item {
+width: 90px;
 
 }
 
