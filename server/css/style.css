@@ -511,7 +511,17 @@ width: 120px;
 width: 90px;
 
 }
+/*job_edit
+--------------------------------------*/
 
+.job_edit_image img {
+    max-width: 500px;
+}
+
+.job_edit_image p {
+font-size: small;
+text-align: center;
+}
 /*footer
 --------------------------------------*/
 .page_footer {
