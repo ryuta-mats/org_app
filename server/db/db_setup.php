@@ -1,6 +1,6 @@
 <?php 
 
-require_once __DIR__ . '/../common/functions.php';
+require_once __DIR__ . '../../common/functions.php';
 
 try {
     $dbh = connect_db();
