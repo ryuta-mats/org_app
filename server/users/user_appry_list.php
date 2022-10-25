@@ -4,10 +4,11 @@ $login_user = '松本竜太';
 
 $jobs = array(
     0 => array(
-        'company_name' => 'ニセコ株式会社',
+        'company_name' => '株式会社ニセコリゾート観光協会',
         'category' => '営業職',
         'salary' => 250000,
         'content' => '楽しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト',
+        'status' => '検討中',
         'ofer' => 1,
     ),
     1 => array(
@@ -15,6 +16,7 @@ $jobs = array(
         'category' => '事務職',
         'salary' => 230000,
         'content' => '厳しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト',
+        'status' => '検討中',
         'ofer' => 2,
     )
 );
@@ -36,6 +38,7 @@ $jobs = array(
                         <th>職種</th>
                         <th>給料</th>
                         <th>仕事内容</th>
+                        <th>状況</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -46,6 +49,7 @@ $jobs = array(
                             <td class="td_center"><?= h($job['category']) ?></td>
                             <td class="td_center"><?= h($job['salary']) ?>円</td>
                             <td class="long_text"><?= h($job['content']) ?></td>
+                            <td class="td_center"><?= h($job['status']) ?></td>
                             <td class="icon_td">
                                 <div class="icons_wrap">
                                     <a href="" class="icon icon_appry_detail icon_wrap">
@@ -54,7 +58,7 @@ $jobs = array(
                                     </a>
                                     <a href="" class="icon icon_appry_detail icon_wrap">
                                         <i class="fa-solid fa-trash"></i>
-                                        <p>削除</p>
+                                        <p>辞退</p>
                                     </a>
                                     <a href="" class="icon icon_appry_detail icon_wrap">
                                         <i class="fa-solid fa-message"></i>

@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
-$login_company ='株式会社ニセコリゾート観光協会';
+$login_company = '株式会社ニセコリゾート観光協会';
 
 $jobs = array(
     0 => array(
@@ -68,6 +68,9 @@ $jobs = array(
                 <?php endforeach; ?>
             </tbody>
         </table>
+
+        <a href="../companys/company_job_create.php" class="bg_btn company_btn new_ofer_btn">新規求人登録</a>
+
     </div>
     <?php include_once __DIR__ . "/../common/_footer_company.html" ?>
 </body>
