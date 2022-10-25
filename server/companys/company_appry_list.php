@@ -28,7 +28,7 @@ $users = array(
     <?php include_once __DIR__ . "/../common/_header_company.php" ?>
 
     <div id="main" class="wrapper">
-        <h2>応募者一覧</h2>
+        <h2 class="title company_bg_title">応募者一覧</h2>
 
         <table class="base_table">
             <thead>

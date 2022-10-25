@@ -60,8 +60,16 @@ input[type="submit"] {
     width: fit-content;
     font-weight: 200;
     font-size: 1.3rem;
-    background: linear-gradient(transparent 80%, #a7f9ff 90%);
 }
+.user_bg_title {
+    background: linear-gradient(transparent 80%, #a7f9ff 90%);
+
+}
+.company_bg_title {
+    background: linear-gradient(transparent 80%, #99ff80 90%);
+
+}
+
 .bg_btn {
     display: inline-block;
     border-radius: 50rem;
@@ -225,6 +233,8 @@ input[type="submit"] {
 
 #main {
     margin-top: 100px;
+    margin-bottom: 3rem;
+    min-height: 60vh;
 }
 .serch {
     padding: 3%;
@@ -267,7 +277,7 @@ input[type="submit"] {
 .company-name {
     margin-bottom: 3%;
 }
-.job-image {
+.index_job_image {
     width: 108%;
     height: 200px;
     object-fit: cover;
@@ -300,20 +310,29 @@ input[type="submit"] {
 --------------------------------------*/
 .form_title {
     display: inline-block;
-    margin-left: -4%;
+    margin: 0.4em 0.5em;
+    padding-left: 0.5rem;
+    margin-left: -15%;
+    color: #494949;
+    font-size: 1.2rem;
 }
 
+.company_title {
+    border-left: solid 10px #86ff86;
+}
+.user_title {
+    border-left: solid 10px #6fc8ff;
+}
 
 .input_item {
     font-size: 0.9rem;
     font-family: 'Noto Sans JP', sans-serif;
-    ;
     border: 1px solid #000;
     border-radius: 2px;
     display: block;
     margin: 10px 0 40px 0;
-    padding: 2%;
-    width: 250px;
+    padding: 4px;
+    width: 300px;
 }
 
 .small_label {
@@ -376,6 +395,14 @@ input[type="submit"] {
     border: none;
 }
 
+.appry_image {
+    display: flex;
+    justify-content: center;
+}
+.appry_image img {
+    max-width: 90%;
+}
+
 /*user_appry_list
 --------------------------------------*/
 .base_table {
@@ -395,7 +422,7 @@ input[type="submit"] {
 
 .base_table tr td {
     display: table-cell;
-    padding: 1% 1%;
+    padding: 1% 3px;
     font-size: 0.7rem;
     border-bottom: 1px solid #808080;
 }
@@ -504,24 +531,30 @@ input[type="submit"] {
 }
 
 .date_item {
-width: 120px;
+    width: 120px;
 }
 
 .time_item {
-width: 90px;
+    width: 90px;
 
 }
 /*job_edit
 --------------------------------------*/
 
-.job_edit_image img {
+.edit_image img {
     max-width: 500px;
 }
 
-.job_edit_image p {
-font-size: small;
-text-align: center;
+.edit_image p {
+    font-size: small;
+    text-align: center;
 }
+/*company_jobofer_list
+--------------------------------------*/
+.new_ofer_btn {
+    margin: 5% auto 0;
+}
+
 /*footer
 --------------------------------------*/
 .page_footer {
