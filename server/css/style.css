@@ -4,7 +4,7 @@ font-family: 'Luckiest Guy', cursive;
 font-family: 'Noto Sans JP', sans-serif;
 font-family: 'Reggae One', cursive;
 font-family: 'RocknRoll One', sans-serif;
-font-family: 'Roboto', sans-serif
+font-family: 'Roboto', sans-serif;
 */
 
 html {
@@ -59,21 +59,41 @@ input[type="submit"] {
     display: flex;
 }
 
+.tit_wrap {
+display: flex;
+margin-bottom: 80px;
+}
+
 .title {
-    padding-top: 30px;
-    margin: 0 auto 50px;
-    text-align: left;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1em;
     width: fit-content;
-    font-weight: 200;
-    font-size: 1.3rem;
+    margin:  0 auto;
 }
-.user_bg_title {
-    background: linear-gradient(transparent 85%, #6fc8ffa4 100%);
-
+.title::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    display: inline-block;
+    width: 90px;
+    height: 5px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 2px;
 }
-.company_bg_title {
-    background: linear-gradient(transparent 85%, #99ff80a4 100%);
+.title span {
+font-size: 1rem;
+display: block;
+}
 
+.user_bg_title::before {
+    background: #6fc8ff;
+}
+
+.company_bg_title::before {
+    background: #99ff80;
 }
 
 .bg_btn {
@@ -154,12 +174,12 @@ input[type="submit"] {
     margin-left: 40px;
     font-size: 0.7rem;
 }
-.err_msg li{
+.err_msg li {
     margin-top: 5px;
 }
 
 .fa-circle-exclamation {
-margin-right: 3px;
+    margin-right: 3px;
 }
 
 /*header

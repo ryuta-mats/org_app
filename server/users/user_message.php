@@ -33,8 +33,9 @@ $messages = array(
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main" class="wrapper">
         <div class="wrapper">
-            <h2><?= $company_name ?>さんとのメッセージ</h2>
-            <hr>
+            <div class="tit_wrap">
+                <h1 class="title user_bg_title"><span>message</span><?= $company_name ?>さんとのメッセージ</h1>
+            </div>
             <div class="msg_wrap">
                 <?php foreach ($messages as $message) : ?>
                     <div class="message <?php echo $message['class'] == 0 ? 'opposite_message' : 'my_message'; ?>">

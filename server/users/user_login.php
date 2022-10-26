@@ -21,7 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main" class="wrapper">
-        <h2 class="title user_bg_title">ログイン</h2>
+        <div class="tit_wrap">
+            <h1 class="title user_bg_title"><span>user login</span>ユーザーログイン</h1>
+        </div>
         <form class="form" method="post" action="">
             <label for="user_login_email">
                 <div class="form_title user_title">メールアドレス</div><span class="required">必須</span>

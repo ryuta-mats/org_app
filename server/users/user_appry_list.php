@@ -30,7 +30,9 @@ $jobs = array(
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main">
         <div class="wrapper">
-            <h2><?= $login_user ?>さん 応募中の求人一覧</h2>
+            <div class="tit_wrap">
+                <h1 class="title user_bg_title"><span>appry list</span><?= $login_user ?>さん 応募中の求人一覧</h1>
+            </div>
             <table class="base_table">
                 <thead>
                     <tr class="headline">
