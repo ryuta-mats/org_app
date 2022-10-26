@@ -85,7 +85,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main" class="wrapper">
-        <h1 class="title user_bg_title">ユーザー新規登録</h1>
+    <div class="tit_wrap">
+        <h1 class="title user_bg_title"><span>sign up</span>ユーザー新規登録</h1>
+    </div>
         <form class="form" method="post" action="user_signup.php" enctype="multipart/form-data">
             <label for="user_signup_name">
                 <div class="form_title user_title">氏名</div><span class="required">必須</span>

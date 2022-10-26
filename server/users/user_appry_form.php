@@ -30,7 +30,10 @@ $job_page = '';
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main" class="wrapper">
         <div class="job_detail wrapper">
-            <h2 class="title user_bg_title">求人詳細</h2>
+                    <div class="tit_wrap">
+                <h1 class="title user_bg_title"><span>job ofer</span>求人詳細</h1>
+            </div>
+
             <?php include_once __DIR__ . "/_appry_detail.php" ?>
         </div>
     </div>

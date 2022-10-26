@@ -19,7 +19,10 @@ $user_image = '../images\ryuta_matsumoto.PNG';
 <body>
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main" class="wrapper">
-        <h2 class="title user_bg_title">ユーザー情報変更</h2>
+        <div class="tit_wrap">
+            <h1 class="title user_bg_title"><span>edit</span>ユーザー情報変更</h1>
+        </div>
+        
         <form class="form" method="post" action="">
             <label for="user_name">
                 <div class="form_title user_title">氏名</div><span class="required">必須</span>
