@@ -68,11 +68,11 @@ input[type="submit"] {
     font-size: 1.3rem;
 }
 .user_bg_title {
-    background: linear-gradient(transparent 80%, #a7f9ff 90%);
+    background: linear-gradient(transparent 85%, #6fc8ffa4 100%);
 
 }
 .company_bg_title {
-    background: linear-gradient(transparent 80%, #99ff80 90%);
+    background: linear-gradient(transparent 85%, #99ff80a4 100%);
 
 }
 
@@ -141,6 +141,9 @@ input[type="submit"] {
     margin-left: 10px;
 }
 
+/*err
+--------------------------------------*/
+
 .err_input {
     border: #ff4a4a;
     background-color: #ffa8a8;
@@ -149,9 +152,14 @@ input[type="submit"] {
 .err_msg {
     color: #ff0000;
     margin-left: 40px;
+    font-size: 0.7rem;
 }
 .err_msg li{
-    margin-top: 10px;
+    margin-top: 5px;
+}
+
+.fa-circle-exclamation {
+margin-right: 3px;
 }
 
 /*header
