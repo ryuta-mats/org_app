@@ -35,7 +35,7 @@ $login_user = '';
                 <div class="form_title user_title">住所</div><span class="required">必須</span>
                 <input class="input_item" id="user_signup_address" type="text" name="user_signup_address">
             </label>
-            <div class="input_item_wrapper">
+            <div class="input_item_small_wrap">
                 <label for="user_signup_age" class="small_label">
                     <div class="form_title user_title">年齢</div>
                     <input class="input_item user_input_small" id="user_signup_age" type="number" name="user_signup_age">

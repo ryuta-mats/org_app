@@ -52,6 +52,12 @@ input[type="submit"] {
     flex-direction: column;
     align-items: center;
 }
+.input_item_wrap {
+    margin-bottom: 50px;
+}
+.input_item_small_wrap {
+    display: flex;
+}
 
 .title {
     padding-top: 30px;
@@ -133,6 +139,19 @@ input[type="submit"] {
     font-size: 0.5rem;
     padding: 2px 5px;
     margin-left: 10px;
+}
+
+.err_input {
+    border: #ff4a4a;
+    background-color: #ffa8a8;
+}
+
+.err_msg {
+    color: #ff0000;
+    margin-left: 40px;
+}
+.err_msg li{
+    margin-top: 10px;
 }
 
 /*header
@@ -312,7 +331,6 @@ input[type="submit"] {
     display: inline-block;
     margin: 0.4em 0.5em;
     padding-left: 0.5rem;
-    margin-left: -15%;
     color: #494949;
     font-size: 1.2rem;
 }
@@ -329,8 +347,8 @@ input[type="submit"] {
     font-family: 'Noto Sans JP', sans-serif;
     border: 1px solid #000;
     border-radius: 2px;
-    display: block;
-    margin: 10px 0 40px 0;
+    display: inline-block;
+    margin: 10px 0px 0px 30px;
     padding: 4px;
     width: 300px;
 }
@@ -342,10 +360,6 @@ input[type="submit"] {
     width: 100px;
     padding: 2px;
     margin-right: 20px;
-}
-
-.input_item_wrapper {
-    display: flex;
 }
 
 .edit_item {

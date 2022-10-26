@@ -54,11 +54,11 @@ CREATE TABLE IF NOT EXISTS ofer (
     image VARCHAR(255) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT fk_company_id
+    CONSTRAINT ofer_fk_company_id
     FOREIGN KEY (company_id)
         REFERENCES companies(id)
         ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT fk_saraly_category_id
+    CONSTRAINT ofer_fk_saraly_category_id
     FOREIGN KEY (saraly_category_id)
         REFERENCES saraly_category(id)
         ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -74,19 +74,19 @@ CREATE TABLE IF NOT EXISTS appry (
     status_id INT NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT appryfk_ofer_id
+    CONSTRAINT appry_fk_ofer_id
     FOREIGN KEY (ofer_id)
         REFERENCES ofer(id)
         ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT appryfk_user_id
+    CONSTRAINT appry_fk_user_id
     FOREIGN KEY (user_id)
         REFERENCES users(id)
         ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT appryfk_company_id
+    CONSTRAINT appry_fk_company_id
     FOREIGN KEY (company_id)
         REFERENCES companies(id)
         ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT appryfk_status_id
+    CONSTRAINT appry_fk_status_id
     FOREIGN KEY (status_id)
         REFERENCES status(id)
         ON DELETE RESTRICT ON UPDATE RESTRICT
