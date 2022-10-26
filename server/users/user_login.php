@@ -21,15 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main" class="wrapper">
-        <pre>
-<?php
-var_dump($email);
-var_dump($password);
-var_dump($errors_email);
-var_dump($errors_password);
-?>
-</pre>
-
         <h2 class="title user_bg_title">ログイン</h2>
         <form class="form" method="post" action="">
             <label for="user_login_email">
