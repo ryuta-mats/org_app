@@ -11,6 +11,7 @@
                 <li><a class="nav_link" href="">問い合わせ</a></li>
                 <li><a class="nav_link" href="../users/user_signup.php">新規登録</a></li>
                 <li><a class="nav_link" href="../users/user_login.php">ログイン</a></li>
+                <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
                 <?php if ($login_user) : ?>
                     <li class="login_flag status_user_login">
                         <img class="login_image" src="../images/ryuta_matsumoto.PNG" alt="<?= $login_user ?>">
