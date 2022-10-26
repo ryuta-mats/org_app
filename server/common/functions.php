@@ -25,23 +25,6 @@ function h($str)
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
-function user_login_validate($email, $password)
-{
-    $errors_email = [];
-    $errors_password = [];
-
-    if (empty($email)) {
-        $errors_email[] = MSG_EMAIL_REQUIRED;
-        $errors_email[] = 'test_err_msg';
-    }
-
-    if (empty($password)) {
-        $errors_password[] = MSG_PASSWORD_REQUIRED;
-    }
-
-    return array($errors_email, $errors_password);
-}
-
 function user_signup_validate($name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image, $flag)
 {
     $errors_name = [];
@@ -150,4 +133,47 @@ function insert_user($name, $email, $tel, $password, $post_code, $address, $age,
         echo $e->getMessage();
         return false;
     }
+}
+
+function user_login_validate($email, $password)
+{
+    $errors = [];
+
+    if (empty($email)) {
+        $errors[] = MSG_EMAIL_REQUIRED;
+    }
+
+    if (empty($password)) {
+        $errors[] = MSG_PASSWORD_REQUIRED;
+    }
+
+    return $errors;
+}
+
+function find_user_by_email($email)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        users
+    WHERE
+        email = :email;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function user_login($user)
+{
+    $_SESSION['current_user']['id'] = $user['id'];
+    $_SESSION['current_user']['name'] = $user['name'];
+    header('Location: ../users/index.php');
+    exit;
 }

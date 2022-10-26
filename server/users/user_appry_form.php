@@ -1,6 +1,14 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
+// セッション開始
+session_start();
+
 $login_user = '';
+
+if (isset($_SESSION['current_user'])) {
+    $login_user = $_SESSION['current_user'];
+}
+
 $job = array(
     'company_name' => '株式会社ニセコリゾート観光協会',
     'job_name' => '営業職',
