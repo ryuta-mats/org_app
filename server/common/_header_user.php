@@ -15,7 +15,7 @@
                     <li class="login_flag status_user_login">
                         <img class="login_image" src="../images/ryuta_matsumoto.PNG" alt="<?= $login_user ?>">
                         <div class="login_wrap">
-                            <p><?= $login_user ?></p>
+                            <p><?= $login_user['name'] ?></p>
                         </div>
                     </li>
                 <?php else : ?>

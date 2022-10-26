@@ -1,6 +1,15 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
-$login_user = '松本竜太';
+
+// セッション開始
+session_start();
+
+$login_user = '';
+
+if (isset($_SESSION['current_user'])) {
+    $login_user = $_SESSION['current_user'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
