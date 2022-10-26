@@ -45,7 +45,7 @@ $user_image = '../images\ryuta_matsumoto.PNG';
                 <div class="form_title user_title">住所</div><span class="required">必須</span>
                 <input class="input_item edit_item" id="user_address" type="text" name="user_address" value="<?= $user_address ?>">
             </label>
-            <div class="input_item_wrapper">
+            <div class="input_item_small_wrap">
                 <label for="user_age" class="small_label">
                     <div class="form_title user_title">年齢</div>
                     <input class="input_item edit_item user_input_small" id="user_age" type="number" name="user_age" value="<?= $user_age ?>">

@@ -39,11 +39,15 @@ $job_page = '';
         <form class="form" method="post" action="">
             <label for="user_motivation">
                 <div class="form_title user_title">志望動機</div><span class="required">必須</span>
-                <textarea class="input_item user_motivation" id="user_motivation" type="text" name="user_motivation" cols="30" rows="10"></textarea>
+                <div class="input_item_wrap">
+                    <textarea class="input_item user_motivation" id="user_motivation" type="text" name="user_motivation" cols="30" rows="10"></textarea>
+                </div>
             </label>
             <label for="user_resume">
                 <div class="form_title user_title">履歴書</div><span class="required">必須</span>
-                <input class="input_item up_load" id="user_resume" type="file" accept="application/pdf" name="user_resume">
+                <div class="input_item_wrap">
+                    <input class="input_item up_load" id="user_resume" type="file" accept="application/pdf" name="user_resume">
+                </div>
             </label>
             <input class="bg_btn user_btn" type="submit" value="応募送信">
         </form>

@@ -33,7 +33,7 @@ $job = array(
 
             <label for="salary_category">
                 <div class="form_title company_title">給料</div><span class="required">必須</span>
-                <div class="input_item_wrapper">
+                <div class="input_item_small_wrap">
                     <select id="salary_item" class="input_item user_input_small edit_item" name="salary_category" id="salary_category" value="<?php empty($job) ?: print h($job['salary_category']); ?>">
                         <option value="0">時給</option>
                         <option value="1">月給</option>
@@ -68,7 +68,7 @@ $job = array(
 
             <label for="job_term_start">
                 <div class="form_title company_title">公開開始日時</div><span class="required">必須</span>
-                <div class="input_item_wrapper">
+                <div class="input_item_small_wrap">
                     <label for="start_date">
                         <input class="input_item user_input_small date_item edit_item" id="start_date" type="date" name="start_date" value="<?php empty($job) ?: print h($job['start_date']); ?>">
                     </label>
@@ -80,7 +80,7 @@ $job = array(
 
             <label for="job_term_end">
                 <div class="form_title company_title">公開終了日時</div><span class="required">必須</span>
-                <div class="input_item_wrapper">
+                <div class="input_item_small_wrap">
                     <label for="end_date">
                         <input class="input_item user_input_small date_item edit_item" id="end_date" type="date" name="end_date" value="<?php empty($job) ?: print h($job['end_date']); ?>">
                     </label>
