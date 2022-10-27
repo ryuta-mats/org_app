@@ -27,12 +27,7 @@ $image = '';
 $description = '';
 $upload_file = '';
 $upload_tmp_file = '';
-
 $val_flag = true;
-
-$errors_email = [];
-$errors_password = [];
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = filter_input(INPUT_POST, 'name');
@@ -103,10 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1 class="title user_bg_title"><span>sign up</span>ユーザー新規登録</h1>
     </div>
         <form class="form" method="post" action="user_signup.php" enctype="multipart/form-data">
-            <label for="user_signup_name">
+            <label for="user_name">
                 <div class="form_title user_title">氏名</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item <?php empty($errors_name) ?: print 'err_input'; ?>" id="user_signup_name" type="text" name="name" value="<?= h($name); ?>">
+                    <input class="input_item <?php empty($errors_name) ?: print 'err_input'; ?>" id="user_name" type="text" name="name" value="<?= h($name); ?>">
                     <?php if (!empty($errors_name)) : ?>
                         <ul class="err_msg">
                             <?php foreach ($errors_name as $error) : ?>
@@ -117,10 +112,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </label>
 
-            <label for="user_signup_email">
+            <label for="user_email">
                 <div class="form_title user_title">メールアドレス</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item <?php empty($errors_email) ?: print 'err_input'; ?>" id="user_signup_email" type="email" name="email" value="<?= h($email); ?>">
+                    <input class="input_item <?php empty($errors_email) ?: print 'err_input'; ?>" id="user_email" type="email" name="email" value="<?= h($email); ?>">
                     <?php if (!empty($errors_email)) : ?>
                         <ul class="err_msg">
                             <?php foreach ($errors_email as $error) : ?>
@@ -131,10 +126,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </label>
 
-            <label for="user_signup_tel">
+            <label for="user_tel">
                 <div class="form_title user_title">電話番号</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item <?php empty($errors_tel) ?: print 'err_input'; ?>" id="user_signup_tel" type="tel" name="tel" value="<?= h($tel); ?>">
+                    <input class="input_item <?php empty($errors_tel) ?: print 'err_input'; ?>" id="user_tel" type="tel" name="tel" value="<?= h($tel); ?>">
                     <?php if (!empty($errors_tel)) : ?>
                         <ul class="err_msg">
                             <?php foreach ($errors_tel as $error) : ?>
@@ -145,11 +140,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </label>
 
-
-            <label for="user_signup_password">
+            <label for="user_password">
                 <div class="form_title user_title">パスワード</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item <?php empty($errors_password) ?: print 'err_input'; ?>" id="user_signup_password" type="password" name="password">
+                    <input class="input_item <?php empty($errors_password) ?: print 'err_input'; ?>" id="user_password" type="password" name="password">
                     <?php if (!empty($errors_password)) : ?>
                         <ul class="err_msg">
                             <?php foreach ($errors_password as $error) : ?>
@@ -160,10 +154,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </label>
 
-            <label for="user_signup_post_code">
+            <label for="user_post_code">
                 <div class="form_title user_title">郵便番号</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item <?php empty($errors_post_code) ?: print 'err_input'; ?>" id="user_signup_post_code" type="number" name="post_code" value="<?= h($post_code); ?>">
+                    <input class="input_item <?php empty($errors_post_code) ?: print 'err_input'; ?>" id="user_post_code" type="number" name="post_code" value="<?= h($post_code); ?>">
                     <?php if (!empty($errors_post_code)) : ?>
                         <ul class="err_msg">
                             <?php foreach ($errors_post_code as $error) : ?>
@@ -174,10 +168,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </label>
 
-            <label for="user_signup_address">
+            <label for="user_address">
                 <div class="form_title user_title">住所</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item <?php empty($errors_address) ?: print 'err_input'; ?>" id="user_signup_address" type="text" name="address" value="<?= h($address); ?>">
+                    <input class="input_item <?php empty($errors_address) ?: print 'err_input'; ?>" id="user_address" type="text" name="address" value="<?= h($address); ?>">
                     <?php if (!empty($errors_address)) : ?>
                         <ul class="err_msg">
                             <?php foreach ($errors_address as $error) : ?>
@@ -187,11 +181,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php endif; ?>
                 </div>
             </label>
+
             <div class="input_item_small_wrap">
-                <label for="user_signup_age" class="small_label">
+                <label for="user_age" class="small_label">
                     <div class="form_title user_title">年齢</div>
                     <div class="input_item_wrap">
-                        <input class="input_item user_input_small <?php empty($errors_age) ?: print 'err_input'; ?>" id="user_signup_age" type="number" name="age" value="<?= h($age); ?>">
+                        <input class="input_item user_input_small <?php empty($errors_age) ?: print 'err_input'; ?>" id="user_age" type="number" name="age" value="<?= h($age); ?>">
                         <?php if (!empty($errors_age)) : ?>
                             <ul class="err_msg">
                                 <?php foreach ($errors_age as $error) : ?>
@@ -201,11 +196,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endif; ?>
                     </div>
                 </label>
-
-                <label for="user_signup_sex" class="small_label">
+                <label for="user_sex" class="small_label">
                     <div class="form_title user_title">性別</div>
                     <div class="input_item_wrap">
-                        <select class="input_item user_input_small <?php empty($errors_sex) ?: print 'err_input'; ?>" id="user_signup_sex" type="text" name="sex" value="<?= h($sex); ?>">
+                        <select class="input_item user_input_small <?php empty($errors_sex) ?: print 'err_input'; ?>" id="user_sex" type="text" name="sex" value="<?= h($sex); ?>">
                             <option value="0"></option>
                             <option value="1">男</option>
                             <option value="2">女</option>

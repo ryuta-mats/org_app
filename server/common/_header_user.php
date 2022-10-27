@@ -7,11 +7,16 @@
         </h1>
         <nav class="menu-content">
             <ul class="menu-nav">
-                <li><a class="nav_link" href="../companys/company_login.php">企業向け</a></li>
+                <li><a class="nav_link" href="../companys/company_login.php">企業向けページ</a></li>
                 <li><a class="nav_link" href="">問い合わせ</a></li>
-                <li><a class="nav_link" href="../users/user_signup.php">新規登録</a></li>
-                <li><a class="nav_link" href="../users/user_login.php">ログイン</a></li>
-                <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
+                <?php if (!empty($login_user)) : ?>
+                    <li><a class="nav_link" href="../users/user_edit.php?id=<?= h($login_user['id']) ?>">登録情報変更</a></li>
+                    <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
+                <?php else : ?>
+                    <li><a class="nav_link" href="../users/user_signup.php">新規登録</a></li>
+                    <li><a class="nav_link" href="../users/user_login.php">ログイン</a></li>
+                <?php endif; ?>
+
                 <?php if ($login_user) : ?>
                     <li class="login_flag status_user_login">
                         <img class="login_image" src="../images/ryuta_matsumoto.PNG" alt="<?= $login_user ?>">
