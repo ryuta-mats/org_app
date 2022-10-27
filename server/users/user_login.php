@@ -4,19 +4,21 @@ include_once __DIR__ . '/../common/functions.php';
 session_start();
 
 $login_user = '';
+
 if (isset($_SESSION['current_user'])) {
     $login_user = $_SESSION['current_user'];
 }
-
-$email = '';
-$password = '';
-$errors = [];
 
 // ログイン判定
 if (isset($_SESSION['current_user'])) {
     header('Location: ../users/index.php');
     exit;
 }
+
+$email = '';
+$password = '';
+$errors = [];
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email');
