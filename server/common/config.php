@@ -6,6 +6,7 @@ define('PASSWORD', '1234');
 define('EXTENTION', ['jpg', 'jpeg', 'png', 'PNG', 'gif', 'webp']);
 
 define('MSG_EMAIL_REQUIRED', 'メールアドレスが未入力です');
+define('MSG_PASSWORD_NOT_MATCH', 'パスワードが間違っています');
 define('MSG_TEL_REQUIRED', '電話番号が未入力です');
 define('MSG_NAME_REQUIRED', 'ユーザー名が未入力です');
 define('MSG_PASSWORD_REQUIRED', 'パスワードが未入力です');

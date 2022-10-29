@@ -18,11 +18,13 @@
                 <?php endif; ?>
 
                 <?php if ($login_user) : ?>
-                    <li class="login_flag status_user_login">
-                        <img class="login_image" src="../images/ryuta_matsumoto.PNG" alt="<?= $login_user ?>">
-                        <div class="login_wrap">
-                            <p><?= $login_user['name'] ?></p>
-                        </div>
+                    <li class="login_flag">
+                        <a class="status_user_login" href="../users/user_show.php">
+                            <img class="login_image" src="../images/ryuta_matsumoto.PNG" alt="<?= $login_user ?>">
+                            <div class="login_wrap">
+                                <p><?= $login_user['name'] ?></p>
+                            </div>
+                        </a>
                     </li>
                 <?php else : ?>
                     <li class="login_flag status_logout">

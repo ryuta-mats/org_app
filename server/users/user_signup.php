@@ -200,9 +200,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form_title user_title">性別</div>
                     <div class="input_item_wrap">
                         <select class="input_item user_input_small <?php empty($errors_sex) ?: print 'err_input'; ?>" id="user_sex" type="text" name="sex" value="<?= h($sex); ?>">
-                            <option value="0"></option>
-                            <option value="1">男</option>
-                            <option value="2">女</option>
+                            <option value="0">未回答</option>
+                            <option value="1">男性</option>
+                            <option value="2">女性</option>
                             <option value="9">その他</option>
                         </select>
                         <?php if (!empty($errors_sex)) : ?>
