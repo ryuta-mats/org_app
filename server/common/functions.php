@@ -97,6 +97,7 @@ function user_signup_validate($name, $email, $tel,  $password, $post_code, $addr
 }
 function user_edit_validate($name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image, $flag)
 {
+    $errors = [];
     $errors_name = [];
     $errors_email = [];
     $errors_tel = [];
@@ -110,31 +111,37 @@ function user_edit_validate($name, $email, $tel,  $password, $post_code, $addres
 
     if (empty($name)) {
         $errors_name[] = MSG_NAME_REQUIRED;
+        $errors[] = MSG_NAME_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($email)) {
         $errors_email[] = MSG_EMAIL_REQUIRED;
+        $errors[] = MSG_EMAIL_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($tel)) {
         $errors_tel[] = MSG_TEL_REQUIRED;
+        $errors[] = MSG_TEL_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($password)) {
         $errors_password[] = MSG_PASSWORD_REQUIRED;
+        $errors[] = MSG_PASSWORD_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($post_code)) {
         $errors_post_code[] = MSG_POSTCODE_REQUIRED;
+        $errors[] = MSG_POSTCODE_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($address)) {
         $errors_address[] = MSG_ADDRESS_REQUIRED;
+        $errors[] = MSG_ADDRESS_REQUIRED;
         $val_flag = false;
     }
 
@@ -148,10 +155,12 @@ function user_edit_validate($name, $email, $tel,  $password, $post_code, $addres
     } else {
         if (check_file_ext($image)) {
             $errors_image[] = MSG_NOT_ABLE_EXT;
+            $errors[] = MSG_NOT_ABLE_EXT;
             $val_flag = false;
         }
     }
     return array(
+        $errors,
         $errors_name,
         $errors_email,
         $errors_tel,
@@ -164,7 +173,6 @@ function user_edit_validate($name, $email, $tel,  $password, $post_code, $addres
         $val_flag
     );
 }
-
 
 function check_file_ext($upload_file)
 {
@@ -253,7 +261,6 @@ function update_user($id, $name, $email, $tel, $password, $post_code, $address, 
     }
 }
 
-
 function user_login_validate($email, $password)
 {
     $errors = [];
@@ -315,4 +322,28 @@ function user_login($user)
     $_SESSION['current_user']['name'] = $user['name'];
     header('Location: ../users/index.php');
     exit;
+}
+
+function rt_str_sex($sex_num)
+{
+    $sex_str = '';
+
+        switch ($sex_num) {
+            case 0:
+                $sex_str = "未回答";
+                break;
+            case 1:
+                $sex_str = "男性";
+                break;
+            case 2:
+                $sex_str = "女性";
+                break;
+            case 9:
+                $sex_str = "その他";
+                break;
+            default:
+                $sex_str = "";
+        };
+
+    return $sex_str;
 }

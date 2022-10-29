@@ -161,27 +161,6 @@ display: block;
     margin-left: 10px;
 }
 
-/*err
---------------------------------------*/
-
-.err_input {
-    border: #ff4a4a;
-    background-color: #ffa8a8;
-}
-
-.err_msg {
-    color: #ff0000;
-    margin-left: 40px;
-    font-size: 0.7rem;
-}
-.err_msg li {
-    margin-top: 5px;
-}
-
-.fa-circle-exclamation {
-    margin-right: 3px;
-}
-
 /*header
 --------------------------------------*/
 #menu {
@@ -274,6 +253,13 @@ display: block;
     margin-right: 7px;
 }
 
+.status_user_login {
+    display: flex;
+    align-items: center;
+}
+.status_user_login p {
+justify-content: center;
+}
 
 /*main
 --------------------------------------*/
@@ -396,6 +382,27 @@ display: block;
     padding: 2px;
     margin-right: 20px;
 }
+/*user_show
+---------------------*/
+.show_body{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.user_show_wrap {
+    align-content: center;
+
+}
+
+.show_btn{
+    display: flex;
+    margin: 0 auto;
+}
+
+
+/*user_edit
+---------------------*/
 
 .edit_item {
     background-color: #e7e7e7;
@@ -403,6 +410,12 @@ display: block;
 
 #login_send_wrap {
     display: flex;
+}
+.top_err_msg {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 /*user_appry_form
@@ -627,3 +640,24 @@ display: block;
     text-align: center;
     color: #ebebeb;
 }
+
+/*err
+--------------------------------------*/
+
+.err_input {
+    background-color: #ffd1d1;
+}
+
+.err_msg {
+    color: #ff0000;
+    margin-left: 40px;
+    font-size: 0.7rem;
+}
+.err_msg li {
+    margin-top: 5px;
+}
+
+.fa-circle-exclamation {
+    margin-right: 3px;
+}
+
