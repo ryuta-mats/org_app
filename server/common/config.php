@@ -17,5 +17,9 @@ define('MSG_SEX_REQUIRED', '性別が未選択です');
 define('MSG_NO_IMAGE', '画像が未選択です');
 define('MSG_NOT_ABLE_EXT', '選択したファイルの拡張子が有効ではありません');
 
+define('MSG_COMPANYNAME_REQUIRED', '会社名が未入力です');
+define('MSG_PROFILE_REQUIRED', '会社概要が未入力です');
+define('MSG_MANAGERNAME_REQUIRED', '担当者名が未入力です');
+
 define('MSG_EMAIL_DUPLICATE', 'そのメールアドレスは既に会員登録されています');
 define('MSG_EMAIL_PASSWORD_NOT_MATCH', 'メールアドレスかパスワードが間違っています');

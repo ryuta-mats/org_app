@@ -174,6 +174,126 @@ function user_edit_validate($name, $email, $tel,  $password, $post_code, $addres
     );
 }
 
+function company_signup_validate($name, $password, $post_code, $address, $manager_name, $email, $profile, $image, $flag)
+{
+    $errors = [];
+    $val_flag = $flag;
+
+    if (empty($name)) {
+        $errors['name'][] =  MSG_COMPANYNAME_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($password)) {
+        $errors['password'][] =  MSG_PASSWORD_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($post_code)) {
+        $errors['post_code'][] =  MSG_POSTCODE_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($address)) {
+        $errors['address'][] = MSG_ADDRESS_REQUIRED;
+        $val_flag = false;
+    }
+
+
+    if (empty($manager_name)) {
+        $errors['manager_name'][] =  MSG_MANAGERNAME_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($email)) {
+        $errors['email'][] =  MSG_EMAIL_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($profile)) {
+        $errors['profile'][] =  MSG_PROFILE_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($image)) {
+        $errors['image'][] =  MSG_NO_IMAGE;
+        $val_flag = false;
+    } else {
+        if (check_file_ext($image)) {
+            $errors['image'][] = MSG_NOT_ABLE_EXT;
+            $val_flag = false;
+        }
+    }
+
+    if (empty($errors) &&
+        check_exist_company($email)) {
+        $errors['email'][] = MSG_EMAIL_DUPLICATE;
+        $val_flag = false;
+    }
+
+    return array($errors, $val_flag);
+}
+
+function check_exist_company($email)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT 
+        * 
+    FROM 
+        companies
+    WHERE 
+        email = :email;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+
+    $company = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!empty($company)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function insert_company($name, $password, $post_code, $address, $manager_name, $email, $profile, $image, $url)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        INSERT INTO
+            companies
+            (name, password, post_code, address, manager_name, email, profile, image, url)
+        VALUES
+            (:name, :password, :post_code, :address, :manager_name, :email, :profile, :image, :url)
+        EOM;
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $pw_hash = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bindValue(':password', $pw_hash, PDO::PARAM_STR);
+        $stmt->bindValue(':post_code', $post_code, PDO::PARAM_STR);
+        $stmt->bindValue(':address', $address, PDO::PARAM_STR);
+        $stmt->bindValue(':manager_name', $manager_name, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':profile', $profile, PDO::PARAM_STR);
+        $stmt->bindValue(':image', $image, PDO::PARAM_STR);
+        $stmt->bindValue(':url', $url, PDO::PARAM_STR);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+
 function check_file_ext($upload_file)
 {
     $file_ext = pathinfo($upload_file, PATHINFO_EXTENSION);
@@ -328,22 +448,22 @@ function rt_str_sex($sex_num)
 {
     $sex_str = '';
 
-        switch ($sex_num) {
-            case 0:
-                $sex_str = "未回答";
-                break;
-            case 1:
-                $sex_str = "男性";
-                break;
-            case 2:
-                $sex_str = "女性";
-                break;
-            case 9:
-                $sex_str = "その他";
-                break;
-            default:
-                $sex_str = "";
-        };
+    switch ($sex_num) {
+        case 0:
+            $sex_str = "未回答";
+            break;
+        case 1:
+            $sex_str = "男性";
+            break;
+        case 2:
+            $sex_str = "女性";
+            break;
+        case 9:
+            $sex_str = "その他";
+            break;
+        default:
+            $sex_str = "";
+    };
 
     return $sex_str;
 }
