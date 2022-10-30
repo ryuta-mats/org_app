@@ -1,6 +1,13 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
-$login_company = '株式会社ニセコリゾート観光協会';
+// セッション開始
+session_start();
+
+$login_company = '';
+
+if (isset($_SESSION['current_company'])) {
+    $login_company = $_SESSION['current_company'];
+}
 
 $jobs = array(
     0 => array(
@@ -29,7 +36,7 @@ $jobs = array(
     <?php include_once __DIR__ . "/../common/_header_company.php" ?>
 
     <div id="main" class="wrapper">
-        <h2><?= h($login_company) ?>様の 求人リスト</h2>
+        <h2><?= h($login_company['name']) ?>様の 求人リスト</h2>
 
         <table class="base_table">
             <thead>

@@ -1,18 +1,26 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
-$login_company ='株式会社ニセコリゾート観光協会';
+// セッション開始
+session_start();
+
+$login_company = '';
+
+if (isset($_SESSION['current_company'])) {
+    $login_company = $_SESSION['current_company'];
+}
+
 $users = array(
     0 => array(
         'name' => 'ニセコ太郎',
         'job' => '営業職',
-        'tel' => '000-0000-0000',
+        'tel' => '100_0000_0000',
         'address' => 'aaa@bbb.jp',
         'motivation' => '貴社の企業理念に惹かれたからです。貴社の企業理念に惹かれたからです。貴社の企業理念に惹かれたからです。貴社の企業理念に惹かれたからです。',
     ),
     1 => array(
         'name' => 'ニセコ花子',
         'job' => '事務職',
-        'tel' => '111-1111-1111',
+        'tel' => '111_1111_1111',
         'address' => 'ccc@ddd.jp',
         'motivation' => '家から近いからです。',
     )

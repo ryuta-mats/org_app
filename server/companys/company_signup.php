@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $val_flag
     ) {
         $image_name = date('YmdHis') . '_' . $upload_file;
-        $path = '../images/user/' . $image_name;
+        $path = '../images/company/' . $image_name;
 
         if ((move_uploaded_file($upload_tmp_file, $path)) &&
             insert_company($name, $password, $post_code, $address, $manager_name, $email, $profile, $image_name, $url)

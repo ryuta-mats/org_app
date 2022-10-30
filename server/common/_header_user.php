@@ -10,7 +10,7 @@
                 <li><a class="nav_link" href="../companys/company_login.php">企業向けページ</a></li>
                 <li><a class="nav_link" href="">問い合わせ</a></li>
                 <?php if (!empty($login_user)) : ?>
-                    <li><a class="nav_link" href="../users/user_edit.php?id=<?= h($login_user['id']) ?>">登録情報変更</a></li>
+                    <li><a class="nav_link" href="../users/user_edit.php?id=<?= $login_user['id'] ?>">登録情報変更</a></li>
                     <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
                 <?php else : ?>
                     <li><a class="nav_link" href="../users/user_signup.php">新規登録</a></li>
@@ -20,9 +20,9 @@
                 <?php if ($login_user) : ?>
                     <li class="login_flag">
                         <a class="status_user_login" href="../users/user_show.php">
-                            <img class="login_image" src="../images/ryuta_matsumoto.PNG" alt="<?= $login_user ?>">
+                            <img class="login_image" src="../images/user/<?= h($login_user['image']) ?>" alt="<?= $login_user ?>">
                             <div class="login_wrap">
-                                <p><?= $login_user['name'] ?></p>
+                                <p><?= h($login_user['name']) ?></p>
                             </div>
                         </a>
                     </li>

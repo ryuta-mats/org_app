@@ -84,7 +84,7 @@ function user_signup_validate($name, $email, $tel,  $password, $post_code, $addr
         }
     }
 
-        if (
+    if (
         empty($errors) &&
         check_exist_user($email)
     ) {
@@ -261,6 +261,52 @@ function company_signup_validate($name, $password, $post_code, $address, $manage
     }
 
     return array($errors, $val_flag);
+}
+
+function company_login_validate($email, $password)
+{
+    $errors = [];
+
+    if (empty($email)) {
+        $errors[] = MSG_EMAIL_REQUIRED;
+    }
+
+    if (empty($password)) {
+        $errors[] = MSG_PASSWORD_REQUIRED;
+    }
+
+    return $errors;
+}
+
+function find_company_by_email($email)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        companies
+    WHERE
+        email = :email;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+function company_login($company)
+{
+    $_SESSION['current_company']['id'] = $company['id'];
+    $_SESSION['current_company']['name'] = $company['name'];
+    $_SESSION['current_company']['email'] = $company['email'];
+    $_SESSION['current_company']['manager_name'] = $company['manager_name'];
+    $_SESSION['current_company']['image'] = $company['image'];
+    
+    header('Location: ../companys/company_jobofer_list.php');
+    exit;
 }
 
 function check_exist_company($email)
@@ -469,6 +515,10 @@ function user_login($user)
 {
     $_SESSION['current_user']['id'] = $user['id'];
     $_SESSION['current_user']['name'] = $user['name'];
+    $_SESSION['current_user']['image'] = $user['image'];
+    $_SESSION['current_user']['age'] = $user['age'];
+    $_SESSION['current_user']['sex'] = $user['sex'];
+    
     header('Location: ../users/index.php');
     exit;
 }

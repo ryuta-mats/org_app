@@ -46,15 +46,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="tit_wrap">
             <h1 class="title user_bg_title"><span>user login</span>ユーザーログイン</h1>
         </div>
-        <div class="login_err_wrap">
-            <?php if (!empty($errors)) : ?>
+        <?php if (!empty($errors)) : ?>
+            <div class="login_err_wrap">
                 <ul class="err_msg">
                     <?php foreach ($errors as $error) : ?>
                         <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
                     <?php endforeach; ?>
                 </ul>
-            <?php endif; ?>
-        </div>
+            </div>
+        <?php endif; ?>
 
         <form class="form" method="post" action="">
             <label for="user_login_email">
