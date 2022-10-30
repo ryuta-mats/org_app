@@ -27,6 +27,7 @@ function h($str)
 
 function user_signup_validate($name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image, $flag)
 {
+    $errors = [];
     $errors_name = [];
     $errors_email = [];
     $errors_tel = [];
@@ -39,32 +40,32 @@ function user_signup_validate($name, $email, $tel,  $password, $post_code, $addr
     $val_flag = $flag;
 
     if (empty($name)) {
-        $errors_name[] = MSG_NAME_REQUIRED;
+        $errors['name'][] = MSG_NAME_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($email)) {
-        $errors_email[] = MSG_EMAIL_REQUIRED;
+        $errors['email'][] = MSG_EMAIL_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($tel)) {
-        $errors_tel[] = MSG_TEL_REQUIRED;
+        $errors['tel'][] = MSG_TEL_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($password)) {
-        $errors_password[] = MSG_PASSWORD_REQUIRED;
+        $errors['password'][] = MSG_PASSWORD_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($post_code)) {
-        $errors_post_code[] = MSG_POSTCODE_REQUIRED;
+        $errors['podt_code'][] = MSG_POSTCODE_REQUIRED;
         $val_flag = false;
     }
 
     if (empty($address)) {
-        $errors_address[] = MSG_ADDRESS_REQUIRED;
+        $errors['address'][] = MSG_ADDRESS_REQUIRED;
         $val_flag = false;
     }
 
@@ -75,26 +76,52 @@ function user_signup_validate($name, $email, $tel,  $password, $post_code, $addr
     }
 
     if (empty($image)) {
-        $errors_image[] = MSG_NO_IMAGE;
+        $errors['image'][] =  MSG_NO_IMAGE;
         $val_flag = false;
     } else {
         if (check_file_ext($image)) {
-            $errors_image[] = MSG_NOT_ABLE_EXT;
+            $errors['image'][] = MSG_NOT_ABLE_EXT;
         }
     }
-    return array(
-        $errors_name,
-        $errors_email,
-        $errors_tel,
-        $errors_password,
-        $errors_post_code,
-        $errors_address,
-        $errors_age,
-        $errors_sex,
-        $errors_image,
-        $val_flag
-    );
+
+        if (
+        empty($errors) &&
+        check_exist_user($email)
+    ) {
+        $errors['email'][] = MSG_EMAIL_DUPLICATE;
+        $val_flag = false;
+    }
+
+    return array($errors, $val_flag);
 }
+
+
+function check_exist_user($email)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT 
+        * 
+    FROM 
+        users
+    WHERE 
+        email = :email;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!empty($user)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function user_edit_validate($name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image, $flag)
 {
     $errors = [];
@@ -225,8 +252,10 @@ function company_signup_validate($name, $password, $post_code, $address, $manage
         }
     }
 
-    if (empty($errors) &&
-        check_exist_company($email)) {
+    if (
+        empty($errors) &&
+        check_exist_company($email)
+    ) {
         $errors['email'][] = MSG_EMAIL_DUPLICATE;
         $val_flag = false;
     }
