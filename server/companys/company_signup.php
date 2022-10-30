@@ -65,10 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ) {
             header('Location: company_login.php');
             exit;
-        }else{
+        } else {
         }
     };
-
 };
 
 ?>
@@ -85,9 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="tit_wrap">
             <h2 class="title company_bg_title">事業者新規登録</h2>
         </div>
-
-        <div class="login_err_wrap">
-            <?php if (!empty($errors)) : ?>
+        <?php if (!empty($errors)) : ?>
+            <div class="login_err_wrap">
                 <ul class="err_msg">
                     <?php foreach ($errors as $error) : ?>
                         <?php foreach ($error as $val) : ?>
@@ -95,8 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endforeach; ?>
                     <?php endforeach; ?>
                 </ul>
-            <?php endif; ?>
-        </div>
+            </div>
+        <?php endif; ?>
 
 
         <form class="form" method="post" action="company_signup.php" enctype="multipart/form-data">
