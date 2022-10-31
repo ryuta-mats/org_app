@@ -297,6 +297,27 @@ function find_company_by_email($email)
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+function find_company_by_id($id) {
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        companies
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+
+}
+
 function company_login($company)
 {
     $_SESSION['current_company']['id'] = $company['id'];

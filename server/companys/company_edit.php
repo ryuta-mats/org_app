@@ -23,7 +23,7 @@ $company = array(
     <div id="main" class="wrapper">
     <pre>
         <?php
-            empty($company) ?: var_dump($company);            
+            empty($company) ?: var_dump($company);
         ?>
     </pre>
 

@@ -31,69 +31,69 @@ if (empty($_SESSION['current_user'])) {
             <h1 class="title user_bg_title"><span>User info</span>ユーザー情報</h1>
         </div>
 
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <div class="form_title user_title ">氏名</div>
             <div class="input_item_wrap">
                 <div><?= h($login_user['name']); ?></div>
             </div>
         </div>
 
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <div class="form_title user_title ">メールアドレス</div>
             <div class="input_item_wrap">
                 <div><?= h($login_user['email']); ?></div>
             </div>
         </div>
 
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <div class="form_title user_title">電話番号</div>
             <div class="input_item_wrap">
                 <div><?= h($login_user['tel']); ?></div>
             </div>
         </div>
 
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <div class="form_title user_title">パスワード</div>
             <div class="input_item_wrap">
                 <div>非表示</div>
             </div>
         </div>
 
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <div class="form_title user_title">郵便番号</div>
             <div class="input_item_wrap">
                 <div><?= h($login_user['post_code']); ?></div>
             </div>
         </div>
 
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <div class="form_title user_title">住所</div>
             <div class="input_item_wrap">
                 <div><?= h($login_user['address']); ?></div>
             </div>
         </div>
 
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <div class="form_title user_title  ">年齢</div>
             <div class="input_item_wrap">
                 <div><?= h($login_user['age']); ?></div>
             </div>
         </div>
 
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <div class="form_title user_title  ">性別</div>
             <div class="input_item_wrap">
                 <div><?= h(rt_str_sex($login_user['sex'])); ?></div>
             </div>
         </div>
 
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <div class="form_title user_title  ">画像</div>
             <div class="input_item_wrap edit_image">
                 <img src="../images/user/<?= $login_user['image'] ?>" alt="<?= $login_user['name'] ?>さんのプロフィール画像">
             </div>
         </div>
-        <div class="user_show_wrap">
+        <div class="show_wrap">
             <a href="../users/user_edit.php" class="bg_btn user_btn show_btn">変更</a>
         </div>
 
