@@ -242,7 +242,7 @@ function company_signup_validate($name, $password, $post_code, $address, $manage
     }
 }
 
-function company_job_create_validate($name,$category,$price,$profile,$image,$area,$start_date,$start_time,$end_date,$end_time,$flag)
+function company_job_create_validate($name, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time, $flag)
 {
     $errors = [];
     $val_flag = $flag;
@@ -260,10 +260,10 @@ function company_job_create_validate($name,$category,$price,$profile,$image,$are
     if (empty($price)) {
         $errors['price'][] =  MSG_PRICE_REQUIRED;
         $val_flag = false;
-    }elseif(!is_numeric($price)){
+    } elseif (!is_numeric($price)) {
         $errors['price'][] =  MSG_PRICE_NOT_NUMBER;
         $val_flag = false;
-    }elseif($category == 1 && $price < 920){
+    } elseif ($category == 1 && $price < 920) {
         $errors['price'][] =  MSG_PRICE_MINIMUM_RAGE;
         $val_flag = false;
     }
@@ -276,6 +276,72 @@ function company_job_create_validate($name,$category,$price,$profile,$image,$are
     if (empty($image)) {
         $errors['image'][] =  MSG_NO_IMAGE;
         $val_flag = false;
+    } else {
+        if (check_file_ext($image)) {
+            $errors['image'][] = MSG_NOT_ABLE_EXT;
+            $val_flag = false;
+        }
+    }
+
+    if (empty($area)) {
+        $errors['area'][] =  MSG_AREA_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($start_date)) {
+        $errors['start_date'][] =  MSG_START_DATE_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($start_time)) {
+        $errors['start_time'][] =  MSG_START_TIME_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($end_date)) {
+        $errors['end_date'][] =  MSG_END_DATE_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($end_time)) {
+        $errors['end_time'][] =  MSG_END_TIME_REQUIRED;
+        $val_flag = false;
+    }
+
+    return array($errors, $val_flag);
+}
+function company_job_edit_validate($name, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time, $flag)
+{
+    $errors = [];
+    $val_flag = $flag;
+
+    if (empty($name)) {
+        $errors['name'][] =  MSG_JOBNAME_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($category)) {
+        $errors['category'][] =  MSG_CATEGORY_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($price)) {
+        $errors['price'][] =  MSG_PRICE_REQUIRED;
+        $val_flag = false;
+    } elseif (!is_numeric($price)) {
+        $errors['price'][] =  MSG_PRICE_NOT_NUMBER;
+        $val_flag = false;
+    } elseif ($category == 1 && $price < 920) {
+        $errors['price'][] =  MSG_PRICE_MINIMUM_RAGE;
+        $val_flag = false;
+    }
+
+    if (empty($profile)) {
+        $errors['profile'][] =  MSG_PROFILE_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($image)) {
     } else {
         if (check_file_ext($image)) {
             $errors['image'][] = MSG_NOT_ABLE_EXT;
@@ -346,7 +412,8 @@ function find_company_by_email($email)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function find_company_by_id($id) {
+function find_company_by_id($id)
+{
     $dbh = connect_db();
 
     $sql = <<<EOM
@@ -363,7 +430,6 @@ function find_company_by_id($id) {
     $stmt->execute();
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
-
 }
 
 function company_login($company)
@@ -373,7 +439,7 @@ function company_login($company)
     $_SESSION['current_company']['email'] = $company['email'];
     $_SESSION['current_company']['manager_name'] = $company['manager_name'];
     $_SESSION['current_company']['image'] = $company['image'];
-    
+
     header('Location: ../companys/company_jobofer_list.php');
     exit;
 }
@@ -476,7 +542,7 @@ function insert_user($name, $email, $tel, $password, $post_code, $address, $age,
     }
 }
 
-function insert_job($name,$company_id, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time)
+function insert_job($name, $company_id, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time)
 {
     try {
         $dbh = connect_db();
@@ -489,8 +555,8 @@ function insert_job($name,$company_id, $category, $price, $profile, $image, $are
             (:name, :company_id, :category_id, :price, :profile, :area, :image, :start_date, :end_date);
         EOM;
 
-        $new_start_datetime = change_date_time_to_datetime($start_date,$start_time);
-        $new_end_datetime = change_date_time_to_datetime($end_date,$end_time);
+        $new_start_datetime = change_date_time_to_datetime($start_date, $start_time);
+        $new_end_datetime = change_date_time_to_datetime($end_date, $end_time);
 
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -499,6 +565,47 @@ function insert_job($name,$company_id, $category, $price, $profile, $image, $are
         $stmt->bindValue(':price', $price, PDO::PARAM_INT);
         $stmt->bindValue(':profile', $profile, PDO::PARAM_STR);
         $stmt->bindValue(':image', $image, PDO::PARAM_STR);
+        $stmt->bindValue(':area', $area, PDO::PARAM_STR);
+        $stmt->bindValue(':start_date', $start_date . ' ' . $start_time, PDO::PARAM_STR);
+        $stmt->bindValue(':end_date', $end_date . ' ' . $end_time, PDO::PARAM_STR);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+function update_job($name, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        UPDATE
+            ofer
+        SET
+            name = :name,
+            category_id = :category_id,
+            price = :price,
+            profile = :profile,
+            area = :area,
+            start_date = :start_date,
+            end_date = :end_date
+        EOM;
+
+        if (!empty($image)) {
+            $sql .= ', image = :image';
+        }
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':category_id', $category, PDO::PARAM_INT);
+        $stmt->bindValue(':price', $price, PDO::PARAM_INT);
+        $stmt->bindValue(':profile', $profile, PDO::PARAM_STR);
+        if (!empty($image)) {
+            $stmt->bindValue(':image', $image, PDO::PARAM_STR);
+        }
         $stmt->bindValue(':area', $area, PDO::PARAM_STR);
         $stmt->bindValue(':start_date', $start_date . ' ' . $start_time, PDO::PARAM_STR);
         $stmt->bindValue(':end_date', $end_date . ' ' . $end_time, PDO::PARAM_STR);
@@ -614,6 +721,26 @@ function find_user_by_id($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+function find_job_by_id($id){
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        ofer
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
 function user_login($user)
 {
     $_SESSION['current_user']['id'] = $user['id'];
@@ -621,7 +748,7 @@ function user_login($user)
     $_SESSION['current_user']['image'] = $user['image'];
     $_SESSION['current_user']['age'] = $user['age'];
     $_SESSION['current_user']['sex'] = $user['sex'];
-    
+
     header('Location: ../users/index.php');
     exit;
 }
@@ -650,11 +777,12 @@ function rt_str_sex($sex_num)
     return $sex_str;
 }
 
-function change_datetime_to_date_time($datetime){
-
+function change_datetime_to_date_time($datetime)
+{
 }
 
-function change_date_time_to_datetime($date,$time){
-$datetime = strtotime($date . $time);
-return $datetime;
+function change_date_time_to_datetime($date, $time)
+{
+    $datetime = strtotime($date . $time);
+    return $datetime;
 }
