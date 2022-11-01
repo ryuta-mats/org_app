@@ -94,10 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="tit_wrap">
             <h1 class="title company_bg_title">新規求人登録</h1>
         </div>
-<pre>
-<?php echo var_dump($_POST) ?>
-<?php echo var_dump($_FILES) ?>
-</pre>
+
         <?php if (!empty($errors)) : ?>
             <div class="login_err_wrap">
                 <ul class="err_msg">

@@ -603,7 +603,12 @@ justify-content: center;
 /*job_edit
 --------------------------------------*/
 
+.edit_image {
+margin-top: 2rem;
+}
+
 .edit_image img {
+    margin-top: 1em;
     max-width: 500px;
 }
 
