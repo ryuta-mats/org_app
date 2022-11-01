@@ -21,5 +21,19 @@ define('MSG_COMPANYNAME_REQUIRED', '会社名が未入力です');
 define('MSG_PROFILE_REQUIRED', '会社概要が未入力です');
 define('MSG_MANAGERNAME_REQUIRED', '担当者名が未入力です');
 
+define('MSG_JOBNAME_REQUIRED', '仕事名が未入力です');
+define('MSG_CATEGORY_REQUIRED', '給料カデコリが未選択です');
+define('MSG_PRICE_REQUIRED', '給料金額が未入力です');
+define('MSG_PRICE_NOT_NUMBER', '給料金額が数字ではありません');
+define('MSG_PRICE_MINIMUM_RAGE', '最低賃金を下回っています');
+define('MSG_AREA_REQUIRED', '勤務地が未入力です');
+define('MSG_START_DATE_REQUIRED', '公開開始日が未入力です');
+define('MSG_START_TIME_REQUIRED', '公開開始時間が未入力です');
+define('MSG_END_DATE_REQUIRED', '公開終了日が未入力です');
+define('MSG_END_TIME_REQUIRED', '公開終了時間が未入力です');
+
+
+
+
 define('MSG_EMAIL_DUPLICATE', 'そのメールアドレスは既に会員登録されています');
 define('MSG_EMAIL_PASSWORD_NOT_MATCH', 'メールアドレスかパスワードが間違っています');
