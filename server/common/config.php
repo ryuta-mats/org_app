@@ -3,7 +3,7 @@
 define('DSN', 'mysql:host=db;dbname=nisekowork_db;charset=utf8');
 define('USER', 'nw_admin');
 define('PASSWORD', '1234');
-define('EXTENTION', ['jpg', 'jpeg', 'png', 'PNG', 'gif', 'webp']);
+define('EXTENTION', ['jpg','JPG', 'jpeg', 'png', 'PNG', 'gif', 'webp']);
 
 define('MSG_EMAIL_REQUIRED', 'メールアドレスが未入力です');
 define('MSG_PASSWORD_NOT_MATCH', 'パスワードが間違っています');

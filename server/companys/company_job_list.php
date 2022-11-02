@@ -58,10 +58,6 @@ $jobs = find_job_by_comapny_id($id);
                                         <i class="fa-solid fa-square-xmark"></i>
                                         <p>delete</p>
                                     </a>
-                                    <a href="company_message.php" class="icon icon_appry_detail icon_wrap">
-                                        <i class="fa-solid fa-message"></i>
-                                        <p>message</p>
-                                    </a>
                                 </div>
                             </td>
                         </tr>
