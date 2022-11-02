@@ -2,8 +2,8 @@
 include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
-$login_company = '';
 
+$login_company = $_SESSION['current_company'];
 $id = $_SESSION['current_company']['id'];
 $job_id = $_GET['job_id'];
 

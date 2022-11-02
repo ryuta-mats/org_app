@@ -620,7 +620,31 @@ function update_job($id, $name, $category, $price, $profile, $image, $area, $sta
         return false;
     }
 }
+function update_job_cxl($id)
+{
+    try {
+        $dbh = connect_db();
 
+        $sql = <<<EOM
+        UPDATE
+            ofer
+        SET
+            cxl_flag = :cxl_flag
+        EOM;
+
+        $sql .= ' WHERE id = :id';
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':cxl_flag', 0, PDO::PARAM_INT);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
 function update_user($id, $name, $email, $tel, $password, $post_code, $address, $age, $sex, $image = '')
 {
     try {
