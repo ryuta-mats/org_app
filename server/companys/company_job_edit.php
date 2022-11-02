@@ -35,9 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = filter_input(INPUT_POST, 'name');
     $category = filter_input(INPUT_POST, 'category');
     $price = filter_input(INPUT_POST, 'price');
-    if (isset($_POST['profile'])) {
-        $profile = h($_POST['profile']);
-    }
+    $profile = $_POST['profile'];
     // アップロードした画像のファイル名
     $upload_file = $_FILES['image']['name'];
     // サーバー上で一時的に保存されるテンポラリファイル名
@@ -80,8 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($image_change_flag && move_uploaded_file($upload_tmp_file, $path)) {
             unlink($old_image);
         };
-        if (update_job($name, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time)) {
-            header('Location: company_job_show.php');
+        if (update_job($job_id, $name, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time)) {
+            header('Location: company_job_show.php?job_id=' . $job_id);
             exit;
         };
     }
@@ -98,12 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include_once __DIR__ . "/../common/_header_company.php" ?>
 
     <div id="main" class="wrapper">
-        <pre>
-        <?php echo var_dump($job) ?>
-        <?php echo var_dump($end_time) ?>
-        <?php echo var_dump($area) ?>
-        
-        </pre>
         <div class="tit_wrap">
             <h1 class="title company_bg_title">求人内容変更</h1>
         </div>
@@ -130,8 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="input_item_small_wrap">
                         <select id="salary_item" class="input_item user_input_small edit_item <?php empty($errors['category']) ?: print 'err_input'; ?>" name="category" id="salary_category">
                             <option value="" <?php $category == '' && print 'selected' ?>>未回答</option>
-                            <option value="1" <?php $category == 1 && print 'selected' ?>>時給</option>
-                            <option value="2" <?php $category == 2 && print 'selected' ?>>月給</option>
+                            <option value="1" <?php $category == 1 && print 'selected' ?>>月給</option>
+                            <option value="2" <?php $category == 2 && print 'selected' ?>>時給</option>
                             <option value="3" <?php $category == 3 && print 'selected' ?>>年俸</option>
                         </select>
                         <div class="jpy_wrap">
@@ -159,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="job_profile">
                 <div class="form_title company_title">仕事内容</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <textarea class="input_item input_item_textarea edit_item <?php empty($errors['profile']) ?: print 'err_input'; ?>" id="profile" name="job_profile" rows="15"><?= h($profile) ?></textarea>
+                    <textarea class="input_item input_item_textarea edit_item <?php empty($errors['profile']) ?: print 'err_input'; ?>" id="job_profile" name="profile" rows="15"><?= h($profile) ?></textarea>
                     <?php if (!empty($errors['profile'])) : ?>
                         <ul class="err_msg">
                             <?php foreach ($errors['profile'] as $error) : ?>

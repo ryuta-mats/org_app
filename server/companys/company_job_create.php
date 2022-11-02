@@ -129,8 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="input_item_small_wrap">
                         <select id="salary_item" class="input_item user_input_small <?php empty($errors['category']) ?: print 'err_input'; ?>" name="category" id="category">
                             <option value="" <?php $category == '' && print 'selected' ?>>未回答</option>
-                            <option value="1" <?php $category == 1 && print 'selected' ?>>時給</option>
-                            <option value="2" <?php $category == 2 && print 'selected' ?>>月給</option>
+                            <option value="1" <?php $category == 1 && print 'selected' ?>>月給</option>
+                            <option value="2" <?php $category == 2 && print 'selected' ?>>時給</option>
                             <option value="3" <?php $category == 3 && print 'selected' ?>>年俸</option>
                         </select>
                         <div class="jpy_wrap">
