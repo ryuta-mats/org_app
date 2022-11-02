@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ((move_uploaded_file($upload_tmp_file, $path)) &&
             insert_job($name, $login_company['id'], $category, $price, $profile, $image_name, $area, $start_date, $start_time, $end_date, $end_time)
         ) {
-            header('Location: company_jobofer_list.php');
+            header('Location: company_job_list.php');
             exit;
         } else {
         }

@@ -21,9 +21,9 @@ if (empty($_SESSION['current_company'])) {
 
 //関数でキャンセルフラグを0に変更する
 if (update_job_cxl($job_id)) {
-}else{
+} else {
     //falseの場合、リストにリダイレクトする
-    header('Location: ../companys/company_jobofer_list.php?job_id=' . $job_id);
+    header('Location: ../companys/company_job_list.php?job_id=' . $job_id);
 }
 
 ?>

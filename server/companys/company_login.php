@@ -10,7 +10,7 @@ if (isset($_SESSION['current_company'])) {
 }
 // ログイン判定
 if (isset($_SESSION['current_company'])) {
-    header('Location: ../companys/company_jobofer_list.php');
+    header('Location: ../companys/company_job_list.php');
     exit;
 }
 
