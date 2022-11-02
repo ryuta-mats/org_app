@@ -10,7 +10,7 @@ if (empty($login_company)) {
     header('Location: ../companys/company_login.php');
     exit;
 }
-$jobs =find_job_by_comapny_id($id);
+$jobs = find_job_by_comapny_id($id);
 
 
 ?>
@@ -37,33 +37,35 @@ $jobs =find_job_by_comapny_id($id);
             </thead>
             <tbody>
                 <?php foreach ($jobs as $job) : ?>
-                    <tr>
-                        <td class="td_center"><?= h($job['name']) ?></td>
-                        <?php $category = find_category_by_id($id); ?>
-                        <td class="td_center"><?= $category['name'] ?> <?= h($job['price']) ?>円</td>
-                        <td><?= h($job['profile']) ?></td>
-                        <td class="td_center">0人</td>
-                        <td class="icon_td">
-                            <div class="icons_wrap">
-                                <a href="company_job_show.php?job_id=<?= $job['id'] ?>" class="icon icon_appry_detail icon_wrap">
-                                    <i class="fa-solid fa-file-invoice"></i>
-                                    <p>詳細</p>
-                                </a>
-                                <a href="company_job_edit.php?job_id=<?= $job['id'] ?>" class="icon icon_appry_detail icon_wrap">
-                                    <i class="fa-solid fa-pen"></i>
-                                    <p>編集</p>
-                                </a>
-                                <a href="" class="icon icon_appry_detail icon_wrap">
-                                    <i class="fa-solid fa-square-xmark"></i>
-                                    <p>削除</p>
-                                </a>
-                                <a href="company_message.php" class="icon icon_appry_detail icon_wrap">
-                                    <i class="fa-solid fa-message"></i>
-                                    <p>メッセージ</p>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+                    <?php if ($job['cxl_flag']) : ?>
+                        <tr>
+                            <td class="td_center"><?= h($job['name']) ?></td>
+                            <?php $category = find_category_by_id($id); ?>
+                            <td class="td_center"><?= $category['name'] ?> <?= h($job['price']) ?>円</td>
+                            <td><?= h($job['profile']) ?></td>
+                            <td class="td_center">0人</td>
+                            <td class="icon_td">
+                                <div class="icons_wrap">
+                                    <a href="company_job_show.php?job_id=<?= $job['id'] ?>" class="icon icon_appry_detail icon_wrap">
+                                        <i class="fa-solid fa-file-invoice"></i>
+                                        <p>ditail</p>
+                                    </a>
+                                    <a href="company_job_edit.php?job_id=<?= $job['id'] ?>" class="icon icon_appry_detail icon_wrap">
+                                        <i class="fa-solid fa-pen"></i>
+                                        <p>edit</p>
+                                    </a>
+                                    <a href="company_job_delete.php?job_id=<?= $job['id'] ?>" class="icon icon_appry_detail icon_wrap">
+                                        <i class="fa-solid fa-square-xmark"></i>
+                                        <p>delete</p>
+                                    </a>
+                                    <a href="company_message.php" class="icon icon_appry_detail icon_wrap">
+                                        <i class="fa-solid fa-message"></i>
+                                        <p>message</p>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
