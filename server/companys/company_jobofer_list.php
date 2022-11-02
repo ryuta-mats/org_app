@@ -3,28 +3,15 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 
-$login_company = '';
+$login_company = $_SESSION['current_company'];
+$id = $_SESSION['current_company']['id'];
 
-if (isset($_SESSION['current_company'])) {
-    $login_company = $_SESSION['current_company'];
+if (empty($login_company)) {
+    header('Location: ../companys/company_login.php');
+    exit;
 }
+$jobs =find_job_by_comapny_id($id);
 
-$jobs = array(
-    0 => array(
-        'company_name' => 'ニセコ株式会社',
-        'category' => '営業職',
-        'salary' => 250000,
-        'content' => '楽しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト',
-        'ofer' => 1,
-    ),
-    1 => array(
-        'company_name' => 'ニセコ株式会社',
-        'category' => '事務職',
-        'salary' => 230000,
-        'content' => '厳しい仕事です。テキストテキストテキストテキストテキストテキストテキストテキスト',
-        'ofer' => 2,
-    )
-);
 
 ?>
 <!DOCTYPE html>
@@ -51,13 +38,18 @@ $jobs = array(
             <tbody>
                 <?php foreach ($jobs as $job) : ?>
                     <tr>
-                        <td class="td_center"><?= h($job['category']) ?></td>
-                        <td class="td_center"><?= h($job['salary']) ?>円</td>
-                        <td><?= h($job['content']) ?></td>
-                        <td class="td_center"><?= $job['ofer'] ?></td>
+                        <td class="td_center"><?= h($job['name']) ?></td>
+                        <?php $category = find_category_by_id($id); ?>
+                        <td class="td_center"><?= $category['name'] ?> <?= h($job['price']) ?>円</td>
+                        <td><?= h($job['profile']) ?></td>
+                        <td class="td_center">0人</td>
                         <td class="icon_td">
                             <div class="icons_wrap">
-                                <a href="" class="icon icon_appry_detail icon_wrap">
+                                <a href="company_job_show.php?job_id=<?= $job['id'] ?>" class="icon icon_appry_detail icon_wrap">
+                                    <i class="fa-solid fa-file-invoice"></i>
+                                    <p>詳細</p>
+                                </a>
+                                <a href="company_job_edit.php?job_id=<?= $job['id'] ?>" class="icon icon_appry_detail icon_wrap">
                                     <i class="fa-solid fa-pen"></i>
                                     <p>編集</p>
                                 </a>
@@ -65,7 +57,7 @@ $jobs = array(
                                     <i class="fa-solid fa-square-xmark"></i>
                                     <p>削除</p>
                                 </a>
-                                <a href="" class="icon icon_appry_detail icon_wrap">
+                                <a href="company_message.php" class="icon icon_appry_detail icon_wrap">
                                     <i class="fa-solid fa-message"></i>
                                     <p>メッセージ</p>
                                 </a>

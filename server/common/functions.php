@@ -597,7 +597,7 @@ function update_job($id, $name, $category, $price, $profile, $image, $area, $sta
         if (!empty($image)) {
             $sql .= ', image = :image';
         }
-        
+
         $sql .= ' WHERE id = :id';
 
         $stmt = $dbh->prepare($sql);
@@ -724,7 +724,8 @@ function find_user_by_id($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function find_job_by_id($id){
+function find_job_by_id($id)
+{
     $dbh = connect_db();
 
     $sql = <<<EOM
@@ -742,7 +743,30 @@ function find_job_by_id($id){
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
-function find_category_by_id($id){
+
+function find_job_by_comapny_id($company_id)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        ofer
+    WHERE
+        company_id = :company_id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':company_id', $company_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+function find_category_by_id($id)
+{
     $dbh = connect_db();
 
     $sql = <<<EOM
