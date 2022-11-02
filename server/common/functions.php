@@ -576,7 +576,7 @@ function insert_job($name, $company_id, $category, $price, $profile, $image, $ar
         return false;
     }
 }
-function update_job($name, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time)
+function update_job($id, $name, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time)
 {
     try {
         $dbh = connect_db();
@@ -597,8 +597,11 @@ function update_job($name, $category, $price, $profile, $image, $area, $start_da
         if (!empty($image)) {
             $sql .= ', image = :image';
         }
+        
+        $sql .= ' WHERE id = :id';
 
         $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->bindValue(':category_id', $category, PDO::PARAM_INT);
         $stmt->bindValue(':price', $price, PDO::PARAM_INT);
@@ -739,7 +742,24 @@ function find_job_by_id($id){
 
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+function find_category_by_id($id){
+    $dbh = connect_db();
 
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        saraly_category
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
 function user_login($user)
 {
@@ -776,6 +796,7 @@ function rt_str_sex($sex_num)
 
     return $sex_str;
 }
+
 
 function change_datetime_to_date_time($datetime)
 {

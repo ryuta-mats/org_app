@@ -621,7 +621,18 @@ margin-top: 2rem;
 .new_ofer_btn {
     margin: 5% auto 0;
 }
+/*company_job_show
+--------------------------------------*/
 
+.show_item_wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.company_show_image{
+    margin-top: 0;
+}
 /*footer
 --------------------------------------*/
 .page_footer {
