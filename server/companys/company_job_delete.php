@@ -1,5 +1,7 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
+include_once __DIR__ . '/../common/functions_db.php';
+include_once __DIR__ . '/../common/functions_varidate.php';
 // セッション開始
 session_start();
 
