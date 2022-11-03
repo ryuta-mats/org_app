@@ -3,10 +3,6 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 
-$login_company = $_SESSION['current_company'];
-$id = $_SESSION['current_company']['id'];
-$job_id = $_GET['job_id'];
-
 // セッションにidが保持されていなければログイン画面にリダイレクト
 // パラメータを受け取れなけれらばログイン画面にリダイレクト
 if (empty($_SESSION['current_company'])) {
@@ -17,6 +13,9 @@ if (empty($_SESSION['current_company'])) {
     exit;
 } else {
     $job = find_job_by_id($job_id);
+    $login_company = $_SESSION['current_company'];
+    $id = $_SESSION['current_company']['id'];
+    $job_id = $_GET['job_id'];
 }
 
 $name = $job['name'];
@@ -97,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div id="main" class="wrapper">
         <div class="tit_wrap">
-            <h1 class="title company_bg_title">求人内容変更</h1>
+            <h1 class="title company_bg_title"><span>job edit</span>求人内容変更</h1>
         </div>
 
         <form class="form" method="post" action="" enctype="multipart/form-data">

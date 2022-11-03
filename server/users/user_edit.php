@@ -4,17 +4,13 @@ include_once __DIR__ . '/../common/functions.php';
 session_start();
 $login_user = '';
 
-$id = $_SESSION['current_user']['id'];
-
 // セッションにidが保持されていなければログイン画面にリダイレクト
 // パラメータを受け取れなけれらば一覧画面にリダイレクト
 if (empty($_SESSION['current_user'])) {
     header('Location: ../users/user_login.php');
     exit;
-} elseif (empty($id)) {
-    header('Location: ../users/index.php');
-    exit;
 } else {
+    $id = $_SESSION['current_user']['id'];
     $login_user = find_user_by_id($_SESSION['current_user']);
 }
 
