@@ -23,7 +23,9 @@ $jobs = find_job_by_comapny_id($id);
     <?php include_once __DIR__ . "/../common/_header_company.php" ?>
 
     <div id="main" class="wrapper">
-        <h2><?= h($login_company['name']) ?>様の 求人リスト</h2>
+        <div class="tit_wrap">
+            <h1 class="title company_bg_title"><span>Job list</span>求人リスト</h1>
+        </div>
 
         <table class="base_table">
             <thead>
