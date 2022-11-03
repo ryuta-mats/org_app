@@ -110,27 +110,6 @@ function find_user_by_id($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-//oferテーブルからIDが一致する求人をもってくる関数
-function find_job_by_id($id)
-{
-    $dbh = connect_db();
-
-    $sql = <<<EOM
-    SELECT
-        *
-    FROM
-        ofer
-    WHERE
-        id = :id;
-    EOM;
-
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
 //ユーザーのemailからユーザー情報をもってくる関数
 function find_user_by_email($email)
 {
@@ -215,6 +194,56 @@ function insert_company($name, $password, $post_code, $address, $manager_name, $
         echo $e->getMessage();
         return false;
     }
+}
+
+//カンパニーDBの対象IDの情報をアップデート修正する関数
+function update_company($id, $name, $post_code, $address, $manager_name, $email, $profile, $image, $url){
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        UPDATE
+            companies
+        SET
+            name = :name,
+            post_code = :post_code,
+            address = :address,
+            manager_name = :manager_name,
+            email = :email,
+            profile = :profile            
+        EOM;
+
+        if (!empty($image)) {
+            $sql .= ', image = :image';
+        }
+        if (!empty($url)) {
+            $sql .= ', url = :url';
+        }
+
+        $sql .= ' WHERE id = :id';
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':post_code', $post_code, PDO::PARAM_STR);
+        $stmt->bindValue(':address', $address, PDO::PARAM_STR);
+        $stmt->bindValue(':manager_name', $manager_name, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':profile', $profile, PDO::PARAM_STR);
+        if (!empty($image)) {
+            $stmt->bindValue(':image', $image, PDO::PARAM_STR);
+        }
+        if (!empty($url)) {
+            $stmt->bindValue(':url', $url, PDO::PARAM_STR);
+        }
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+
 }
 
 //カンパニーテーブルからemailをもとに会社情報をもっていくる関数
@@ -393,6 +422,29 @@ function update_job_cxl($id)
         return false;
     }
 }
+
+//oferテーブルからIDが一致する求人をもってくる関数
+function find_job_by_id($id)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        ofer
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
 
 //給与カデコリidから給与を探す関数
 function find_category_by_id($id)

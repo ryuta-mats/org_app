@@ -4,18 +4,14 @@ include_once __DIR__ . '/../common/functions.php';
 session_start();
 $login_company = '';
 
-$id = $_SESSION['current_company']['id'];
-
 // セッションにidが保持されていなければログイン画面にリダイレクト
 // パラメータを受け取れなけれらばログイン画面にリダイレクト
 if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
-} elseif (empty($id)) {
-    header('Location: ../companys/company_login.php');
-    exit;
 } else {
-    $login_company = find_company_by_id($_SESSION['current_company']);
+    $id = $_SESSION['current_company']['id'];
+    $login_company = find_company_by_id($_SESSION['current_company']['id']);
 }
 
 ?>
@@ -87,6 +83,20 @@ if (empty($_SESSION['current_company'])) {
                 <img src="../images/company/<?= $login_company['image'] ?>" alt="<?= $login_company['name'] ?>の画像">
             </div>
         </div>
+
+        <div class="show_wrap">
+            <div class="form_title company_title">会社ホームページ</div>
+            <div class="input_item_wrap">
+                <div>
+                    <?php if (empty($login_company['url'])) : ?>
+                        登録無し
+                    <?php else : ?>
+                        <a href="<?= h($login_company['url']); ?>"><?= h($login_company['url']); ?></a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
         <div class="show_wrap">
             <a href="../companys/company_edit.php" class="bg_btn company_btn show_btn">変更</a>
         </div>

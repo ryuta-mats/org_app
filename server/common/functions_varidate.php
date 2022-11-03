@@ -216,6 +216,65 @@ function company_signup_validate($name, $password, $post_code, $address, $manage
             $val_flag = false;
         }
     }
+
+    return array(
+        $val_flag,
+        $errors
+    );
+}
+function company_edit_validate($name, $password, $post_code, $address, $manager_name, $email, $profile, $image, $flag)
+{
+    $errors = [];
+    $val_flag = $flag;
+
+    if (empty($name)) {
+        $errors['name'][] =  MSG_COMPANYNAME_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($password)) {
+        $errors['password'][] =  MSG_PASSWORD_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($post_code)) {
+        $errors['post_code'][] =  MSG_POSTCODE_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($address)) {
+        $errors['address'][] = MSG_ADDRESS_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($manager_name)) {
+        $errors['manager_name'][] =  MSG_MANAGERNAME_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($email)) {
+        $errors['email'][] =  MSG_EMAIL_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($profile)) {
+        $errors['profile'][] =  MSG_PROFILE_REQUIRED;
+        $val_flag = false;
+    }
+
+    if (empty($image)) {
+    } else {
+        if (check_file_ext($image)) {
+            $errors['image'][] = MSG_NOT_ABLE_EXT;
+            $val_flag = false;
+        }
+    }
+
+    return array(
+        $errors,
+        $val_flag
+    );
+
 }
 
 function company_login_validate($email, $password)
@@ -235,7 +294,7 @@ function company_login_validate($email, $password)
 
 //
 //---------------------------------------
-//company
+//job
 
 
 function company_job_create_validate($name, $category, $price, $profile, $image, $area, $start_date, $start_time, $end_date, $end_time, $flag)
