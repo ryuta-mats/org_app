@@ -157,6 +157,38 @@ function check_exist_user($email)
         return false;
     }
 }
+//
+//---------------------------------------
+//appry
+
+function insert_use_appry($job_id, $user_id, $company_id, $motivation, $resume)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        INSERT INTO
+            appry
+            (ofer_id, user_id, company_id, motivation, resume)
+        VALUES
+            (:ofer_id, :user_id, :company_id, :motivation, :resume)
+        EOM;
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':ofer_id', $job_id, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':company_id', $company_id, PDO::PARAM_INT);
+        $stmt->bindValue(':motivation', $motivation, PDO::PARAM_STR);
+        $stmt->bindValue(':resume', $resume, PDO::PARAM_STR);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+
+}
 
 //
 //---------------------------------------
@@ -197,7 +229,8 @@ function insert_company($name, $password, $post_code, $address, $manager_name, $
 }
 
 //カンパニーDBの対象IDの情報をアップデート修正する関数
-function update_company($id, $name, $post_code, $address, $manager_name, $email, $profile, $image, $url){
+function update_company($id, $name, $post_code, $address, $manager_name, $email, $profile, $image, $url)
+{
     try {
         $dbh = connect_db();
 
@@ -243,7 +276,6 @@ function update_company($id, $name, $post_code, $address, $manager_name, $email,
         echo $e->getMessage();
         return false;
     }
-
 }
 
 //カンパニーテーブルからemailをもとに会社情報をもっていくる関数

@@ -28,10 +28,16 @@ function h($str)
 }
 
 //画像のアップロードが対象の拡張子か確認する関数
-function check_file_ext($upload_file)
+function check_file_image_ext($upload_file)
 {
     $file_ext = pathinfo($upload_file, PATHINFO_EXTENSION);
-    return !in_array($file_ext, EXTENTION) ? true : false;
+    return !in_array($file_ext, EXTENSION_IMAGE) ? true : false;
+}
+//履歴書のアップロードが対象の拡張子か確認する関数
+function check_file_pdf_ext($upload_file)
+{
+    $file_ext = pathinfo($upload_file, PATHINFO_EXTENSION);
+    return !in_array($file_ext, EXTENSION_PDF) ? true : false;
 }
 
 //性別を文字に変換する関数
@@ -88,6 +94,3 @@ function company_login($company)
     header('Location: ../companys/company_job_list.php');
     exit;
 }
-
-
-

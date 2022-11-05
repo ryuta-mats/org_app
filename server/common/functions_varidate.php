@@ -52,7 +52,7 @@ function user_signup_validate($name, $email, $tel,  $password, $post_code, $addr
         $errors['image'][] =  MSG_NO_IMAGE;
         $val_flag = false;
     } else {
-        if (check_file_ext($image)) {
+        if (check_file_image_ext($image)) {
             $errors['image'][] = MSG_NOT_ABLE_EXT;
         }
     }
@@ -143,7 +143,7 @@ function user_edit_validate($name, $email, $tel,  $password, $post_code, $addres
 
     if (empty($image)) {
     } else {
-        if (check_file_ext($image)) {
+        if (check_file_image_ext($image)) {
             $errors_image[] = MSG_NOT_ABLE_EXT;
             $errors[] = MSG_NOT_ABLE_EXT;
             $val_flag = false;
@@ -164,6 +164,28 @@ function user_edit_validate($name, $email, $tel,  $password, $post_code, $addres
     );
 }
 
+//ユーザー求人申し込みのバリデーションを行う関数
+function user_appry_validate($motivation, $upload_file)
+{
+
+    $errors = [];
+
+    if (empty($motivation)) {
+        $errors['motivation'][] = MSG_MOTIVATION_REQUIRED;
+    } elseif (mb_strlen($motivation) < 10) {
+        $errors['motivation'][] = MSG_MOTIVATION_SHORT;
+    }
+
+    if (empty($upload_file)) {
+        $errors['resume'][] =  MSG_NO_RESUME;
+    } else {
+        if (check_file_pdf_ext($upload_file)) {
+            $errors['resume'][] = MSG_NOT_ABLE_EXT;
+        }
+    }
+
+    return $errors;
+}
 //
 //---------------------------------------
 //company
@@ -211,7 +233,7 @@ function company_signup_validate($name, $password, $post_code, $address, $manage
         $errors['image'][] =  MSG_NO_IMAGE;
         $val_flag = false;
     } else {
-        if (check_file_ext($image)) {
+        if (check_file_image_ext($image)) {
             $errors['image'][] = MSG_NOT_ABLE_EXT;
             $val_flag = false;
         }
@@ -264,7 +286,7 @@ function company_edit_validate($name, $password, $post_code, $address, $manager_
 
     if (empty($image)) {
     } else {
-        if (check_file_ext($image)) {
+        if (check_file_image_ext($image)) {
             $errors['image'][] = MSG_NOT_ABLE_EXT;
             $val_flag = false;
         }
@@ -274,7 +296,6 @@ function company_edit_validate($name, $password, $post_code, $address, $manager_
         $errors,
         $val_flag
     );
-
 }
 
 function company_login_validate($email, $password)
@@ -332,7 +353,7 @@ function company_job_create_validate($name, $category, $price, $profile, $image,
         $errors['image'][] =  MSG_NO_IMAGE;
         $val_flag = false;
     } else {
-        if (check_file_ext($image)) {
+        if (check_file_image_ext($image)) {
             $errors['image'][] = MSG_NOT_ABLE_EXT;
             $val_flag = false;
         }
@@ -398,7 +419,7 @@ function company_job_edit_validate($name, $category, $price, $profile, $image, $
 
     if (empty($image)) {
     } else {
-        if (check_file_ext($image)) {
+        if (check_file_image_ext($image)) {
             $errors['image'][] = MSG_NOT_ABLE_EXT;
             $val_flag = false;
         }
@@ -431,4 +452,3 @@ function company_job_edit_validate($name, $category, $price, $profile, $image, $
 
     return array($errors, $val_flag);
 }
-

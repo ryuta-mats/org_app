@@ -431,13 +431,14 @@ justify-content: center;
     border-top: 1px solid #808080;
     border-bottom: 1px solid #808080;
     margin: 0 auto 50px;
+    word-break: break-all;
 }
 
 .table tr {
     display: block;
     border-bottom: 1px solid #808080;
-    padding: 2% 0;
-    padding-left: 8%;
+    padding: 2% 2% 2% 3%;
+
 }
 .table tr:last-child {
     border: none;
@@ -446,6 +447,10 @@ justify-content: center;
     font-weight: 300;
     width: 11rem;
 }
+.element td div{
+padding: 0% 50px;
+}
+
 .user_motivation {
     height: 10rem;
     width: 500px;

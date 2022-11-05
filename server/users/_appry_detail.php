@@ -4,7 +4,7 @@
             <th>会社名</th>
             <td>
                 <div class="job_info_item">
-                    <p><?= h($job['company_name']) ?></p>
+                    <p><?= h($company['name']) ?></p>
                 </div>
             </td>
         </tr>
@@ -12,7 +12,7 @@
             <th>募集職種</th>
             <td>
                 <div class="job_info_item">
-                    <p><?= h($job['job_name']) ?></p>
+                    <p><?= h($job['name']) ?></p>
                 </div>
             </td>
         </tr>
@@ -20,7 +20,7 @@
             <th>給与</th>
             <td>
                 <div class="job_info_item">
-                    <p><?= h($job['salary_category']) ?><?= h($job['salary_price']) ?>円</p>
+                    <p><?= h($category['name']) ?><?= h($job['price']) ?>円</p>
                 </div>
             </td>
         </tr>
@@ -36,7 +36,7 @@
             <th>募集期間</th>
             <td>
                 <div class="job_info_item">
-                    <p><?= h($job['start_date']) ?> <?= h($job['start_time']) ?> ～ <?= h($job['end_date']) ?> <?= h($job['end_time']) ?></p>
+                    <p><?= h($job['start_date']) ?>～ <?= h($job['end_date']) ?></p>
                 </div>
             </td>
         </tr>
@@ -44,12 +44,16 @@
             <th>企業ホームページ</th>
             <td>
                 <div class="job_info_item">
-                    <a href="<?= h($job['url']) ?>"><?= h($job['url']) ?></a>
+                    <?php if (empty($company['url'])) : ?>
+                        登録無し
+                    <?php else : ?>
+                        <a href="<?= h($company['url']); ?>"><?= h($company['url']); ?></a>
+                    <?php endif; ?>
                 </div>
             </td>
         </tr>
     </tbody>
 </table>
 <div class="appry_image">
-    <img src="<?= h($job['image']) ?>" alt="<?= h($job['company_name']) ?>">
+    <img src="../images/job/<?= h($job['image']) ?>" alt="<?= h($company['name']) ?>">
 </div>
