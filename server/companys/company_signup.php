@@ -82,8 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="main" class="wrapper">
 
         <div class="tit_wrap">
-            <h2 class="title company_bg_title">事業者新規登録</h2>
+            <h1 class="title company_bg_title"><span>Company sign up</span>カンパニーユーザー新規登録</h1>
         </div>
+
         <?php if (!empty($errors)) : ?>
             <div class="login_err_wrap">
                 <ul class="err_msg">

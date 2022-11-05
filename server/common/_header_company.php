@@ -7,9 +7,10 @@
         </h1>
         <nav class="menu-content">
             <ul class="menu-nav">
-                <li><a class="nav_link" href="../companys/company_appry_list.php">応募者リスト</a></li>
-                <li><a class="nav_link" href="../companys/company_job_list.php">求人リスト</a></li>
                 <?php if (!empty($login_company)) : ?>
+                    <li><a class="nav_link" href="../companys/company_job_list.php?id=<?= $login_company['id'] ?>">求人リスト</a></li>
+                    <li><a class="nav_link" href="../companys/company_appry_list.php?id=<?= $login_company['id'] ?>">応募者リスト</a></li>
+                    <li><a class="nav_link" href="../companys/company_job_create.php">新規求人登録</a></li>
                     <li><a class="nav_link" href="../companys/company_edit.php?id=<?= $login_company['id'] ?>">登録情報変更</a></li>
                     <li><a class="nav_link" href="../companys/company_logout.php">ログアウト</a></li>
                 <?php else : ?>

@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
         </pre>
         <div class="tit_wrap">
-            <h1 class="title company_bg_title"><span>Company edit</span>登録情報変更</h1>
+            <h1 class="title company_bg_title"><span>Company edit</span>カンパニーユーザー登録情報変更</h1>
         </div>
 
         <form class="form" method="post" action="" enctype="multipart/form-data">

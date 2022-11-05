@@ -43,7 +43,7 @@ $end_time = date("H:i", strtotime($job['end_date']));
     <div id="main" class="wrapper show_body">
 
         <div class="tit_wrap">
-            <h1 class="title company_bg_title">登録中の求人詳細</h1>
+            <h1 class="title company_bg_title"><span>active jobs</span>募集中の求人詳細</h1>
         </div>
 
         <div class="show_item_wrap">

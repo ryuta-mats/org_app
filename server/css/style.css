@@ -66,7 +66,8 @@ margin-bottom: 80px;
 
 .title {
     position: relative;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 1em;
     width: fit-content;
     margin:  0 auto;
@@ -85,7 +86,7 @@ margin-bottom: 80px;
 }
 .title span {
 font-size: 1rem;
-display: block;
+display: flex;
 }
 
 .user_bg_title::before {

@@ -26,7 +26,7 @@ if (empty($_SESSION['current_company'])) {
     <div id="main" class="wrapper show_body">
 
         <div class="tit_wrap">
-            <h1 class="title company_bg_title">登録情報</h1>
+            <h1 class="title company_bg_title"><span>Company info</span>カンパニーユーザー登録情報</h1>
         </div>
 
         <div class="show_wrap">

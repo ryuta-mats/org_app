@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div id="main" class="wrapper">
         <div class="tit_wrap">
-            <h1 class="title company_bg_title"><span>Log in</span>ログイン</h1>
+            <h1 class="title company_bg_title"><span>Log in</span>カンパニーユーザーログイン</h1>
         </div>
         <?php if (!empty($errors)) : ?>
             <div class="login_err_wrap">
