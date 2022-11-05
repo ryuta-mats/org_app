@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div id="main" class="wrapper">
         <div class="tit_wrap">
-            <h1 class="title company_bg_title">新規求人登録</h1>
+            <h1 class="title company_bg_title"><span>job offer</span>新規求人登録</h1>
         </div>
 
         <?php if (!empty($errors)) : ?>

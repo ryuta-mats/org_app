@@ -38,6 +38,10 @@ if (update_job_cxl($job_id)) {
     <?php include_once __DIR__ . "/../common/_header_company.php" ?>
 
     <div id="main" class="wrapper">
+        <div class="tit_wrap">
+            <h1 class="title company_bg_title"><span>job delete</span>求人削除</h1>
+        </div>
+
         <h2><?= h($job['name']) ?>を削除しました。</h2>
     </div>
 
