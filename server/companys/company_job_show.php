@@ -3,19 +3,18 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 
-$login_company = $_SESSION['current_company'];
-$id = $_SESSION['current_company']['id'];
-$job_id = $_GET['job_id'];
-
 // セッションにidが保持されていなければログイン画面にリダイレクト
 // パラメータを受け取れなけれらばログイン画面にリダイレクト
-if (empty($login_company)) {
+if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
 } elseif (empty($id)) {
     header('Location: ../companys/company_login.php');
     exit;
 } else {
+    $login_company = $_SESSION['current_company'];
+    $id = $_SESSION['current_company']['id'];
+    $job_id = $_GET['job_id'];
     $job = find_job_by_id($job_id);
 }
 

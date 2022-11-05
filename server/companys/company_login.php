@@ -8,6 +8,7 @@ $login_company = '';
 if (isset($_SESSION['current_company'])) {
     $login_company = $_SESSION['current_company'];
 }
+
 // ログイン判定
 if (isset($_SESSION['current_company'])) {
     header('Location: ../companys/company_job_list.php');
