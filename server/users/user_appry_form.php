@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="job_appry wrapper">
         <div class="tit_wrap">
-            <h1 class="title user_bg_title"><span>apply</span>求人への応募</h1>
+            <h1 class="title user_bg_title"><span>apply</span>この求人への応募</h1>
         </div>
     <?php if (!empty($errors)) : ?>
         <ul class="err_msg top_err_msg">

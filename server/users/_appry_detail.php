@@ -52,8 +52,16 @@
                 </div>
             </td>
         </tr>
+        <?php if (!empty($job['image'])) : ?>
+            <tr class="element">
+                <th>画像</th>
+                <td>
+                    <div class="appry_image">
+                        <img src="../images/job/<?= h($job['image']) ?>" alt="<?= h($company['name']) ?>">
+                    </div>
+                </td>
+            </tr>
+        <?php endif; ?>
+
     </tbody>
 </table>
-<div class="appry_image">
-    <img src="../images/job/<?= h($job['image']) ?>" alt="<?= h($company['name']) ?>">
-</div>
