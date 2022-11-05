@@ -8,15 +8,16 @@ session_start();
 if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
-} elseif (empty($id)) {
+} elseif (empty($_GET['job_id'])) {
     header('Location: ../companys/company_login.php');
     exit;
 } else {
-    $job = find_job_by_id($job_id);
     $login_company = $_SESSION['current_company'];
     $id = $_SESSION['current_company']['id'];
     $job_id = $_GET['job_id'];
 }
+
+$job = find_job_by_id($job_id);
 
 $name = $job['name'];
 $category = $job['category_id'];
