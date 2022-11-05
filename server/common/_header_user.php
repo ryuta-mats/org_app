@@ -8,8 +8,8 @@
         <nav class="menu-content">
             <ul class="menu-nav">
                 <li><a class="nav_link" href="../companys/company_login.php">企業向けページ</a></li>
-                <li><a class="nav_link" href="">問い合わせ</a></li>
                 <?php if (!empty($login_user)) : ?>
+                    <li><a class="nav_link" href="../users/user_appry_list.php?id=<?= $login_user['id'] ?>">応募リスト</a></li>
                     <li><a class="nav_link" href="../users/user_edit.php?id=<?= $login_user['id'] ?>">登録情報変更</a></li>
                     <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
                 <?php else : ?>
