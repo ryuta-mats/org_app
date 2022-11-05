@@ -3,8 +3,15 @@
 define('DSN', 'mysql:host=db;dbname=nisekowork_db;charset=utf8');
 define('USER', 'nw_admin');
 define('PASSWORD', '1234');
-define('EXTENTION', ['jpg','JPG', 'jpeg', 'png', 'PNG', 'gif', 'webp']);
-define('EXTENSION_PDF', ['pdf','PDF']);
+
+//エックスサーバー用
+//define('DSN', 'mysql:host=localhost;dbname=xs618728_nw;charset=utf8');
+//define('USER', 'xs618728_nw');
+//define('PASSWORD', 'matsu1987');
+
+
+define('EXTENSION_IMAGE', ['jpg', 'JPG', 'jpeg', 'png', 'PNG', 'gif', 'webp']);
+define('EXTENSION_PDF', ['pdf', 'PDF']);
 
 define('MSG_EMAIL_REQUIRED', 'メールアドレスが未入力です');
 define('MSG_PASSWORD_NOT_MATCH', 'パスワードが間違っています');
@@ -18,7 +25,7 @@ define('MSG_SEX_REQUIRED', '性別が未選択です');
 define('MSG_NO_IMAGE', '画像が未選択です');
 define('MSG_NOT_ABLE_EXT', '選択したファイルの拡張子が有効ではありません');
 
-define('MSG_MOTIVATION_REQUIRED', '志望動機が未入力です。');
+define('MSG_MOTIVATION_REQUIRED', '志望動機が未入力です');
 define('MSG_MOTIVATION_SHORT', '志望動機が短すぎます。やる気が感じられません。');
 define('MSG_NO_RESUME', '履歴書が未選択です。');
 
