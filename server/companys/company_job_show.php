@@ -3,12 +3,13 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 
+
 // セッションにidが保持されていなければログイン画面にリダイレクト
 // パラメータを受け取れなけれらばログイン画面にリダイレクト
 if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
-} elseif (empty($id)) {
+} elseif (empty($_GET['job_id'])) {
     header('Location: ../companys/company_login.php');
     exit;
 } else {
@@ -18,6 +19,7 @@ if (empty($_SESSION['current_company'])) {
     $job = find_job_by_id($job_id);
 }
 
+//echo var_dump($job);
 $name = $job['name'];
 $category = find_category_by_id($job['category_id']);
 $category_name = $category['name'];

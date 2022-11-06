@@ -3,28 +3,15 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 
-$login_company = '';
 
-if (isset($_SESSION['current_company'])) {
-    $login_company = $_SESSION['current_company'];
+if (empty($_SESSION['current_company'])) {
+    header('Location: ../companys/company_login.php');
+    exit;
 }
+$login_company = $_SESSION['current_company'];
+$id = $_SESSION['current_company']['id'];
 
-$users = array(
-    0 => array(
-        'name' => 'ニセコ太郎',
-        'job' => '営業職',
-        'tel' => '100_0000_0000',
-        'address' => 'aaa@bbb.jp',
-        'motivation' => '貴社の企業理念に惹かれたからです。貴社の企業理念に惹かれたからです。貴社の企業理念に惹かれたからです。貴社の企業理念に惹かれたからです。',
-    ),
-    1 => array(
-        'name' => 'ニセコ花子',
-        'job' => '事務職',
-        'tel' => '111_1111_1111',
-        'address' => 'ccc@ddd.jp',
-        'motivation' => '家から近いからです。',
-    )
-);
+$apprys = find_appry_by_company_id($id);
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +26,9 @@ $users = array(
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>Apply list</span>応募者リスト</h1>
         </div>
-
+<pre>
+<?= var_dump($apprys) ?>
+</pre>
 
         <table class="base_table">
             <thead>
@@ -53,21 +42,23 @@ $users = array(
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($users as $user) : ?>
+                <?php foreach ($apprys as $appry) : ?>
                     <tr>
-                        <td class="td_center"><?= h($user['name']) ?></td>
-                        <td class="td_center"><?= h($user['job']) ?></td>
-                        <td class="td_center"><?= h($user['tel']) ?></td>
-                        <td class="td_center"><?= h($user['address']) ?></td>
-                        <td><?= h($user['motivation']) ?></td>
+                        <td class="td_center"><?= h($appry['user']) ?></td>
+                        <td class="td_center">
+                            <a href="company_job_show.php?job_id=<?php print $appry['job_id'] ?>"><?= h($appry['job_name']) ?></a>
+                        </td>
+                        <td class="td_center"><?= h($appry['user_tel']) ?></td>
+                        <td class="td_center"><?= h($appry['user_email']) ?></td>
+                        <td><?= h($appry['motivation']) ?></td>
 
                         <td class="icon_td">
                             <div class="icons_wrap">
-                                <a href="" class="icon icon_appry_detail icon_wrap">
+                                <a href="../files/resume/<?= h($appry['resume']) ?>" class="icon icon_appry_detail icon_wrap">
                                     <i class="fa-solid fa-file"></i>
                                     <p>履歴書</p>
                                 </a>
-                                <a href="" class="icon icon_appry_detail icon_wrap">
+                                <a href="company_message.php?id=<?php print $appry['appry_id'] ?>" class="icon icon_appry_detail icon_wrap">
                                     <i class="fa-solid fa-message"></i>
                                     <p>メッセージ</p>
                                 </a>
