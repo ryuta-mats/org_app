@@ -187,7 +187,6 @@ function insert_use_appry($job_id, $user_id, $company_id, $motivation, $resume)
         echo $e->getMessage();
         return false;
     }
-
 }
 
 //
@@ -511,6 +510,64 @@ function find_job_by_comapny_id($company_id)
         ofer
     WHERE
         company_id = :company_id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':company_id', $company_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function find_appry_by_company_id($company_id)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        a.id AS appry_id,
+        a.company_id,
+        c.name AS company,
+        a.ofer_id AS job_id,
+        o.name AS job_name,
+        o.category_id AS saraly_category,
+        o.price,
+        o.profile,
+        o.area,
+        o.cxl_flag,
+        a.user_id,
+        u.name AS user,
+        u.tel AS user_tel,
+        u.email AS user_email,
+        u.age AS user_age,
+        u.sex AS user_sex,
+        u.image AS user_image,
+        a.motivation,
+        a.resume,
+        a.status_id,
+        s.name AS status,
+        a.created_at
+    FROM
+        appry AS a
+    INNER JOIN
+        companies AS c
+    ON
+        a.company_id = c.id
+    INNER JOIN
+        ofer AS o
+    ON
+        a.ofer_id = o.id
+    INNER JOIN
+        users AS u
+    ON
+        a.user_id = u.id
+    INNER JOIN
+        status AS s
+    ON
+        a.status_id = s.id
+    WHERE
+        a.company_id = :company_id;
+
     EOM;
 
     $stmt = $dbh->prepare($sql);
