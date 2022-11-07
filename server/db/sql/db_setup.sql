@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS ofer (
     saraly_price INT NOT NULL,
     profile TEXT NOT NULL,
     area VARCHAR(50) NOT NULL,
-    cxl_flag BIT(1) NOT NULL DEFAULT 1,
+    cxl_flag TINYINT(1) NOT NULL DEFAULT '1',
     image VARCHAR(255) NOT NULL,
     start_date DATETIME NOT NULL,
     end_date DATETIME NOT NULL,
@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS appry (
     motivation TEXT NOT NULL,
     resume VARCHAR(255) NOT NULL,
     status_id INT NOT NULL DEFAULT 1,
+    cxl_flag TINYINT(1) NOT NULL DEFAULT '1',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT appry_fk_ofer_id
