@@ -519,6 +519,28 @@ function find_job_by_comapny_id($company_id)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+//応募テーブルでIDの求人情報情報をすべてとってくる関数
+function find_appry_by_id($id)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        *
+    FROM
+        ofer
+    WHERE
+        id = :id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+//
 function find_appry_by_company_id($company_id)
 {
     $dbh = connect_db();
@@ -576,3 +598,166 @@ function find_appry_by_company_id($company_id)
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function find_appry_by_user_id($user_id)
+{
+
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        a.id AS appry_id,
+        a.company_id,
+        c.name AS company,
+        a.ofer_id AS job_id,
+        o.name AS job_name,
+        o.category_id AS saraly_category,
+        sa.name AS category_name,
+        o.price,
+        o.profile,
+        o.area,
+        o.cxl_flag AS cxl_ofer,
+        a.user_id,
+        u.name AS user,
+        u.tel AS user_tel,
+        u.email AS user_email,
+        u.age AS user_age,
+        u.sex AS user_sex,
+        u.image AS user_image,
+        a.motivation,
+        a.resume,
+        a.status_id,
+        s.name AS status,
+        a.created_at,
+        a.cxl_flag AS appry_cxl
+    FROM
+        appry AS a
+    INNER JOIN
+        companies AS c
+    ON
+        a.company_id = c.id
+    INNER JOIN
+        ofer AS o
+    ON
+        a.ofer_id = o.id
+    INNER JOIN
+        users AS u
+    ON
+        a.user_id = u.id
+    INNER JOIN
+        status AS s
+    ON
+        a.status_id = s.id
+    INNER JOIN
+        saraly_category AS sa
+    ON
+        o.category_id = sa.id
+    WHERE
+        a.user_id = :user_id
+    AND
+        o.cxl_flag = :cxl_flag;
+
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->bindValue(':cxl_flag', 1, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function find_appry_by_appry_id($appry_id)
+{
+
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        a.id AS appry_id,
+        a.company_id,
+        c.name AS company,
+        a.ofer_id AS job_id,
+        o.name AS job_name,
+        o.category_id AS saraly_category,
+        sa.name AS category_name,
+        o.price,
+        o.profile,
+        o.area,
+        o.cxl_flag AS ofer_cxl,
+        a.user_id,
+        u.name AS user,
+        u.tel AS user_tel,
+        u.email AS user_email,
+        u.age AS user_age,
+        u.sex AS user_sex,
+        u.image AS user_image,
+        a.motivation,
+        a.resume,
+        a.status_id,
+        s.name AS status,
+        a.created_at,
+        a.cxl_flag AS appry_cxl
+    FROM
+        appry AS a
+    INNER JOIN
+        companies AS c
+    ON
+        a.company_id = c.id
+    INNER JOIN
+        ofer AS o
+    ON
+        a.ofer_id = o.id
+    INNER JOIN
+        users AS u
+    ON
+        a.user_id = u.id
+    INNER JOIN
+        status AS s
+    ON
+        a.status_id = s.id
+    INNER JOIN
+        saraly_category AS sa
+    ON
+        o.category_id = sa.id
+    WHERE
+        a.id = :appry_id;
+
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':appry_id', $appry_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+//対象idの申込みをキャンセルにする関数
+function update_appry_cxl($id)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        UPDATE
+            appry
+        SET
+            cxl_flag = :cxl_flag,
+            status_id = :status_id
+        EOM;
+
+        $sql .= ' WHERE id = :id';
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':cxl_flag', b'0', PDO::PARAM_INT);
+        $stmt->bindValue(':status_id', 4, PDO::PARAM_INT);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
