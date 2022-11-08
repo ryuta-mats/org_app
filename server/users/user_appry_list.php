@@ -23,9 +23,6 @@ $apprys = find_appry_by_user_id($user_id);
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main">
         <div class="wrapper">
-            <pre><?= var_dump($apprys) ?></pre>
-
-
             <div class="tit_wrap">
                 <h1 class="title user_bg_title"><span>apply list</span>応募中の求人一覧</h1>
             </div>
@@ -61,7 +58,7 @@ $apprys = find_appry_by_user_id($user_id);
                                             <i class="fa-solid fa-trash"></i>
                                             <p>辞退</p>
                                         </a>
-                                        <a href="user_message.php?id=<?= h($appry['appry_id']) ?>" class="icon icon_appry_detail icon_wrap">
+                                        <a href="user_message.php?appry_id=<?= h($appry['appry_id']) ?>" class="icon icon_appry_detail icon_wrap">
                                             <i class="fa-solid fa-message"></i>
                                             <p>メッセージ</p>
                                         </a>
