@@ -42,9 +42,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h1 class="title user_bg_title"><span>message</span><?= h($login_user['name']) ?>さんと <?= h($appry['company']) ?> のメッセージ</h1>
             </div>
             <div class="msg_wrap">
-            <?php if(empty($messages)): ?>
-                <div>メッセージなし</div>
-            <?php endif ; ?>
+                <?php if (empty($messages)) : ?>
+                    <div>メッセージなし</div>
+                <?php endif; ?>
+                <?php if (!empty($errors)) : ?>
+                    <div class="login_err_wrap">
+                        <ul class="err_msg">
+                            <?php foreach ($errors as $error) : ?>
+                                <?php foreach ($error as $val) : ?>
+                                    <li><i class="fa-solid fa-circle-exclamation"></i><?= $val ?></li>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
 
                 <?php foreach ($messages as $message) : ?>
                     <div class="message <?php echo $message['msg_from'] == 1 ? 'opposite_message' : 'my_message'; ?>">
@@ -52,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <p><?= h($message['body']) ?></p>
                         </div>
                         <p class="message_datetime">
-                            <?= $message['created_at'] ?> 
+                            <?= $message['created_at'] ?>
                             <?php if ($message['msg_from'] == 0) : ?>
                                 <?= $message['user'] ?>
                             <?php else : ?>
@@ -62,7 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 <?php endforeach; ?>
                 <form class="message my_message" action="user_message.php?appry_id=<?= $appry_id ?>" method="POST">
-                    <textarea name="body" id="send_message_body" cols="50" rows="10" placeholder="メッセージを入力して下さい。"></textarea>
+                    <textarea class="<?php empty($errors['body']) ?: print 'err_input'; ?>" name="body" id="send_message_body" cols="50" rows="10" placeholder="メッセージを入力して下さい。"></textarea>
+                    <?php if (!empty($errors['body'])) : ?>
+                        <ul class="err_msg">
+                            <?php foreach ($errors['body'] as $error) : ?>
+                                <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
                     <input class="bg_btn user_btn message_send_btn" type="submit">
                 </form>
             </div>

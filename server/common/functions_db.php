@@ -553,10 +553,11 @@ function find_appry_by_company_id($company_id)
         a.ofer_id AS job_id,
         o.name AS job_name,
         o.category_id AS saraly_category,
+        sa.name AS category_name,
         o.price,
         o.profile,
         o.area,
-        o.cxl_flag,
+        o.cxl_flag AS cxl_ofer,
         a.user_id,
         u.name AS user,
         u.tel AS user_tel,
@@ -568,7 +569,8 @@ function find_appry_by_company_id($company_id)
         a.resume,
         a.status_id,
         s.name AS status,
-        a.created_at
+        a.created_at,
+        a.cxl_flag AS appry_cxl
     FROM
         appry AS a
     INNER JOIN
@@ -587,6 +589,10 @@ function find_appry_by_company_id($company_id)
         status AS s
     ON
         a.status_id = s.id
+    INNER JOIN
+        saraly_category AS sa
+    ON
+        o.category_id = sa.id
     WHERE
         a.company_id = :company_id;
 
