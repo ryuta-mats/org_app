@@ -94,3 +94,26 @@ CREATE TABLE IF NOT EXISTS appry (
         REFERENCES status(id)
         ON DELETE RESTRICT ON UPDATE RESTRICT
 );
+
+CREATE TABLE IF NOT EXISTS message (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    appry_id INT NOT NULL,
+    user_id INT NOT NULL,
+    company_id INT NOT NULL,
+    body TEXT NOT NULL,
+    msg_from TINYINT(1) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT messagefk_appry_id
+    FOREIGN KEY (appry_id)
+        REFERENCES appry(id)
+        ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT messagefk_user_id
+    FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT appryfk_company_id
+    FOREIGN KEY (company_id)
+        REFERENCES companies(id)
+        ON DELETE RESTRICT ON UPDATE RESTRICT
+);

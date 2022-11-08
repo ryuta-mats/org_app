@@ -186,6 +186,20 @@ function user_appry_validate($motivation, $upload_file)
 
     return $errors;
 }
+
+//メッセージのバリデーションを行う関数
+function message_validate($body)
+{
+
+    $errors = [];
+
+    if (empty($body)) {
+        $errors['body'][] = MSG_BODY_REQUIRED;
+    }
+    
+    return $errors;
+}
+
 //
 //---------------------------------------
 //company

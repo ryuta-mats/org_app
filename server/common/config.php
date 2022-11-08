@@ -29,6 +29,8 @@ define('MSG_MOTIVATION_REQUIRED', '志望動機が未入力です');
 define('MSG_MOTIVATION_SHORT', '志望動機が短すぎます。やる気が感じられません。');
 define('MSG_NO_RESUME', '履歴書が未選択です。');
 
+define('MSG_BODY_REQUIRED', 'メッセージが未入力です');
+
 define('MSG_COMPANYNAME_REQUIRED', '会社名が未入力です');
 define('MSG_PROFILE_REQUIRED', '会社概要が未入力です');
 define('MSG_MANAGERNAME_REQUIRED', '担当者名が未入力です');

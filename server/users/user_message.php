@@ -3,34 +3,32 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 
-$login_user = '';
-
-if (isset($_SESSION['current_user'])) {
-    $login_user = $_SESSION['current_user'];
+if (empty($_SESSION['current_user'])) {
+    header('Location: user_login.php');
+    exit;
+} elseif (empty($_GET['appry_id'])) {
+    header('Location: user_appry_list.php');
+    exit;
 }
 
-$company_name = 'ニセコ株式会社';
+$login_user = $_SESSION['current_user'];
+$appry_id = $_GET['appry_id'];
+$appry = find_appry_by_appry_id($appry_id);
+$messages = find_message_by_appry_id($appry_id);
 
-$messages = array(
-    0 => array(
-        'body' => 'この度は弊社求人へのご応募誠にありがとうございます。是非面接させていただきたいのですが、平日はお時間はありますか？オンラインでも可能です。ニセコ株式会社人事部松本',
-        'datetime' => '2022.9.21 13:00',
-        'class' => 0,
-        'name' => $company_name,
-    ),
-    1 => array(
-        'body' => 'こんにちは。連絡してくれてめっちゃ嬉しいです。まじ感謝です。平日は仕事なんで無理っす。土日でお願いできますか？よろしくっす。',
-        'datetime' => '2022.9.22 23:00',
-        'class' => 1,
-        'name' => $login_user,
-    ),
-    2 => array(
-        'body' => 'ご返信ありがとうございます。ご都合がつかないようですので、今回は結構です。ありがとうございました。ニセコ株式会社人事部松本',
-        'datetime' => '2022.9.23 9:00',
-        'class' => 0,
-        'name' => $company_name,
-    ),
-);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $body = filter_input(INPUT_POST, 'body');
+    $errors = message_validate($body);
+
+    if (empty($errors)) {
+        $msg_from = 0; //送信元(0=USER、1=COMPANY)
+        if (inssert_message($body, $appry, $msg_from)) {
+            header('Location: user_message.php?appry_id=' . $appry['appry_id']);
+            exit;
+        }
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -41,19 +39,30 @@ $messages = array(
     <div id="main" class="wrapper">
         <div class="wrapper">
             <div class="tit_wrap">
-                <h1 class="title user_bg_title"><span>message</span><?= $company_name ?>さんとのメッセージ</h1>
+                <h1 class="title user_bg_title"><span>message</span><?= h($login_user['name']) ?>さんと <?= h($appry['company']) ?> のメッセージ</h1>
             </div>
             <div class="msg_wrap">
+            <?php if(empty($messages)): ?>
+                <div>メッセージなし</div>
+            <?php endif ; ?>
+
                 <?php foreach ($messages as $message) : ?>
-                    <div class="message <?php echo $message['class'] == 0 ? 'opposite_message' : 'my_message'; ?>">
-                        <div class="message_body <?php echo $message['class'] == 0 ? 'opposite_message_body' : 'my_message_body'; ?>">
+                    <div class="message <?php echo $message['msg_from'] == 1 ? 'opposite_message' : 'my_message'; ?>">
+                        <div class="message_body <?php echo $message['msg_from'] == 1 ? 'opposite_message_body' : 'my_message_body'; ?>">
                             <p><?= h($message['body']) ?></p>
                         </div>
-                        <p class="message_datetime"><?= $message['datetime'] ?> <?= $message['name'] ?></p>
+                        <p class="message_datetime">
+                            <?= $message['created_at'] ?> 
+                            <?php if ($message['msg_from'] == 0) : ?>
+                                <?= $message['user'] ?>
+                            <?php else : ?>
+                                <?= $message['company'] ?>
+                            <?php endif; ?>
+                        </p>
                     </div>
                 <?php endforeach; ?>
-                <form class="message my_message" action="" method="POST">
-                    <textarea name="send_message_body" id="send_message_body" cols="50" rows="10" placeholder="メッセージを入力して下さい。"></textarea>
+                <form class="message my_message" action="user_message.php?appry_id=<?= $appry_id ?>" method="POST">
+                    <textarea name="body" id="send_message_body" cols="50" rows="10" placeholder="メッセージを入力して下さい。"></textarea>
                     <input class="bg_btn user_btn message_send_btn" type="submit">
                 </form>
             </div>

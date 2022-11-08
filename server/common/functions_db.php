@@ -540,7 +540,7 @@ function find_appry_by_id($id)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-//
+//カンパニーIDから応募を探す関数
 function find_appry_by_company_id($company_id)
 {
     $dbh = connect_db();
@@ -599,6 +599,7 @@ function find_appry_by_company_id($company_id)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+//ユーザーIDから申込みを探す関数
 function find_appry_by_user_id($user_id)
 {
 
@@ -666,7 +667,7 @@ function find_appry_by_user_id($user_id)
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
+//申込みIDから申込み1件を見つける関数
 function find_appry_by_appry_id($appry_id)
 {
 
@@ -750,7 +751,7 @@ function update_appry_cxl($id)
 
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':cxl_flag', b'0', PDO::PARAM_INT);
+        $stmt->bindValue(':cxl_flag', 0, PDO::PARAM_INT);
         $stmt->bindValue(':status_id', 4, PDO::PARAM_INT);
 
         $stmt->execute();
@@ -761,3 +762,79 @@ function update_appry_cxl($id)
     }
 }
 
+//新しいメッセージをデータベースに登録する関数
+function inssert_message($body, $appry, $msg_from)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        INSERT INTO
+            message
+            (appry_id, user_id, company_id, body, msg_from)
+        VALUES
+            (:appry_id, :user_id, :company_id, :body, :msg_from);
+        EOM;
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':appry_id', $appry['appry_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $appry['user_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':company_id', $appry['company_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':body', $body, PDO::PARAM_STR);
+        $stmt->bindValue(':msg_from', $msg_from, PDO::PARAM_INT);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+
+}
+
+//メッセージテーブルから対象のおうぼIDのメッセージの情報をすべてとってくる関数
+function find_message_by_appry_id($appry_id)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        m.id,
+        m.appry_id,
+        a.ofer_id,
+        o.name AS job_name,
+        m.user_id,
+        u.name AS user,
+        m.company_id,
+        c.name AS company,
+        m.body,
+        m.msg_from,
+        m.created_at
+    FROM
+        message AS m
+    INNER JOIN
+        companies AS c
+    ON
+        m.company_id = c.id
+    INNER JOIN
+        users AS u
+    ON
+        m.user_id = u.id
+    INNER JOIN
+        appry AS a
+    ON
+        m.appry_id = a.id
+    INNER JOIN
+        ofer AS o
+    ON
+        a.ofer_id = o.id
+    WHERE
+        m.appry_id = :appry_id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':appry_id', $appry_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
