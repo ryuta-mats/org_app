@@ -26,10 +26,6 @@ $apprys = find_appry_by_company_id($id);
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>Apply list</span>応募者リスト</h1>
         </div>
-        <pre>
-<?= var_dump($apprys) ?>
-</pre>
-
         <table class="base_table">
             <thead>
                 <tr class="headline">

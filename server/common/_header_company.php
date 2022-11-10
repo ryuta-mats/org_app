@@ -1,9 +1,9 @@
     <header id="menu" class="page_header_company wrapper">
         <h1>
-            <a href="index.php">
+            <a href="../users/index.php">
                 <span class="logo-text">NISEKO WORK</span>
-                <p class="logo-sub-text">ニセコエリアのお仕事マッチングサイト</p>
             </a>
+            <p class="logo-sub-text">ニセコのお仕事マッチング</p>
         </h1>
         <nav class="menu-content">
             <ul class="menu-nav">

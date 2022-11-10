@@ -1,14 +1,28 @@
 <?php
 include_once __DIR__ . '/../common/functions.php';
-
 // セッション開始
 session_start();
 
 $login_user = '';
+$serch_word ='';
 
-if (isset($_SESSION['current_user'])) {
+if (!empty($_SESSION['current_user'])) {
     $login_user = $_SESSION['current_user'];
+    $user_id = $_SESSION['current_user']['id'];
 }
+
+if (
+    $_SERVER['REQUEST_METHOD'] === 'POST' &&
+    !empty($_POST['serch_word'])
+) {
+    $serch_word = filter_input(INPUT_POST, 'serch_word');
+    $jobs = find_job_by_serch_word($serch_word);
+} else {
+
+    $jobs = find_all_job();
+}
+
+$job_count = count($jobs);
 
 ?>
 <!DOCTYPE html>
@@ -19,52 +33,30 @@ if (isset($_SESSION['current_user'])) {
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
 
     <div id="main" class="wrapper">
-        <div class="serch wrapper">
-            <form class="serch_category" action="" method="post">
-                <label for="serch_category_select">カデコリ検索<br>
-                    <select name="serch_category" id="serch_category_select">
-                        <option value="jimu">事務系</option>
-                        <option value="eigyo">営業系</option>
-                        <option value="nikutai">肉体労働系</option>
-                    </select>
-                </label>
-                <label class="serch-btn" for="serch-category-submit">
-                    <i class="fa-sharp fa-solid fa-magnifying-glass" for="serch-category-submit"></i>
-                    <input id="serch-category-submit" type="submit" value="検索">
-                </label>
-            </form>
+        <pre>
+        <?php
+        var_dump($jobs);
+        var_dump($job_count)
+        ?>
+        </pre>
 
-            <form class="serch_word" action="" method="post">
-                <label for="serch_word_input">キーワード検索<br>
-                    <input type="text" id="serch_word_input">
-                </label>
-                <label class="serch-btn" for="serch-word-submit">
-                    <i class="fa-sharp fa-solid fa-magnifying-glass" for="serch-word-submit"></i>
-                    <input id="serch-word-submit" type="submit" value="検索">
-                </label>
-            </form>
-        </div>
+        <?php include_once __DIR__ . "/_index_serch.php" ?>
+
         <div id="job" class="wrapper">
-            <div class="job-row">
-                <div class="job-1 job-content">
-                    <h3 class="company-name">会社名</h3>
-                    <img class="index_job_image" src="../images/c1.jpg" alt="job1のimage">
-                    <p class="job-text">仕事内容テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                    <a href="" class="detail">詳しく見る<i class="fa-sharp fa-solid fa-circle-chevron-right"></i></a>
+            <?php foreach ($jobs as $job) : ?>
+                <div class="job-content">
+                    <h3 class="company-name"><?= h($job['company']) ?></h3>
+                    <img class="index_job_image" src="../images/job/<?php print h($job['image']) ?>" alt="<?= h($job['company']) ?>">
+                    <div class="job_info_wrap">
+                        <div class="job_name_text"><?= h($job['job_name']) ?></div>
+                        <div class="saraly_text">
+                            <?= $job['category'] ?> <?= h($job['price']) ?>円
+                        </div>
+                        <p class="job-text"><?= mb_strimwidth(h($job['profile']), 0, 60, '…', 'UTF-8') ?></p>
+                    </div>
+                    <a href="user_appry_form.php?job_id=<?= $job['job_id'] ?>" class="bg_btn user_btn">詳しく見る<i class="fa-sharp fa-solid fa-circle-chevron-right"></i></a>
                 </div>
-                <div class="job-2 job-content">
-                    <h3 class="company-name">会社名</h3>
-                    <img class="index_job_image" src="../images/c1.jpg" alt="job2のimage">
-                    <p class="job-text">仕事内容テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                    <a href="" class="detail">詳しく見る<i class="fa-sharp fa-solid fa-circle-chevron-right"></i></a>
-                </div>
-                <div class="job-3 job-content">
-                    <h3 class="company-name">会社名</h3>
-                    <img class="index_job_image" src="../images/c1.jpg" alt="job3のimage">
-                    <p class="job-text">仕事内容テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-                    <a href="" class="detail">詳しく見る<i class="fa-sharp fa-solid fa-circle-chevron-right"></i></a>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 

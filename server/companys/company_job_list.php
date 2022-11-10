@@ -43,7 +43,7 @@ $jobs = find_job_by_comapny_id($id);
                         <tr>
                             <td class="td_center"><?= h($job['name']) ?></td>
                             <?php $category = find_category_by_id($id); ?>
-                            <td class="td_center"><?= $category['name'] ?> <?= h($job['price']) ?>円</td>
+                            <td class="td_center"><?= $category['name'] ?><?= h($job['price']) ?>円</td>
                             <td><?= h($job['profile']) ?></td>
                             <td class="td_center">0人</td>
                             <td class="icon_td">

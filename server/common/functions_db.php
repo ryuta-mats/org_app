@@ -475,6 +475,107 @@ function find_job_by_id($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+//oferテーブルから期限内の全求人をもってくる関数
+function find_all_job()
+{
+    $dbh = connect_db();
+
+    $now = date("Y/m/d H:i:s");
+
+    $sql = <<<EOM
+    SELECT
+        o.id AS job_id,
+        o.name AS job_name,
+        o.company_id,
+        c.name AS company,
+        c.profile AS company_profile,
+        o.category_id,
+        sa.name AS category,
+        o.price,
+        o.profile,
+        o.area,
+        o.cxl_flag,
+        o.image,
+        o.created_at,
+        o.updated_at,
+        o.start_date,
+        o.end_date
+    FROM
+        ofer AS o
+    INNER JOIN
+        saraly_category AS sa
+    ON
+        o.category_id = sa.id
+    INNER JOIN
+        companies AS c
+    ON
+        o.company_id = c.id
+    WHERE
+        o.end_date >= :now
+    AND
+        o.start_date <= :now;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':now', $now, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function find_job_by_serch_word($serch_word){
+    $dbh = connect_db();
+
+    $now = date("Y/m/d H:i:s");
+    $serch_word = '%' . $serch_word . '%';
+
+    $sql = <<<EOM
+    SELECT
+        o.id AS job_id,
+        o.name AS job_name,
+        o.company_id,
+        c.name AS company,
+        c.profile AS company_profile,
+        o.category_id,
+        sa.name AS category,
+        o.price,
+        o.profile,
+        o.area,
+        o.cxl_flag,
+        o.image,
+        o.created_at,
+        o.updated_at,
+        o.start_date,
+        o.end_date
+    FROM
+        ofer AS o
+    INNER JOIN
+        saraly_category AS sa
+    ON
+        o.category_id = sa.id
+    INNER JOIN
+        companies AS c
+    ON
+        o.company_id = c.id
+    WHERE
+        o.end_date >= :now
+    AND
+        o.start_date <= :now
+    AND
+        c.name LIKE :serch_word
+    OR
+        o.profile LIKE :serch_word
+    OR
+        o.area LIKE :serch_word;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':now', $now, PDO::PARAM_STR);
+    $stmt->bindValue(':serch_word', $serch_word, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 
 //給与カデコリidから給与を探す関数
@@ -514,27 +615,6 @@ function find_job_by_comapny_id($company_id)
 
     $stmt = $dbh->prepare($sql);
     $stmt->bindValue(':company_id', $company_id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-//応募テーブルでIDの求人情報情報をすべてとってくる関数
-function find_appry_by_id($id)
-{
-    $dbh = connect_db();
-
-    $sql = <<<EOM
-    SELECT
-        *
-    FROM
-        ofer
-    WHERE
-        id = :id;
-    EOM;
-
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -795,7 +875,6 @@ function inssert_message($body, $appry, $msg_from)
         echo $e->getMessage();
         return false;
     }
-
 }
 
 //メッセージテーブルから対象のおうぼIDのメッセージの情報をすべてとってくる関数
