@@ -157,37 +157,6 @@ function check_exist_user($email)
         return false;
     }
 }
-//
-//---------------------------------------
-//appry
-
-function insert_use_appry($job_id, $user_id, $company_id, $motivation, $resume)
-{
-    try {
-        $dbh = connect_db();
-
-        $sql = <<<EOM
-        INSERT INTO
-            appry
-            (ofer_id, user_id, company_id, motivation, resume)
-        VALUES
-            (:ofer_id, :user_id, :company_id, :motivation, :resume)
-        EOM;
-
-        $stmt = $dbh->prepare($sql);
-        $stmt->bindValue(':ofer_id', $job_id, PDO::PARAM_INT);
-        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->bindValue(':company_id', $company_id, PDO::PARAM_INT);
-        $stmt->bindValue(':motivation', $motivation, PDO::PARAM_STR);
-        $stmt->bindValue(':resume', $resume, PDO::PARAM_STR);
-
-        $stmt->execute();
-        return true;
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        return false;
-    }
-}
 
 //
 //---------------------------------------
@@ -620,6 +589,69 @@ function find_job_by_comapny_id($company_id)
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+//
+//---------------------------------------
+//appry
+
+function insert_use_appry($job_id, $user_id, $company_id, $motivation, $resume)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        INSERT INTO
+            appry
+            (ofer_id, user_id, company_id, motivation, resume)
+        VALUES
+            (:ofer_id, :user_id, :company_id, :motivation, :resume)
+        EOM;
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':ofer_id', $job_id, PDO::PARAM_INT);
+        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':company_id', $company_id, PDO::PARAM_INT);
+        $stmt->bindValue(':motivation', $motivation, PDO::PARAM_STR);
+        $stmt->bindValue(':resume', $resume, PDO::PARAM_STR);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+//ユーザーが応募済み案件か確認する関数
+//戻り値:応募済み=true,応募なし=false
+function user_appry_flag($user_id, $job_id){
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT 
+        * 
+    FROM 
+        appry
+    WHERE 
+        ofer_id = :ofer_id
+    AND
+        user_id = :user_id;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':ofer_id', $job_id, PDO::PARAM_INT);
+    $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $appry = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!empty($appry)) {
+        return true;
+    } else {
+        return false;
+    }
+
 }
 
 //カンパニーIDから応募を探す関数

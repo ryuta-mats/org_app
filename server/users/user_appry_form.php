@@ -18,6 +18,8 @@ if (empty($_SESSION['current_user'])) {
 
     $company = find_company_by_id($job['company_id']);
     $category = find_category_by_id($job['category_id']);
+
+    $appry_flag = user_appry_flag($login_user['id'], $_GET['job_id']);
 }
 
 $motivation = '';
@@ -58,60 +60,66 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="tit_wrap">
                 <h1 class="title user_bg_title"><span>job offer</span>求人詳細</h1>
             </div>
+            <?php if ($appry_flag) : ?>
+                <div class="err_msg appry_msg">応募済みの求人です。</div>
+            <?php endif; ?>
 
             <?php include_once __DIR__ . "/_appry_detail.php" ?>
 
         </div>
     </div>
+    <?php if (!$appry_flag) : ?>
+        <pre><?php var_dump($appry_flag) ?></pre>
 
-    <div class="job_appry wrapper">
-        <div class="tit_wrap">
-            <h1 class="title user_bg_title"><span>apply</span>この求人への応募</h1>
-        </div>
-        <?php if (!empty($errors)) : ?>
-            <ul class="err_msg top_err_msg">
-                <?php foreach ($errors as $error) : ?>
-                    <?php foreach ($error as $val) : ?>
-                        <li><i class="fa-solid fa-circle-exclamation"></i><?= $val ?></li>
+        <div class="job_appry wrapper">
+            <div class="tit_wrap">
+                <h1 class="title user_bg_title"><span>apply</span>この求人への応募</h1>
+            </div>
+            <?php if (!empty($errors)) : ?>
+                <ul class="err_msg top_err_msg">
+                    <?php foreach ($errors as $error) : ?>
+                        <?php foreach ($error as $val) : ?>
+                            <li><i class="fa-solid fa-circle-exclamation"></i><?= $val ?></li>
+                        <?php endforeach; ?>
                     <?php endforeach; ?>
-                <?php endforeach; ?>
-            </ul>
+                </ul>
+            <?php endif; ?>
+
+            <form class="form" method="post" action="" enctype="multipart/form-data">
+
+                <label for="user_motivation">
+                    <div class="form_title user_title">志望動機</div><span class="required">必須</span>
+                    <div class="input_item_wrap">
+                        <textarea class="input_item user_motivation" id="user_motivation" type="text" name="motivation" cols="30" rows="10"><?= h($motivation) ?></textarea>
+                        <?php if (!empty($errors['motivation'])) : ?>
+                            <ul class="err_msg">
+                                <?php foreach ($errors['motivation'] as $error) : ?>
+                                    <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </div>
+                </label>
+                <label for="user_resume">
+                    <div class="form_title user_title">履歴書</div><span class="required">必須</span>
+                    <div class="input_item_wrap">
+                        <input class="input_item up_load" id="user_resume" type="file" accept="application/pdf" name="resume">
+                        <?php if (!empty($errors['resume'])) : ?>
+                            <ul class="err_msg">
+                                <?php foreach ($errors['resume'] as $error) : ?>
+                                    <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+
+                    </div>
+                </label>
+                <input class="bg_btn user_btn" type="submit" value="応募送信">
+            </form>
         <?php endif; ?>
+        </div>
 
-        <form class="form" method="post" action="" enctype="multipart/form-data">
-
-            <label for="user_motivation">
-                <div class="form_title user_title">志望動機</div><span class="required">必須</span>
-                <div class="input_item_wrap">
-                    <textarea class="input_item user_motivation" id="user_motivation" type="text" name="motivation" cols="30" rows="10"><?= h($motivation) ?></textarea>
-                    <?php if (!empty($errors['motivation'])) : ?>
-                        <ul class="err_msg">
-                            <?php foreach ($errors['motivation'] as $error) : ?>
-                                <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php endif; ?>
-                </div>
-            </label>
-            <label for="user_resume">
-                <div class="form_title user_title">履歴書</div><span class="required">必須</span>
-                <div class="input_item_wrap">
-                    <input class="input_item up_load" id="user_resume" type="file" accept="application/pdf" name="resume">
-                    <?php if (!empty($errors['resume'])) : ?>
-                        <ul class="err_msg">
-                            <?php foreach ($errors['resume'] as $error) : ?>
-                                <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php endif; ?>
-
-                </div>
-            </label>
-            <input class="bg_btn user_btn" type="submit" value="応募送信">
-        </form>
-    </div>
-
-    <?php include_once __DIR__ . "/../common/_footer_user.html" ?>
+        <?php include_once __DIR__ . "/../common/_footer_user.html" ?>
 </body>
 
 </html>

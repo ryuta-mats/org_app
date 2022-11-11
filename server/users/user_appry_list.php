@@ -42,7 +42,7 @@ $apprys = find_appry_by_user_id($user_id);
                         <?php if ($appry['appry_cxl'] == 1) : ?>
                             <tr>
                                 <td class="td_center"><?= h($appry['company']) ?></td>
-                                <td class="td_center"><?= h($appry['job_name']) ?></td>
+                                <td class="td_center"><a href="../users/user_appry_form.php?job_id=<?= h($appry['job_id']) ?>"><?= h($appry['job_name']) ?></a></td>
                                 <td class="td_center">
                                     <?= h($appry['category_name']) ?>
                                     <?= h($appry['price']) ?>円</td>
