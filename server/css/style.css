@@ -532,6 +532,11 @@ input[type="submit"] {
     max-width: 90%;
 }
 
+.appry_msg {
+    margin: 30px;
+    text-align: center;
+}
+
 /*user_appry_list
 --------------------------------------*/
 .base_table {
