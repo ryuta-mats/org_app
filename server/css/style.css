@@ -71,7 +71,6 @@ input[type="submit"] {
     flex-direction: column;
     width: fit-content;
     margin: 0 auto;
-    font-size: 1rem;
 }
 .title::before {
     content: '';
@@ -237,8 +236,8 @@ input[type="submit"] {
     color: #ffffff;
 }
 
-.nav_btn{
-margin: 5px 10px;
+.nav_btn {
+    margin: 5px 10px;
 }
 .nav_link::after {
     position: absolute;
@@ -310,8 +309,8 @@ margin: 5px 10px;
     border-radius: 2px;
     width: 200px;
     display: grid;
-        grid-template-columns: 1fr 25px;
-        margin: 0 20px 0 auto;
+    grid-template-columns: 1fr 25px;
+    margin: 0 20px 0 auto;
 }
 #serch_word_input {
     border: none;
@@ -323,6 +322,9 @@ margin: 5px 10px;
     display: inline-block;
     height: fit-content;
     padding: 1px;
+}
+.serch_word_echo {
+    text-align: center;
 }
 
 #job {
@@ -355,25 +357,28 @@ margin: 5px 10px;
     width: 100%;
     height: 200px;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .job_info_wrap {
-    padding: 0px 5px;
+    padding: 0px 10px;
     width: 100%;
 }
 .job_name_text {
-    margin: 5px 0;
+    margin: 10px 0;
     text-align: center;
 }
 
 .saraly_text {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     text-align: right;
     color: #808080;
 }
-.job-text, .job-span, .job-area {
+.job-text,
+.job-span,
+.job-area {
     font-size: 0.9rem;
-    margin: 0 auto 0 5px;
+    margin: 0 auto 10px 5px;
     color: #808080;
 }
 .detail {
@@ -573,7 +578,7 @@ margin: 5px 10px;
 }
 .icons_wrap {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .icon_wrap {

@@ -10,7 +10,7 @@ if (empty($_SESSION['current_user'])) {
     header('Location: ../users/user_login.php');
     exit;
 } elseif (empty($_GET['job_id'])) {
-    header('Location: ../users/user_index.php');
+    header('Location: ../users/index.php');
     exit;
 } else {
     $job = find_job_by_id($_GET['job_id']);
@@ -35,14 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //なければアップロードファイルのパス
         $resume_name = date('YmdHis') . '_' . $upload_file;
         $path = '../files/resume/' . $resume_name;
-    }
-    //ファイルアップロード、DBへインサート
-    if ((move_uploaded_file($upload_tmp_file, $path)) &&
-        insert_use_appry($job['id'], $login_user['id'], $company['id'], $motivation, $resume_name)
-    ) {
-        header('Location: user_appry_list.php');
-        exit;
-    } else {
+
+        //ファイルアップロード、DBへインサート
+        if ((move_uploaded_file($upload_tmp_file, $path)) &&
+            insert_use_appry($job['id'], $login_user['id'], $company['id'], $motivation, $resume_name)
+        ) {
+            header('Location: user_appry_list.php');
+            exit;
+        }
     }
 }
 ?>
@@ -68,15 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="tit_wrap">
             <h1 class="title user_bg_title"><span>apply</span>この求人への応募</h1>
         </div>
-    <?php if (!empty($errors)) : ?>
-        <ul class="err_msg top_err_msg">
-            <?php foreach ($errors as $error) : ?>
-                <?php foreach ($error as $val) : ?>
-                    <li><i class="fa-solid fa-circle-exclamation"></i><?= $val ?></li>
+        <?php if (!empty($errors)) : ?>
+            <ul class="err_msg top_err_msg">
+                <?php foreach ($errors as $error) : ?>
+                    <?php foreach ($error as $val) : ?>
+                        <li><i class="fa-solid fa-circle-exclamation"></i><?= $val ?></li>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
+            </ul>
+        <?php endif; ?>
 
         <form class="form" method="post" action="" enctype="multipart/form-data">
 

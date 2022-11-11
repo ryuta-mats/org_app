@@ -36,6 +36,7 @@
 
                 <?php endif; ?>
             </ul>
+            <?php if($_SERVER['SCRIPT_NAME'] == '/users/index.php') : ?>
             <form class="serch_word" action="" method="post">
                 <input type="text" id="serch_word_input" name="serch_word">
                 <label class="serch-btn" for="serch-word-submit">
@@ -43,6 +44,7 @@
                     <input id="serch-word-submit" type="submit" value="">
                 </label>
             </form>
+            <?php endif; ?>
 
         </nav>
     </header>
