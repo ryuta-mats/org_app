@@ -95,11 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include_once __DIR__ . "/../common/_header_company.php" ?>
 
     <div id="main" class="wrapper">
-        <pre>
-        <?php
-        empty($company) ?: var_dump($company);
-        ?>
-        </pre>
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>Company edit</span>カンパニーユーザー登録情報変更</h1>
         </div>

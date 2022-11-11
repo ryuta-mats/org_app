@@ -591,6 +591,30 @@ function find_job_by_comapny_id($company_id)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+//求人の応募数を確認する関数
+function count_appry_by_job_id($job_id)
+{
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT
+        count(*)
+    FROM
+        appry
+    WHERE
+        ofer_id = :ofer_id
+    AND
+        cxl_flag = :cxl_flag;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':ofer_id', $job_id, PDO::PARAM_INT);
+    $stmt->bindValue(':cxl_flag', 1, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 //
 //---------------------------------------
 //appry
