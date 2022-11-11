@@ -3,13 +3,14 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 
-$login_company = $_SESSION['current_company'];
-$id = $_SESSION['current_company']['id'];
-
-if (empty($login_company)) {
+if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
 }
+$id = $_SESSION['current_company']['id'];
+$login_company = find_company_by_id($_SESSION['current_company']['id']);
+
+
 $jobs = find_job_by_comapny_id($id);
 
 

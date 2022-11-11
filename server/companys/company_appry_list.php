@@ -8,8 +8,8 @@ if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
 }
-$login_company = $_SESSION['current_company'];
 $id = $_SESSION['current_company']['id'];
+$login_company = find_company_by_id($_SESSION['current_company']['id']);
 
 $apprys = find_appry_by_company_id($id);
 

@@ -564,6 +564,8 @@ function find_job_by_serch_word($serch_word){
     AND
         c.name LIKE :serch_word
     OR
+        o.name LIKE :serch_word
+    OR
         o.profile LIKE :serch_word
     OR
         o.area LIKE :serch_word;
