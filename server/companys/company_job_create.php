@@ -96,19 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>job offer</span>新規求人登録</h1>
         </div>
-        <!---->
-
-        <pre>
-        <?php
-        if (!empty($errors)) {
-            echo var_dump($errors);
-        }
-        echo var_dump($name, $login_company['id'], $category, $price, $profile, $image_name, $area, $start_date, $start_time, $end_date, $end_time);
-        echo var_dump('$upload :' . $upload );
-        echo var_dump($insert_job );
-        echo var_dump('path:' . $path);
-        ?></pre>
-        <!---->
 
         <?php if (!empty($errors)) : ?>
             <div class="login_err_wrap">

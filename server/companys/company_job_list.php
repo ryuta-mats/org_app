@@ -10,9 +10,14 @@ if (empty($_SESSION['current_company'])) {
 $id = $_SESSION['current_company']['id'];
 $login_company = find_company_by_id($_SESSION['current_company']['id']);
 
-
+//求人の情報を配列にする
 $jobs = find_job_by_comapny_id($id);
 
+//応募数を確認し配列に追加する
+foreach ($jobs as $index => $job) {
+    $appry_count = count_appry_by_job_id($job['id']);
+    $jobs[$index]['appry_count'] = $appry_count['count(*)'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -27,7 +32,6 @@ $jobs = find_job_by_comapny_id($id);
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>Job list</span>求人リスト</h1>
         </div>
-
         <table class="base_table">
             <thead>
                 <tr class="headline">
@@ -46,7 +50,7 @@ $jobs = find_job_by_comapny_id($id);
                             <?php $category = find_category_by_id($id); ?>
                             <td class="td_center"><?= $category['name'] ?><?= h($job['price']) ?>円</td>
                             <td><?= h($job['profile']) ?></td>
-                            <td class="td_center">0人</td>
+                            <td class="td_center"><?= $job['appry_count'] ?>人</td>
                             <td class="icon_td">
                                 <div class="icons_wrap">
                                     <a href="company_job_show.php?job_id=<?= $job['id'] ?>" class="icon icon_appry_detail icon_wrap">
