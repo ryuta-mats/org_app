@@ -50,17 +50,13 @@ $apprys = find_appry_by_user_id($user_id);
                                 <td class="td_center"><?= h($appry['status']) ?></td>
                                 <td class="icon_td">
                                     <div class="icons_wrap">
-                                        <a href="user_appry_show.php?job_id=<?= h($appry['job_id']) ?>" class="icon icon_appry_detail icon_wrap">
-                                            <i class="fa-solid fa-circle-info"></i>
-                                            <p>詳細</p>
-                                        </a>
-                                        <a href="user_appry_cxl.php?appry_id=<?= h($appry['appry_id']) ?>" class="icon icon_appry_detail icon_wrap">
+                                        <a href="user_appry_cxl.php?appry_id=<?= h($appry['appry_id']) ?>" class="icon icon_appry_detail icon_wrap" alt="test">
                                             <i class="fa-solid fa-trash"></i>
-                                            <p>辞退</p>
+                                            <p>cxl</p>
                                         </a>
                                         <a href="user_message.php?appry_id=<?= h($appry['appry_id']) ?>" class="icon icon_appry_detail icon_wrap">
                                             <i class="fa-solid fa-message"></i>
-                                            <p>メッセージ</p>
+                                            <p>message</p>
                                         </a>
                                     </div>
                                 </td>

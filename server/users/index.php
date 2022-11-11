@@ -38,7 +38,7 @@ $job_count = count($jobs);
         </div>
 
         <?php if (!empty($serch_word)) : ?>
-            <p>検索ワード: <?= h($serch_word) ?></p>
+            <p class="serch_word_echo">検索ワード: <?= h($serch_word) ?></p>
         <?php endif; ?>
 
         <div id="job" class="wrapper">
