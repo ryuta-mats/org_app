@@ -22,21 +22,18 @@ $name = '';
 $category = '';
 $price = '';
 $profile = '';
-$image = '';
 $area = '';
 $start_date = '';
 $start_time = '';
 $end_date = '';
 $end_time = '';
+$image_name = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = filter_input(INPUT_POST, 'name');
     $category = filter_input(INPUT_POST, 'category');
     $price = filter_input(INPUT_POST, 'price');
-    if (isset($_POST['profile'])) {
-        $profile = h($_POST['profile']);
-    }
-    $image = filter_input(INPUT_POST, 'image');
+    $profile = $_POST['profile'];
     // アップロードした画像のファイル名
     $upload_file = $_FILES['image']['name'];
     // サーバー上で一時的に保存されるテンポラリファイル名
@@ -71,14 +68,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image_name = date('YmdHis') . '_' . $upload_file;
         $path = '../images/job/' . $image_name;
 
-        if ((move_uploaded_file($upload_tmp_file, $path)) &&
-            insert_job($name, $login_company['id'], $category, $price, $profile, $image_name, $area, $start_date, $start_time, $end_date, $end_time)
-        ) {
-            header('Location: company_job_list.php');
-            exit;
+        $upload = move_uploaded_file($upload_tmp_file, $path);
+        if ($upload == 0) {
+            $insert_job = insert_job($name, $login_company['id'], $category, $price, $profile, $image_name, $area, $start_date, $start_time, $end_date, $end_time);
+            if ($insert_job) {
+                header('Location: company_job_list.php');
+                exit;
+            } else {
+            $errors['db'][] = MSG_DB_ERR;
+            }
         } else {
+            $errors['image'][] = MSG_IMAGEUPLOAD_ERR . '|Err-num:' . $upload;
         }
-    };
+    }
 }
 
 ?>
@@ -94,6 +96,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>job offer</span>新規求人登録</h1>
         </div>
+        <!---->
+
+        <pre>
+        <?php
+        if (!empty($errors)) {
+            echo var_dump($errors);
+        }
+        echo var_dump($name, $login_company['id'], $category, $price, $profile, $image_name, $area, $start_date, $start_time, $end_date, $end_time);
+        echo var_dump('$upload :' . $upload );
+        echo var_dump($insert_job );
+        echo var_dump('path:' . $path);
+        ?></pre>
+        <!---->
 
         <?php if (!empty($errors)) : ?>
             <div class="login_err_wrap">

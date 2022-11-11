@@ -11,8 +11,9 @@ if (empty($_SESSION['current_company'])) {
     exit;
 }
 $appry_id = $_GET['appry_id'];
-$login_company = $_SESSION['current_company'];
+
 $id = $_SESSION['current_company']['id'];
+$login_company = find_company_by_id($_SESSION['current_company']['id']);
 
 $appry = find_appry_by_appry_id($appry_id);
 $messages = find_message_by_appry_id($appry_id);

@@ -10,8 +10,8 @@ define('PASSWORD', '1234');
 //define('PASSWORD', 'matsu1987');
 
 
-define('EXTENSION_IMAGE', ['jpg', 'JPG', 'jpeg', 'png', 'PNG', 'gif', 'webp']);
-define('EXTENSION_PDF', ['pdf', 'PDF']);
+define('EXTENSION_IMAGE', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
+define('EXTENSION_PDF', ['pdf']);
 
 define('MSG_EMAIL_REQUIRED', 'メールアドレスが未入力です');
 define('MSG_PASSWORD_NOT_MATCH', 'パスワードが間違っています');
@@ -45,6 +45,8 @@ define('MSG_START_DATE_REQUIRED', '公開開始日が未入力です');
 define('MSG_START_TIME_REQUIRED', '公開開始時間が未入力です');
 define('MSG_END_DATE_REQUIRED', '公開終了日が未入力です');
 define('MSG_END_TIME_REQUIRED', '公開終了時間が未入力です');
+define('MSG_IMAGEUPLOAD_ERR', '画像アップロードのエラーです');
+define('MSG_DB_ERR', 'DBへの登録時のエラーです');
 
 
 

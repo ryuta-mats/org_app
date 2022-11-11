@@ -1,20 +1,22 @@
     <header id="menu" class="page_header_user wrapper">
         <h1 class="logo-wrap">
-            <a href="index.php">
+            <a href="../users/index.php">
                 <span class="logo-text">NISEKO WORK</span>
-                <p class="logo-sub-text">ニセコエリアのお仕事マッチングサイト</p>
             </a>
+            <p class="logo-sub-text">ニセコのお仕事マッチング</p>
         </h1>
         <nav class="menu-content">
             <ul class="menu-nav">
-                <li><a class="nav_link" href="../companys/company_login.php">企業向けページ</a></li>
+                <a class="nav_link_btn" href="../companys/company_login.php">
+                    <li class="bg_btn company_btn nav_btn">企業向け</li>
+                </a>
+                <li><a class="nav_link" href="../users/index.php">トップ</a></li>
                 <?php if (!empty($login_user)) : ?>
                     <li><a class="nav_link" href="../users/user_appry_list.php">応募リスト</a></li>
                     <li><a class="nav_link" href="../users/user_edit.php?id=<?= $login_user['id'] ?>">登録情報変更</a></li>
                     <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
                 <?php else : ?>
                     <li><a class="nav_link" href="../users/user_signup.php">新規登録</a></li>
-                    <li><a class="nav_link" href="../users/user_login.php">ログイン</a></li>
                 <?php endif; ?>
 
                 <?php if ($login_user) : ?>
@@ -27,13 +29,20 @@
                         </a>
                     </li>
                 <?php else : ?>
-                    <li class="login_flag status_logout">
-                        <img class="login_image" src="../images/logout.png" alt="ゲストユーザー">
-                        <div class="login_wrap">
-                            <p>ログアウト中</p>
-                        </div>
-                    </li>
+
+                    <a class="nav_link_btn" href="../users/user_login.php">
+                        <li class="bg_btn user_btn nav_btn">ログイン</li>
+                    </a>
+
                 <?php endif; ?>
             </ul>
+            <form class="serch_word" action="" method="post">
+                <input type="text" id="serch_word_input" name="serch_word">
+                <label class="serch-btn" for="serch-word-submit">
+                    <i class="fa-sharp fa-solid fa-magnifying-glass" for="serch-word-submit"></i>
+                    <input id="serch-word-submit" type="submit" value="">
+                </label>
+            </form>
+
         </nav>
     </header>

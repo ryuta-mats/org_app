@@ -1,21 +1,21 @@
     <header id="menu" class="page_header_company wrapper">
         <h1>
-            <a href="index.php">
+            <a href="../users/index.php">
                 <span class="logo-text">NISEKO WORK</span>
-                <p class="logo-sub-text">ニセコエリアのお仕事マッチングサイト</p>
             </a>
+            <p class="logo-sub-text">ニセコのお仕事マッチング</p>
         </h1>
         <nav class="menu-content">
             <ul class="menu-nav">
+                <li><a class="nav_link" href="../users/index.php">トップ</a></li>
                 <?php if (!empty($login_company)) : ?>
-                    <li><a class="nav_link" href="../companys/company_job_list.php?id=<?= $login_company['id'] ?>">求人リスト</a></li>
-                    <li><a class="nav_link" href="../companys/company_appry_list.php?id=<?= $login_company['id'] ?>">応募者リスト</a></li>
+                    <li><a class="nav_link" href="../companys/company_job_list.php">求人リスト</a></li>
+                    <li><a class="nav_link" href="../companys/company_appry_list.php">応募者リスト</a></li>
                     <li><a class="nav_link" href="../companys/company_job_create.php">新規求人登録</a></li>
-                    <li><a class="nav_link" href="../companys/company_edit.php?id=<?= $login_company['id'] ?>">登録情報変更</a></li>
+                    <li><a class="nav_link" href="../companys/company_edit.php">登録情報変更</a></li>
                     <li><a class="nav_link" href="../companys/company_logout.php">ログアウト</a></li>
                 <?php else : ?>
                     <li><a class="nav_link" href="../companys/company_signup.php">新規登録</a></li>
-                    <li><a class="nav_link" href="../companys/company_login.php">ログイン</a></li>
                 <?php endif; ?>
 
                 <?php if ($login_company) : ?>
@@ -28,14 +28,10 @@
                         </a>
                     </li>
                 <?php else : ?>
-                    <li class="login_flag status_logout">
-                        <img class="login_image" src="../images/logout.png" alt="ゲストユーザー">
-                        <div class="login_wrap">
-                            <p>ログアウト中</p>
-                        </div>
-                    </li>
+                    <a class="nav_link_btn" href="../companys/company_login.php">
+                        <li class="bg_btn company_btn">ログイン</li>
+                    </a>
                 <?php endif; ?>
-
             </ul>
         </nav>
     </header>

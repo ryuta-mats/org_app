@@ -8,8 +8,8 @@ if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
 }
-$login_company = $_SESSION['current_company'];
 $id = $_SESSION['current_company']['id'];
+$login_company = find_company_by_id($_SESSION['current_company']['id']);
 
 $apprys = find_appry_by_company_id($id);
 
@@ -26,10 +26,6 @@ $apprys = find_appry_by_company_id($id);
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>Apply list</span>応募者リスト</h1>
         </div>
-        <pre>
-<?= var_dump($apprys) ?>
-</pre>
-
         <table class="base_table">
             <thead>
                 <tr class="headline">
