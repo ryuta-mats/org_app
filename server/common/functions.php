@@ -70,6 +70,7 @@ function rt_str_sex($sex_num)
 //ユーザーのログインを行う関数
 function user_login($user)
 {
+
     $_SESSION['current_user']['id'] = $user['id'];
     $_SESSION['current_user']['name'] = $user['name'];
     $_SESSION['current_user']['image'] = $user['image'];
@@ -85,6 +86,7 @@ function user_login($user)
 //カンパニーユーザーがログインする関数
 function company_login($company)
 {
+
     $_SESSION['current_company']['id'] = $company['id'];
     $_SESSION['current_company']['name'] = $company['name'];
     $_SESSION['current_company']['email'] = $company['email'];

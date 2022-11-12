@@ -14,8 +14,8 @@ if (empty($_SESSION['current_user'])) {
 $login_user = $_SESSION['current_user'];
 $appry_id = $_GET['appry_id'];
 
-//関数でキャンセルフラグを0に変更する
-if (update_appry_cxl($appry_id)) {
+//関数でキャンセルフラグを0にしステイタスも変更する
+if (update_appry_cange_status($appry_id, APPRY_STATUS_DECLINE)) {
 } else {
     //falseの場合、リストにリダイレクトする
     header('Location: user_appry_list.php');
@@ -34,7 +34,9 @@ $appry =  find_appry_by_appry_id($appry_id);
             <div class="tit_wrap">
                 <h1 class="title user_bg_title"><span>apply cancel</span>応募のキャンセル</h1>
             </div>
-            <h2><?= h($appry['job_name']) ?>を削除しました。</h2>
+            <h2><?= h($appry['job_name']) ?> への応募をキャンセルしました。</h2>
+            <a class="bg_btn" href="user_appry_list.php">求人リストへ</a>
+
 
         </div>
     </div>

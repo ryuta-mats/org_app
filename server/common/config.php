@@ -49,7 +49,11 @@ define('MSG_IMAGEUPLOAD_ERR', '画像アップロードのエラーです');
 define('MSG_DB_ERR', 'DBへの登録時のエラーです');
 
 
-
-
 define('MSG_EMAIL_DUPLICATE', 'そのメールアドレスは既に会員登録されています');
 define('MSG_EMAIL_PASSWORD_NOT_MATCH', 'メールアドレスかパスワードが間違っています');
+
+define('APPRY_STATUS_UNDER SELECTION', 1);//選考中
+define('APPRY_STATUS_ADOPTED', 2);//採用
+define('APPRY_STATUS_NOT_ADOPTED', 3);//不採用
+define('APPRY_STATUS_DECLINE', 4);//辞退
+

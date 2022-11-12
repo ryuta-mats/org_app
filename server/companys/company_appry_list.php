@@ -3,7 +3,7 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 
-
+//ログイン確認
 if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
@@ -54,6 +54,10 @@ $apprys = find_appry_by_company_id($id);
                                     <a href="../files/resume/<?= h($appry['resume']) ?>" class="icon icon_appry_detail icon_wrap">
                                         <i class="fa-solid fa-file"></i>
                                         <p>履歴書</p>
+                                    </a>
+                                    <a href="company_appry_ado.php?appry_id=<?= $appry['appry_id'] ?>" class="icon icon_appry_detail icon_wrap">
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <p>採用</p>
                                     </a>
                                     <a href="company_appry_cxl.php?appry_id=<?= $appry['appry_id'] ?>" class="icon icon_appry_detail icon_wrap">
                                         <i class="fa-solid fa-trash"></i>

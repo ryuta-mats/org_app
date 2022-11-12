@@ -41,6 +41,8 @@ if (update_job_cxl($job_id)) {
         </div>
 
         <h2><?= h($job['name']) ?>を削除しました。</h2>
+        <a class="bg_btn" href="company_job_list.php">求人リストへ</a>
+
     </div>
 
 

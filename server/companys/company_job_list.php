@@ -47,7 +47,7 @@ foreach ($jobs as $index => $job) {
                     <?php if ($job['cxl_flag']) : ?>
                         <tr>
                             <td class="td_center"><?= h($job['name']) ?></td>
-                            <?php $category = find_category_by_id($id); ?>
+                            <?php $category = find_category_by_id($job['category_id']); ?>
                             <td class="td_center"><?= $category['name'] ?><?= h($job['price']) ?>円</td>
                             <td><?= h($job['profile']) ?></td>
                             <td class="td_center"><?= $job['appry_count'] ?>人</td>

@@ -38,34 +38,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // サーバー上で一時的に保存されるテンポラリファイル名
     $upload_tmp_file = $_FILES['image']['tmp_name'];
 
-    list(
-        $errors,
+    $errors = company_signup_validate(
+        $name,
+        $password,
+        $post_code,
+        $address,
+        $manager_name,
+        $email,
+        $profile,
+        $upload_file,
         $val_flag
-    )
-        = company_signup_validate(
-            $name,
-            $password,
-            $post_code,
-            $address,
-            $manager_name,
-            $email,
-            $profile,
-            $upload_file,
-            $val_flag
-        );
+    );
 
     if (
-        $val_flag
+        empty($errors)
     ) {
         $image_name = date('YmdHis') . '_' . $upload_file;
         $path = '../images/company/' . $image_name;
 
-        if ((move_uploaded_file($upload_tmp_file, $path)) &&
-            insert_company($name, $password, $post_code, $address, $manager_name, $email, $profile, $image_name, $url)
-        ) {
-            header('Location: company_login.php');
-            exit;
+        if (move_uploaded_file($upload_tmp_file, $path)) {
+            if (insert_company($name, $password, $post_code, $address, $manager_name, $email, $profile, $image_name, $url)) {
+                header('Location: company_login.php');
+                exit;
+            } else {
+                $errors['db'][] = MSG_DB_ERR;
+            }
         } else {
+            $errors['image'][] = MSG_IMAGEUPLOAD_ERR;
         }
     };
 };
@@ -202,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </label>
 
             <label for="image">
-                <div class="form_title company_title">画像</div>
+                <div class="form_title company_title">画像</div><span class="required">必須</span>
                 <div class="input_item_wrap">
                     <input class="input_item up_load <?php empty($errors['image']) ?: print 'err_input'; ?>" id="image" type="file" accept="image/png,image/jpeg,image/gif" name="image">
                     <?php if (!empty($errors['image'])) : ?>
