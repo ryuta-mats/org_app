@@ -206,57 +206,44 @@ function message_validate($body)
 function company_signup_validate($name, $password, $post_code, $address, $manager_name, $email, $profile, $image, $flag)
 {
     $errors = [];
-    $val_flag = $flag;
 
     if (empty($name)) {
         $errors['name'][] =  MSG_COMPANYNAME_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($password)) {
         $errors['password'][] =  MSG_PASSWORD_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($post_code)) {
         $errors['post_code'][] =  MSG_POSTCODE_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($address)) {
         $errors['address'][] = MSG_ADDRESS_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($manager_name)) {
         $errors['manager_name'][] =  MSG_MANAGERNAME_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($email)) {
         $errors['email'][] =  MSG_EMAIL_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($profile)) {
         $errors['profile'][] =  MSG_PROFILE_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($image)) {
         $errors['image'][] =  MSG_NO_IMAGE;
-        $val_flag = false;
     } else {
         if (check_file_image_ext($image)) {
             $errors['image'][] = MSG_NOT_ABLE_EXT;
-            $val_flag = false;
         }
     }
 
-    return array(
-        $val_flag,
-        $errors
-    );
+    return $errors;
 }
 function company_edit_validate($name, $password, $post_code, $address, $manager_name, $email, $profile, $image, $flag)
 {

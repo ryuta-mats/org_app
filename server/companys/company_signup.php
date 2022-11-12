@@ -38,11 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // サーバー上で一時的に保存されるテンポラリファイル名
     $upload_tmp_file = $_FILES['image']['tmp_name'];
 
-    list(
-        $errors,
-        $val_flag
-    )
-        = company_signup_validate(
+        $errors = company_signup_validate(
             $name,
             $password,
             $post_code,
@@ -55,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
 
     if (
-        $val_flag
+        empty($errors)
     ) {
         $image_name = date('YmdHis') . '_' . $upload_file;
         $path = '../images/company/' . $image_name;

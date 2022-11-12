@@ -878,7 +878,7 @@ function find_appry_by_appry_id($appry_id)
 }
 
 //対象idの申込みをキャンセルにする関数
-function update_appry_cxl($id)
+function update_appry_cxl($id,$status_id)
 {
     try {
         $dbh = connect_db();
@@ -896,7 +896,7 @@ function update_appry_cxl($id)
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':cxl_flag', 0, PDO::PARAM_INT);
-        $stmt->bindValue(':status_id', 4, PDO::PARAM_INT);
+        $stmt->bindValue(':status_id', $status_id, PDO::PARAM_INT);
 
         $stmt->execute();
         return true;
@@ -905,6 +905,7 @@ function update_appry_cxl($id)
         return false;
     }
 }
+
 
 //新しいメッセージをデータベースに登録する関数
 function inssert_message($body, $appry, $msg_from)

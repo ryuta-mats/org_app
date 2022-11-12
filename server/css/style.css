@@ -100,6 +100,8 @@ input[type="submit"] {
 .bg_btn {
     display: inline-block;
     border-radius: 50rem;
+    border:#dedede;
+    box-sizing: border-box;
     margin: 20px;
     width: 120px;
     height: 30px;
@@ -109,6 +111,9 @@ input[type="submit"] {
     align-items: center;
     box-shadow: 0 0px 0px 0 rgba(62, 119, 129, 0.5);
     font-weight: 500;
+}
+.bg_btn:hover{
+background-color: #eeeeee;
 }
 
 .user_btn {
