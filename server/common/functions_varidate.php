@@ -21,6 +21,9 @@ function user_signup_validate($name, $email, $tel,  $password, $post_code, $addr
         $errors['email'][] = MSG_EMAIL_REQUIRED;
         $val_flag = false;
     }
+    if (check_exist_user($email)) {
+        $errors['email'][] =  MSG_EMAIL_DUPLICATE;
+    }
 
     if (empty($tel)) {
         $errors['tel'][] = MSG_TEL_REQUIRED;
@@ -110,6 +113,10 @@ function user_edit_validate($name, $email, $tel,  $password, $post_code, $addres
         $errors[] = MSG_EMAIL_REQUIRED;
         $val_flag = false;
     }
+    if (check_exist_user($email)) {
+        $errors_email[] =  MSG_EMAIL_DUPLICATE;
+        $val_flag = false;
+    }
 
     if (empty($tel)) {
         $errors_tel[] = MSG_TEL_REQUIRED;
@@ -196,7 +203,7 @@ function message_validate($body)
     if (empty($body)) {
         $errors['body'][] = MSG_BODY_REQUIRED;
     }
-    
+
     return $errors;
 }
 
@@ -229,6 +236,9 @@ function company_signup_validate($name, $password, $post_code, $address, $manage
 
     if (empty($email)) {
         $errors['email'][] =  MSG_EMAIL_REQUIRED;
+    }
+    if (check_exist_company($email)) {
+        $errors['email'][] =  MSG_EMAIL_DUPLICATE;
     }
 
     if (empty($profile)) {
@@ -279,6 +289,10 @@ function company_edit_validate($name, $password, $post_code, $address, $manager_
         $errors['email'][] =  MSG_EMAIL_REQUIRED;
         $val_flag = false;
     }
+    if (check_exist_company($email)) {
+        $errors['email'][] =  MSG_EMAIL_DUPLICATE;
+    }
+
 
     if (empty($profile)) {
         $errors['profile'][] =  MSG_PROFILE_REQUIRED;

@@ -492,7 +492,8 @@ function find_all_job()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function find_job_by_serch_word($serch_word){
+function find_job_by_serch_word($serch_word)
+{
     $dbh = connect_db();
 
     $now = date("Y/m/d H:i:s");
@@ -649,7 +650,8 @@ function insert_use_appry($job_id, $user_id, $company_id, $motivation, $resume)
 
 //ユーザーが応募済み案件か確認する関数
 //戻り値:応募済み=true,応募なし=false
-function user_appry_flag($user_id, $job_id){
+function user_appry_flag($user_id, $job_id)
+{
     $dbh = connect_db();
 
     $sql = <<<EOM
@@ -675,7 +677,6 @@ function user_appry_flag($user_id, $job_id){
     } else {
         return false;
     }
-
 }
 
 //カンパニーIDから応募を探す関数
@@ -877,8 +878,8 @@ function find_appry_by_appry_id($appry_id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-//対象idの申込みをキャンセルにする関数
-function update_appry_cxl($id,$status_id)
+//対象idの申込みのステイタスを変える関数
+function update_appry_cange_status($id, $status_id)
 {
     try {
         $dbh = connect_db();
@@ -887,7 +888,6 @@ function update_appry_cxl($id,$status_id)
         UPDATE
             appry
         SET
-            cxl_flag = :cxl_flag,
             status_id = :status_id
         EOM;
 
@@ -895,8 +895,33 @@ function update_appry_cxl($id,$status_id)
 
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        $stmt->bindValue(':cxl_flag', 0, PDO::PARAM_INT);
         $stmt->bindValue(':status_id', $status_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+//対象idの申込みを採用にする関数
+function update_appry_ado($id)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        UPDATE
+            appry
+        SET
+            status_id = :status_id
+        WHERE 
+            id = :id
+        EOM;
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':status_id', 2, PDO::PARAM_INT);
 
         $stmt->execute();
         return true;

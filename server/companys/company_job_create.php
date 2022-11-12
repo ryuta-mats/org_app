@@ -4,19 +4,14 @@ include_once __DIR__ . '/../common/functions.php';
 session_start();
 $login_company = '';
 
-$id = $_SESSION['current_company']['id'];
-
 // セッションにidが保持されていなければログイン画面にリダイレクト
 // パラメータを受け取れなけれらばログイン画面にリダイレクト
 if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
-} elseif (empty($id)) {
-    header('Location: ../companys/company_login.php');
-    exit;
-} else {
-    $login_company = find_company_by_id($_SESSION['current_company']);
 }
+$login_company = find_company_by_id($_SESSION['current_company']['id']);
+
 
 $name = '';
 $category = '';
@@ -68,17 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image_name = date('YmdHis') . '_' . $upload_file;
         $path = '../images/job/' . $image_name;
 
-        $upload = move_uploaded_file($upload_tmp_file, $path);
-        if ($upload == 0) {
-            $insert_job = insert_job($name, $login_company['id'], $category, $price, $profile, $image_name, $area, $start_date, $start_time, $end_date, $end_time);
-            if ($insert_job) {
+        if (move_uploaded_file($upload_tmp_file, $path)) {
+            if (insert_job($name, $id, $category, $price, $profile, $image_name, $area, $start_date, $start_time, $end_date, $end_time)) {
                 header('Location: company_job_list.php');
                 exit;
             } else {
-            $errors['db'][] = MSG_DB_ERR;
+                $errors['db'][] = MSG_DB_ERR;
             }
         } else {
-            $errors['image'][] = MSG_IMAGEUPLOAD_ERR . '|Err-num:' . $upload;
+            $errors['image'][] = MSG_IMAGEUPLOAD_ERR;
         }
     }
 }

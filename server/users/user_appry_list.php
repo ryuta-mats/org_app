@@ -13,7 +13,6 @@ $login_user = $_SESSION['current_user'];
 $user_id = $_SESSION['current_user']['id'];
 $apprys = find_appry_by_user_id($user_id);
 
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -29,25 +28,27 @@ $apprys = find_appry_by_user_id($user_id);
             <table class="base_table">
                 <thead>
                     <tr class="headline">
+                        <th>状況</th>
                         <th>会社名</th>
                         <th>職種</th>
                         <th>給料</th>
                         <th>仕事内容</th>
-                        <th>状況</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($apprys as $appry) : ?>
+                    
                         <?php if ($appry['appry_cxl'] == 1) : ?>
+                        
                             <tr>
+                                <td class="td_center <?php $appry['status_id'] == 2 ? print 'user_adopted' : print '' ; ?>"><?= h($appry['status']) ?></td>
                                 <td class="td_center"><?= h($appry['company']) ?></td>
                                 <td class="td_center"><a href="../users/user_appry_form.php?job_id=<?= h($appry['job_id']) ?>"><?= h($appry['job_name']) ?></a></td>
                                 <td class="td_center">
                                     <?= h($appry['category_name']) ?>
                                     <?= h($appry['price']) ?>円</td>
                                 <td class="long_text"><?= h($appry['profile']) ?></td>
-                                <td class="td_center"><?= h($appry['status']) ?></td>
                                 <td class="icon_td">
                                     <div class="icons_wrap">
                                         <a href="user_appry_cxl.php?appry_id=<?= h($appry['appry_id']) ?>" class="icon icon_appry_detail icon_wrap" alt="test">

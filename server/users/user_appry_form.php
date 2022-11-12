@@ -68,9 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </div>
     </div>
+    
     <?php if (!$appry_flag) : ?>
-        <pre><?php var_dump($appry_flag) ?></pre>
-
         <div class="job_appry wrapper">
             <div class="tit_wrap">
                 <h1 class="title user_bg_title"><span>apply</span>この求人への応募</h1>

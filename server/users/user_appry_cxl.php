@@ -15,7 +15,7 @@ $login_user = $_SESSION['current_user'];
 $appry_id = $_GET['appry_id'];
 
 //関数でキャンセルフラグを0にしステイタスも変更する
-if (update_appry_cxl($appry_id, APPRY_STATUS_DECLINE)) {
+if (update_appry_cange_status($appry_id, APPRY_STATUS_DECLINE)) {
 } else {
     //falseの場合、リストにリダイレクトする
     header('Location: user_appry_list.php');

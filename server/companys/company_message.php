@@ -85,12 +85,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endforeach; ?>
                     </ul>
                 <?php endif; ?>
-                <input class="bg_btn company_btn message_send_btn" type="submit">
+                <input id="position" class="bg_btn company_btn message_send_btn" type="submit">
             </form>
         </div>
     </div>
-
     <?php include_once __DIR__ . "/../common/_footer_company.html" ?>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(e) {
+            location.hash = "position";
+        });
+    </script>
 </body>
 
 </html>
