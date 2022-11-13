@@ -1,3 +1,13 @@
+ALTER TABLE ofer DROP CONSTRAINT fk_company_id;
+ALTER TABLE ofer DROP CONSTRAINT fk_saraly_category_id;
+ALTER TABLE appry DROP CONSTRAINT appryfk_ofer_id;
+ALTER TABLE appry DROP CONSTRAINT appryfk_company_id;
+ALTER TABLE appry DROP CONSTRAINT appryfk_user_id;
+ALTER TABLE appry DROP CONSTRAINT appryfk_status_id;
+ALTER TABLE message DROP CONSTRAINT messagefk_appry_id;
+ALTER TABLE message DROP CONSTRAINT messagefk_user_id;
+ALTER TABLE message DROP CONSTRAINT appryfk_company_id;
+
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS companies CASCADE;
 DROP TABLE IF EXISTS status CASCADE;
