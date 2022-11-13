@@ -57,8 +57,6 @@ CREATE TABLE IF NOT EXISTS ofer (
     start_date datetime NOT NULL,
     end_date datetime NOT NULL,
     PRIMARY KEY (id),
-    KEY ofer_fk_company_id (company_id),
-    KEY ofer_fk_saraly_category_id (category_id),
     CONSTRAINT ofer_fk_company_id FOREIGN KEY (company_id) REFERENCES companies (id),
     CONSTRAINT ofer_fk_saraly_category_id FOREIGN KEY (category_id) REFERENCES saraly_category (id)
 );
@@ -74,10 +72,6 @@ CREATE TABLE IF NOT EXISTS appry (
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     cxl_flag tinyint(1) NOT NULL DEFAULT 1,
-    KEY appry_fk_ofer_id (ofer_id),
-    KEY appry_fk_user_id (user_id),
-    KEY appry_fk_company_id (company_id),
-    KEY appry_fk_status_id (status_id),
     CONSTRAINT appry_fk_company_id FOREIGN KEY (company_id) REFERENCES companies (id),
     CONSTRAINT appry_fk_ofer_id FOREIGN KEY (ofer_id) REFERENCES ofer (id),
     CONSTRAINT appry_fk_status_id FOREIGN KEY (status_id) REFERENCES status (id),
@@ -94,9 +88,6 @@ CREATE TABLE IF NOT EXISTS message (
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    KEY message_fk_user_id (user_id) USING BTREE,
-    KEY message_fk_company_id (company_id) USING BTREE,
-    KEY message_fk_appry_id (appry_id) USING BTREE,
-    CONSTRAINT appryfk_company_id FOREIGN KEY (company_id) REFERENCES companies (id),
-    CONSTRAINT messagefk_appry_id FOREIGN KEY (appry_id) REFERENCES appry (id),
-    CONSTRAINT messagefk_user_id FOREIGN KEY (user_id) REFERENCES users (id));
+    CONSTRAINT message_fk_company_id FOREIGN KEY (company_id) REFERENCES companies (id),
+    CONSTRAINT message_fk_appry_id FOREIGN KEY (appry_id) REFERENCES appry (id),
+    CONSTRAINT message_fk_user_id FOREIGN KEY (user_id) REFERENCES users (id));
