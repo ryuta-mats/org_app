@@ -5,8 +5,8 @@ define('USER', 'nw_admin');
 define('PASSWORD', '1234');
 
 //エックスサーバー用
-//define('DSN', 'mysql:host=localhost;dbname=xs618728_nw;charset=utf8');
-//define('USER', 'xs618728_nw');
+//define('DSN', 'mysql:host=localhost;dbname=xs618728_nisekowork;charset=utf8');
+//define('USER', 'xs618728_nw');q
 //define('PASSWORD', 'matsu1987');
 
 //テスト
