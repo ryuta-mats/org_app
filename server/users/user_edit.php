@@ -26,7 +26,8 @@ $image = $login_user['image'];
 $image_name = '';
 $upload_file = '';
 $upload_tmp_file = '';
-$val_flag = true;
+$flag = false;
+$errors = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = filter_input(INPUT_POST, 'name');
@@ -50,44 +51,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $path = '../images/user/' . $image_name;
     }
 
-    list(
-        $errors,
-        $errors_name,
-        $errors_email,
-        $errors_tel,
-        $errors_password,
-        $errors_post_code,
-        $errors_address,
-        $errors_age,
-        $errors_sex,
-        $errors_image,
-        $val_flag
-    )
-        = user_edit_validate(
-            $login_user['id'],
-            $name,
-            $email,
-            $tel,
-            $password,
-            $post_code,
-            $address,
-            $age,
-            $sex,
-            $upload_file,
-            $val_flag
-        );
+    $errors = user_edit_validate(
+        $login_user['id'],
+        $name,
+        $email,
+        $tel,
+        $password,
+        $post_code,
+        $address,
+        $age,
+        $sex,
+        $upload_file,
+    );
 
     if (!password_verify($password, $login_user['password'])) {
-        $errors[] = MSG_PASSWORD_NOT_MATCH;
-        $errors_password[] = MSG_PASSWORD_NOT_MATCH;
+        $errors['pasword'][] = MSG_PASSWORD_NOT_MATCH;
     } else {
-        if ($val_flag) {
+        if (empty($errors)) {
             //画像に新しいのがあるか
             if ($image_change_flag && move_uploaded_file($upload_tmp_file, $path)) {
                 unlink($old_image);
             };
             if (update_user($id, $name, $email, $tel, $password, $post_code, $address, $age, $sex, $image_name)) {
-                header('Location: user_show.php');
+                header('Location: user_show.php?edit=1');
                 exit;
             };
         }
@@ -107,21 +93,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <?php if (!empty($errors)) : ?>
-            <ul class="err_msg top_err_msg">
-                <?php foreach ($errors as $error) : ?>
-                    <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
-                <?php endforeach; ?>
-            </ul>
+            <div class="login_err_wrap">
+                <ul class="err_msg">
+                    <?php foreach ($errors as $error) : ?>
+                        <?php foreach ($error as $val) : ?>
+                            <li><i class="fa-solid fa-circle-exclamation"></i><?= $val ?></li>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
         <?php endif; ?>
 
         <form class="form" method="post" action="user_edit.php" enctype="multipart/form-data">
             <label for="user_name">
                 <div class="form_title user_title">氏名</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item edit_item <?php empty($errors_name) ?: print 'err_input'; ?>" id="user_name" type="text" name="name" value="<?= h($name); ?>">
-                    <?php if (!empty($errors_name)) : ?>
+                    <input class="input_item edit_item <?php empty($errors['name']) ?: print 'err_input'; ?>" id="user_name" type="text" name="name" value="<?= h($name); ?>">
+                    <?php if (!empty($errors['name'])) : ?>
                         <ul class="err_msg">
-                            <?php foreach ($errors_name as $error) : ?>
+                            <?php foreach ($errors['name'] as $error) : ?>
                                 <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
                             <?php endforeach; ?>
                         </ul>
@@ -131,10 +121,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="user_email">
                 <div class="form_title user_title">メールアドレス</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item edit_item <?php empty($errors_email) ?: print 'err_input'; ?>" id="user_email" type="email" name="email" value="<?= h($email); ?>">
-                    <?php if (!empty($errors_email)) : ?>
+                    <input class="input_item edit_item <?php empty($errors['email']) ?: print 'err_input'; ?>" id="user_email" type="email" name="email" value="<?= h($email); ?>">
+                    <?php if (!empty($errors['email'])) : ?>
                         <ul class="err_msg">
-                            <?php foreach ($errors_email as $error) : ?>
+                            <?php foreach ($errors['email'] as $error) : ?>
                                 <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
                             <?php endforeach; ?>
                         </ul>
@@ -158,10 +148,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="user_password">
                 <div class="form_title user_title">パスワード</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item edit_item <?php empty($errors_password) ?: print 'err_input'; ?>" id="user_password" type="password" name="password">
-                    <?php if (!empty($errors_password)) : ?>
+                    <input class="input_item edit_item <?php empty($errors['password']) ?: print 'err_input'; ?>" id="user_password" type="password" name="password">
+                    <?php if (!empty($errors['password'])) : ?>
                         <ul class="err_msg">
-                            <?php foreach ($errors_password as $error) : ?>
+                            <?php foreach ($errors['password'] as $error) : ?>
                                 <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
                             <?php endforeach; ?>
                         </ul>
@@ -171,10 +161,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="user_post_code">
                 <div class="form_title user_title">郵便番号</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item edit_item <?php empty($errors_post_code) ?: print 'err_input'; ?>" id="user_post_code" type="number" name="post_code" value="<?= h($post_code); ?>">
-                    <?php if (!empty($errors_post_code)) : ?>
+                    <input class="input_item edit_item <?php empty($errors['post_code']) ?: print 'err_input'; ?>" id="user_post_code" type="number" name="post_code" value="<?= h($post_code); ?>">
+                    <?php if (!empty($errors['post_code'])) : ?>
                         <ul class="err_msg">
-                            <?php foreach ($errors_post_code as $error) : ?>
+                            <?php foreach ($errors['post_code'] as $error) : ?>
                                 <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
                             <?php endforeach; ?>
                         </ul>
@@ -184,10 +174,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="user_address">
                 <div class="form_title user_title">住所</div><span class="required">必須</span>
                 <div class="input_item_wrap">
-                    <input class="input_item edit_item <?php empty($errors_address) ?: print 'err_input'; ?>" id="user_address" type="text" name="address" value="<?= h($address); ?>">
-                    <?php if (!empty($errors_address)) : ?>
+                    <input class="input_item edit_item <?php empty($errors['address']) ?: print 'err_input'; ?>" id="user_address" type="text" name="address" value="<?= h($address); ?>">
+                    <?php if (!empty($errors['address'])) : ?>
                         <ul class="err_msg">
-                            <?php foreach ($errors_address as $error) : ?>
+                            <?php foreach ($errors['address'] as $error) : ?>
                                 <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
                             <?php endforeach; ?>
                         </ul>
@@ -198,10 +188,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="user_age" class="small_label">
                     <div class="form_title user_title">年齢</div>
                     <div class="input_item_wrap">
-                        <input class="input_item edit_item user_input_small <?php empty($errors_age) ?: print 'err_input'; ?>" id="user_age" type="number" name="age" value="<?= h($age); ?>">
-                        <?php if (!empty($errors_age)) : ?>
+                        <input class="input_item edit_item user_input_small <?php empty($errors['age']) ?: print 'err_input'; ?>" id="user_age" type="number" name="age" value="<?= h($age); ?>">
+                        <?php if (!empty($errors['age'])) : ?>
                             <ul class="err_msg">
-                                <?php foreach ($errors_age as $error) : ?>
+                                <?php foreach ($errors['age'] as $error) : ?>
                                     <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
                                 <?php endforeach; ?>
                             </ul>
@@ -211,15 +201,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div for="user_sex" class="small_label">
                     <div class="form_title user_title">性別</div>
                     <div class="input_item_wrap">
-                        <select class="input_item edit_item user_input_small <?php empty($errors_sex) ?: print 'err_input'; ?>" id="user_sex" type="text" name="sex">
+                        <select class="input_item edit_item user_input_small <?php empty($errors['sex']) ?: print 'err_input'; ?>" id="user_sex" type="text" name="sex">
                             <option value="0" <?php $login_user['sex'] == 0 && print 'selected' ?>>未回答</option>
                             <option value="1" <?php $login_user['sex'] == 1 && print 'selected' ?>>男性</option>
                             <option value="2" <?php $login_user['sex'] == 2 && print 'selected' ?>>女性</option>
                             <option value="9" <?php $login_user['sex'] == 9 && print 'selected' ?>>その他</option>
                         </select>
-                        <?php if (!empty($errors_sex)) : ?>
+                        <?php if (!empty($errors['sex'])) : ?>
                             <ul class="err_msg">
-                                <?php foreach ($errors_sex as $error) : ?>
+                                <?php foreach ($errors['sex'] as $error) : ?>
                                     <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
                                 <?php endforeach; ?>
                             </ul>
@@ -241,10 +231,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="edit_image">
                         <p>新しく登録する画像</p>
                     </div>
-                    <input class="input_item up_load <?php empty($errors_image) ?: print 'err_input'; ?>" id="user_image" type="file" name="image">
-                    <?php if (!empty($errors_image)) : ?>
+                    <input class="input_item up_load <?php empty($errors['image']) ?: print 'err_input'; ?>" id="user_image" type="file" name="image">
+                    <?php if (!empty($errors['image'])) : ?>
                         <ul class="err_msg">
-                            <?php foreach ($errors_image as $error) : ?>
+                            <?php foreach ($errors['image'] as $error) : ?>
                                 <li><i class="fa-solid fa-circle-exclamation"></i><?= $error ?></li>
                             <?php endforeach; ?>
                         </ul>

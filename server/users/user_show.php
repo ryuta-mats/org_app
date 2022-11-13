@@ -3,7 +3,7 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 $login_user = '';
-
+$edit = 0;
 $id = $_SESSION['current_user']['id'];
 
 // セッションにidが保持されていなければログイン画面にリダイレクト
@@ -17,6 +17,10 @@ if (empty($_SESSION['current_user'])) {
 } else {
     $login_user = find_user_by_id($_SESSION['current_user']);
 }
+//edit.phpから変更後のアクセスか判定
+if (!empty($_GET['edit'])) {
+    $edit = $_GET['edit'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -26,6 +30,15 @@ if (empty($_SESSION['current_user'])) {
 <body>
     <?php include_once __DIR__ . "/../common/_header_user.php" ?>
     <div id="main" class="wrapper show_body">
+
+        <?php if ($edit != 0) : ?>
+            <!--変更があったときのみ表示-->
+            <div class="login_err_wrap">
+                <ul class="err_msg">
+                    <li>下記の通り変更しました。</li>
+                </ul>
+            </div>
+        <?php endif; ?>
 
         <div class="tit_wrap">
             <h1 class="title user_bg_title"><span>User info</span>ユーザー情報</h1>

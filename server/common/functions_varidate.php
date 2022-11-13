@@ -88,61 +88,37 @@ function user_login_validate($email, $password)
 }
 
 //ユーザー情報変更時のバリデーションを行う関数
-function user_edit_validate($id, $name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image, $flag)
+function user_edit_validate($id, $name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image)
 {
     $user = find_user_by_id($id);
     $errors = [];
-    $errors_name = [];
-    $errors_email = [];
-    $errors_tel = [];
-    $errors_password = [];
-    $errors_post_code = [];
-    $errors_address = [];
-    $errors_age = [];
-    $errors_sex = [];
-    $errors_image = [];
-    $val_flag = $flag;
 
     if (empty($name)) {
-        $errors_name[] = MSG_NAME_REQUIRED;
-        $errors[] = MSG_NAME_REQUIRED;
-        $val_flag = false;
+        $errors['name'][] = MSG_NAME_REQUIRED;
     }
 
     if (empty($email)) {
-        $errors_email[] = MSG_EMAIL_REQUIRED;
-        $errors[] = MSG_EMAIL_REQUIRED;
-        $val_flag = false;
-    }
-    if (check_exist_user($email)) {
+        $errors['email'][] = MSG_EMAIL_REQUIRED;
+    } elseif (check_exist_user($email)) {
         if ($user['email'] != $email) {
-            $errors_email[] =  MSG_EMAIL_DUPLICATE;
-            $val_flag = false;
+            $errors['email'][] = MSG_EMAIL_REQUIRED;
         }
     }
 
     if (empty($tel)) {
-        $errors_tel[] = MSG_TEL_REQUIRED;
-        $errors[] = MSG_TEL_REQUIRED;
-        $val_flag = false;
+        $errors['tel'][] = MSG_TEL_REQUIRED;
     }
 
     if (empty($password)) {
-        $errors_password[] = MSG_PASSWORD_REQUIRED;
-        $errors[] = MSG_PASSWORD_REQUIRED;
-        $val_flag = false;
+        $errors['password'][] = MSG_PASSWORD_REQUIRED;
     }
 
     if (empty($post_code)) {
-        $errors_post_code[] = MSG_POSTCODE_REQUIRED;
-        $errors[] = MSG_POSTCODE_REQUIRED;
-        $val_flag = false;
+        $errors['post_code'][] = MSG_POSTCODE_REQUIRED;
     }
 
     if (empty($address)) {
-        $errors_address[] = MSG_ADDRESS_REQUIRED;
-        $errors[] = MSG_ADDRESS_REQUIRED;
-        $val_flag = false;
+        $errors['address'][] = MSG_ADDRESS_REQUIRED;
     }
 
     if (empty($age)) {
@@ -151,27 +127,12 @@ function user_edit_validate($id, $name, $email, $tel,  $password, $post_code, $a
     if (empty($sex)) {
     }
 
-    if (empty($image)) {
-    } else {
+    if (!empty($image)) {
         if (check_file_image_ext($image)) {
-            $errors_image[] = MSG_NOT_ABLE_EXT;
-            $errors[] = MSG_NOT_ABLE_EXT;
-            $val_flag = false;
+            $errors['image'][] = MSG_NOT_ABLE_EXT;
         }
     }
-    return array(
-        $errors,
-        $errors_name,
-        $errors_email,
-        $errors_tel,
-        $errors_password,
-        $errors_post_code,
-        $errors_address,
-        $errors_age,
-        $errors_sex,
-        $errors_image,
-        $val_flag
-    );
+    return $errors;
 }
 
 //ユーザー求人申し込みのバリデーションを行う関数
@@ -258,62 +219,50 @@ function company_signup_validate($name, $password, $post_code, $address, $manage
 
     return $errors;
 }
-function company_edit_validate($name, $password, $post_code, $address, $manager_name, $email, $profile, $image, $flag)
+function company_edit_validate($id,$name, $password, $post_code, $address, $manager_name, $email, $profile, $image, $flag)
 {
+    $company = find_company_by_id($id);
     $errors = [];
-    $val_flag = $flag;
 
     if (empty($name)) {
         $errors['name'][] =  MSG_COMPANYNAME_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($password)) {
         $errors['password'][] =  MSG_PASSWORD_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($post_code)) {
         $errors['post_code'][] =  MSG_POSTCODE_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($address)) {
         $errors['address'][] = MSG_ADDRESS_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($manager_name)) {
         $errors['manager_name'][] =  MSG_MANAGERNAME_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($email)) {
         $errors['email'][] =  MSG_EMAIL_REQUIRED;
-        $val_flag = false;
-    }
-    if (check_exist_company($email)) {
+    }elseif(check_exist_company($email)) {
+        if($company['email'] != $email){
         $errors['email'][] =  MSG_EMAIL_DUPLICATE;
-    }
-
-
-    if (empty($profile)) {
-        $errors['profile'][] =  MSG_PROFILE_REQUIRED;
-        $val_flag = false;
-    }
-
-    if (empty($image)) {
-    } else {
-        if (check_file_image_ext($image)) {
-            $errors['image'][] = MSG_NOT_ABLE_EXT;
-            $val_flag = false;
         }
     }
 
-    return array(
-        $errors,
-        $val_flag
-    );
+    if (empty($profile)) {
+        $errors['profile'][] =  MSG_PROFILE_REQUIRED;
+    }
+
+    if (!empty($image)) {
+        if (check_file_image_ext($image)) {
+            $errors['image'][] = MSG_NOT_ABLE_EXT;
+        }
+    }
+
+    return $errors;
 }
 
 function company_login_validate($email, $password)
