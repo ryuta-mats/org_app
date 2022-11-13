@@ -10,7 +10,8 @@ if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
 }
-$login_company = find_company_by_id($_SESSION['current_company']['id']);
+$company_id = $_SESSION['current_company']['id'];
+$login_company = find_company_by_id($company_id);
 
 
 $name = '';
@@ -64,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $path = '../images/job/' . $image_name;
 
         if (move_uploaded_file($upload_tmp_file, $path)) {
-            if (insert_job($name, $id, $category, $price, $profile, $image_name, $area, $start_date, $start_time, $end_date, $end_time)) {
+            if (insert_job($name, $company_id, $category, $price, $profile, $image_name, $area, $start_date, $start_time, $end_date, $end_time)) {
                 header('Location: company_job_list.php');
                 exit;
             } else {
