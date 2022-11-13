@@ -9,10 +9,10 @@ $login_user = '';
 if (empty($_SESSION['current_user'])) {
     header('Location: ../users/user_login.php');
     exit;
-} else {
-    $id = $_SESSION['current_user']['id'];
-    $login_user = find_user_by_id($_SESSION['current_user']);
 }
+
+$id = $_SESSION['current_user']['id'];
+$login_user = find_user_by_id($id);
 
 $name = $login_user['name'];
 $email = $login_user['email'];

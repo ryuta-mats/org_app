@@ -13,7 +13,7 @@
                 <li><a class="nav_link" href="../users/index.php">トップ</a></li>
                 <?php if (!empty($login_user)) : ?>
                     <li><a class="nav_link" href="../users/user_appry_list.php">応募リスト</a></li>
-                    <li><a class="nav_link" href="../users/user_edit.php?id=<?= $login_user['id'] ?>">登録情報変更</a></li>
+                    <li><a class="nav_link" href="../users/user_edit.php">登録情報変更</a></li>
                     <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
                 <?php else : ?>
                     <li><a class="nav_link" href="../users/user_signup.php">新規登録</a></li>

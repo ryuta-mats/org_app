@@ -3,14 +3,15 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 
+$login_user = '';
 
 if (empty($_SESSION['current_user'])) {
     header('Location: ../users/user_login.php');
     exit;
 }
 
-$login_user = $_SESSION['current_user'];
 $user_id = $_SESSION['current_user']['id'];
+$login_user = find_user_by_id($user_id);
 $apprys = find_appry_by_user_id($user_id);
 
 ?>

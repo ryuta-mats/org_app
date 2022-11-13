@@ -15,7 +15,7 @@ if (empty($_SESSION['current_user'])) {
     header('Location: ../users/index.php');
     exit;
 } else {
-    $login_user = find_user_by_id($_SESSION['current_user']);
+    $login_user = find_user_by_id($_SESSION['current_user']['id']);
 }
 //edit.phpから変更後のアクセスか判定
 if (!empty($_GET['edit'])) {
