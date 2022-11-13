@@ -56,7 +56,6 @@ CREATE TABLE IF NOT EXISTS ofer (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     start_date datetime NOT NULL,
     end_date datetime NOT NULL,
-    PRIMARY KEY (id),
     CONSTRAINT ofer_fk_company_id FOREIGN KEY (company_id) REFERENCES companies (id),
     CONSTRAINT ofer_fk_saraly_category_id FOREIGN KEY (category_id) REFERENCES saraly_category (id)
 );
@@ -87,7 +86,6 @@ CREATE TABLE IF NOT EXISTS message (
     msg_from tinyint(1) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
     CONSTRAINT message_fk_company_id FOREIGN KEY (company_id) REFERENCES companies (id),
     CONSTRAINT message_fk_appry_id FOREIGN KEY (appry_id) REFERENCES appry (id),
     CONSTRAINT message_fk_user_id FOREIGN KEY (user_id) REFERENCES users (id));

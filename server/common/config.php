@@ -6,7 +6,7 @@ define('PASSWORD', '1234');
 
 //エックスサーバー用
 //define('DSN', 'mysql:host=localhost;dbname=xs618728_nisekowork;charset=utf8');
-//define('USER', 'xs618728_nw');q
+//define('USER', 'xs618728_nw');
 //define('PASSWORD', 'matsu1987');
 
 //テスト
