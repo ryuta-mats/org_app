@@ -16,4 +16,4 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOCAL_DIR: ./server/
-          REMOTE_DIR: /home/xs618728.xsrv.jp/public_html/
+          REMOTE_DIR: /xs618728.xsrv.jp/public_html/
