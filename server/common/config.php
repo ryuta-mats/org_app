@@ -9,7 +9,7 @@ define('PASSWORD', '1234');
 //define('USER', 'xs618728_nw');
 //define('PASSWORD', 'matsu1987');
 
-//テスト
+//テスト2
 
 define('EXTENSION_IMAGE', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
 define('EXTENSION_PDF', ['pdf']);
