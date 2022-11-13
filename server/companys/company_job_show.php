@@ -12,12 +12,12 @@ if (empty($_SESSION['current_company'])) {
 } elseif (empty($_GET['job_id'])) {
     header('Location: ../companys/company_login.php');
     exit;
-} else {
-    $login_company = $_SESSION['current_company'];
-    $id = $_SESSION['current_company']['id'];
-    $job_id = $_GET['job_id'];
-    $job = find_job_by_id($job_id);
 }
+$login_company = find_company_by_id($_SESSION['current_company']['id']);
+$id = $_SESSION['current_company']['id'];
+$job_id = $_GET['job_id'];
+$job = find_job_by_id($job_id);
+
 
 //echo var_dump($job);
 $name = $job['name'];

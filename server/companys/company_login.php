@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </label>
             <div id="login_send_wrap">
                 <input id="company_login_btn" class="bg_btn company_btn" type="submit" value="ログイン">
-                <a href="" class="bg_btn company_btn">新規登録</a>
+                <a href="company_signup.php" class="bg_btn company_btn">新規登録</a>
             </div>
         </form>
     </div>

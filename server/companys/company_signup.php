@@ -6,8 +6,14 @@ session_start();
 $login_company = '';
 
 if (isset($_SESSION['login_company'])) {
-    $login_company = $_SESSION['login_company'];
+    $login_company = find_company_by_id($_SESSION['current_company']['id']);
 }
+// ログイン判定
+if (isset($_SESSION['login_company'])) {
+    header('Location: ../users/index.php');
+    exit;
+}
+
 $name = '';
 $password = '';
 $post_code = '';

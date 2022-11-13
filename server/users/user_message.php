@@ -11,7 +11,9 @@ if (empty($_SESSION['current_user'])) {
     exit;
 }
 
-$login_user = $_SESSION['current_user'];
+$id = $_SESSION['current_user']['id'];
+$login_user = find_user_by_id($id);
+
 $appry_id = $_GET['appry_id'];
 $appry = find_appry_by_appry_id($appry_id);
 $messages = find_message_by_appry_id($appry_id);
