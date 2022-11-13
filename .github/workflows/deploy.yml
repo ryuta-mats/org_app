@@ -1,19 +1,21 @@
 on:
-  push:
+  pull_request:
     branches:
       - main
+    types: [closed]
+    
 name: Deploy
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0   
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          LOCAL_DIR: ./
-          REMOTE_DIR: /home/xs618728/public_html/
+          LOCAL_DIR: ./server/
+          REMOTE_DIR: /xs618728.xsrv.jp/public_html/server/

@@ -8,7 +8,7 @@ session_start();
 if (empty($_SESSION['current_company'])) {
     header('Location: ../companys/company_login.php');
     exit;
-}else {
+} else {
     $login_company = find_company_by_id($_SESSION['current_company']['id']);
     $id = $login_company['id'];
 }
@@ -47,31 +47,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image = date('YmdHis') . '_' . $upload_file;
         $path = '../images/company/' . $image;
     }
-        $url = filter_input(INPUT_POST, 'url');
+    $url = filter_input(INPUT_POST, 'url');
 
-    list(
-        $errors,
+
+    $errors = company_edit_validate(
+        $id,
+        $name,
+        $password,
+        $post_code,
+        $address,
+        $manager_name,
+        $email,
+        $profile,
+        $upload_file,
         $val_flag
-    )
-        = company_edit_validate(
-            $name,
-            $password,
-            $post_code,
-            $address,
-            $manager_name,
-            $email,
-            $profile,
-            $upload_file,
-            $val_flag
-        );
+    );
     //パスワードが一致するか確認
     if (!password_verify($password, $login_company['password'])) {
-    echo var_dump($errors);
         $errors['password'][] = MSG_PASSWORD_NOT_MATCH;
     } else {
-
         //エラーがあるか確認
-        if ($val_flag) {
+        if (empty($errors)) {
             //画像に新しいのがあるか、ある場合アップロード
             if ($image_change_flag && move_uploaded_file($upload_tmp_file, $path)) {
                 //古い画像消す
@@ -80,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //DBの情報を修正する
             if (update_company($id, $name, $post_code, $address, $manager_name, $email, $profile, $upload_file, $url)) {
                 //修正に成功したらSHOWにリダイレクトする
-                header('Location: company_show.php?id=' . $id);
+                header('Location: company_show.php?edit=1');
                 exit;
             };
         }
@@ -98,6 +94,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>Company edit</span>カンパニーユーザー登録情報変更</h1>
         </div>
+
+        <?php if (!empty($errors)) : ?>
+            <div class="login_err_wrap">
+                <ul class="err_msg">
+                    <?php foreach ($errors as $error) : ?>
+                        <?php foreach ($error as $val) : ?>
+                            <li><i class="fa-solid fa-circle-exclamation"></i><?= $val ?></li>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
 
         <form class="form" method="post" action="" enctype="multipart/form-data">
 

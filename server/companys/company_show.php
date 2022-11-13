@@ -3,7 +3,7 @@ include_once __DIR__ . '/../common/functions.php';
 // セッション開始
 session_start();
 $login_company = '';
-
+$edit = 0;
 // セッションにidが保持されていなければログイン画面にリダイレクト
 // パラメータを受け取れなけれらばログイン画面にリダイレクト
 if (empty($_SESSION['current_company'])) {
@@ -12,6 +12,11 @@ if (empty($_SESSION['current_company'])) {
 } else {
     $id = $_SESSION['current_company']['id'];
     $login_company = find_company_by_id($_SESSION['current_company']['id']);
+}
+
+//edit.phpから変更後のアクセスか判定
+if (!empty($_GET['edit'])) {
+    $edit = $_GET['edit'];
 }
 
 ?>
@@ -24,6 +29,14 @@ if (empty($_SESSION['current_company'])) {
     <?php include_once __DIR__ . "/../common/_header_company.php" ?>
 
     <div id="main" class="wrapper show_body">
+        <?php if ($edit != 0) : ?>
+            <!--変更があったときのみ表示-->
+            <div class="login_err_wrap">
+                <ul class="err_msg">
+                    <li>下記の通り変更しました。</li>
+                </ul>
+            </div>
+        <?php endif; ?>
 
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>Company info</span>カンパニーユーザー登録情報</h1>

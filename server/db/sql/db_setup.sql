@@ -1,14 +1,14 @@
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(255) NOT NULL UNIQUE KEY,
-    password VARCHAR(255) NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    post_code VARCHAR(7) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    age VARCHAR(3) NOT NULL,
-    sex VARCHAR(1) NOT NULL,
-    tel VARCHAR(20) NOT NULL,
-    image VARCHAR(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    name varchar(50) NOT NULL,
+    post_code varchar(7) NOT NULL,
+    address varchar(255) NOT NULL,
+    age varchar(3) DEFAULT NULL,
+    sex varchar(1) DEFAULT NULL,
+    tel varchar(20) NOT NULL,
+    image varchar(255) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -35,6 +35,11 @@ CREATE TABLE IF NOT EXISTS status (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+INSERT INTO status (name) VALUES ("選考中");
+INSERT INTO status (name) VALUES ("採用");
+INSERT INTO status (name) VALUES ("不採用");
+INSERT INTO status (name) VALUES ("辞退");
+
 CREATE TABLE IF NOT EXISTS saraly_category (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
@@ -42,78 +47,55 @@ CREATE TABLE IF NOT EXISTS saraly_category (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+INSERT INTO saraly_category (name) VALUES ("月給");
+INSERT INTO saraly_category (name) VALUES ("時給");
+INSERT INTO saraly_category (name) VALUES ("年俸");
+
+
 CREATE TABLE IF NOT EXISTS ofer (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) NOT NULL,
-    company_id INT NOT NULL,
-    saraly_category_id INT NOT NULL,
-    saraly_price INT NOT NULL,
-    profile TEXT NOT NULL,
-    area VARCHAR(50) NOT NULL,
-    cxl_flag TINYINT(1) NOT NULL DEFAULT '1',
-    image VARCHAR(255) NOT NULL,
-    start_date DATETIME NOT NULL,
-    end_date DATETIME NOT NULL,
+    name varchar(50) NOT NULL,
+    company_id int(11) NOT NULL,
+    category_id int(11) NOT NULL,
+    price int(11) NOT NULL,
+    profile text NOT NULL,
+    area varchar(50) NOT NULL,
+    cxl_flag tinyint(1) NOT NULL DEFAULT 1,
+    image varchar(255) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT ofer_fk_company_id
-    FOREIGN KEY (company_id)
-        REFERENCES companies(id)
-        ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT ofer_fk_saraly_category_id
-    FOREIGN KEY (saraly_category_id)
-        REFERENCES saraly_category(id)
-        ON DELETE RESTRICT ON UPDATE RESTRICT
+    start_date datetime NOT NULL,
+    end_date datetime NOT NULL,
+    CONSTRAINT ofer_fk_company_id FOREIGN KEY (company_id) REFERENCES companies (id),
+    CONSTRAINT ofer_fk_saraly_category_id FOREIGN KEY (category_id) REFERENCES saraly_category (id)
 );
 
 CREATE TABLE IF NOT EXISTS appry (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    ofer_id INT NOT NULL,
-    user_id INT NOT NULL,
-    company_id INT NOT NULL,
-    motivation TEXT NOT NULL,
-    resume VARCHAR(255) NOT NULL,
-    status_id INT NOT NULL DEFAULT 1,
-    cxl_flag TINYINT(1) NOT NULL DEFAULT '1',
+    ofer_id int(11) NOT NULL,
+    user_id int(11) NOT NULL,
+    company_id int(11) NOT NULL,
+    motivation text NOT NULL,
+    resume varchar(255) NOT NULL,
+    status_id int(11) NOT NULL DEFAULT 1,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT appry_fk_ofer_id
-    FOREIGN KEY (ofer_id)
-        REFERENCES ofer(id)
-        ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT appry_fk_user_id
-    FOREIGN KEY (user_id)
-        REFERENCES users(id)
-        ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT appry_fk_company_id
-    FOREIGN KEY (company_id)
-        REFERENCES companies(id)
-        ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT appry_fk_status_id
-    FOREIGN KEY (status_id)
-        REFERENCES status(id)
-        ON DELETE RESTRICT ON UPDATE RESTRICT
+    cxl_flag tinyint(1) NOT NULL DEFAULT 1,
+    CONSTRAINT appry_fk_company_id FOREIGN KEY (company_id) REFERENCES companies (id),
+    CONSTRAINT appry_fk_ofer_id FOREIGN KEY (ofer_id) REFERENCES ofer (id),
+    CONSTRAINT appry_fk_status_id FOREIGN KEY (status_id) REFERENCES status (id),
+    CONSTRAINT appry_fk_user_id FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
 CREATE TABLE IF NOT EXISTS message (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    appry_id INT NOT NULL,
-    user_id INT NOT NULL,
-    company_id INT NOT NULL,
-    body TEXT NOT NULL,
-    msg_from TINYINT(1) NOT NULL,
+    appry_id int(11) NOT NULL,
+    user_id int(11) NOT NULL,
+    company_id int(11) NOT NULL,
+    body text NOT NULL,
+    msg_from tinyint(1) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT messagefk_appry_id
-    FOREIGN KEY (appry_id)
-        REFERENCES appry(id)
-        ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT messagefk_user_id
-    FOREIGN KEY (user_id)
-        REFERENCES users(id)
-        ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT appryfk_company_id
-    FOREIGN KEY (company_id)
-        REFERENCES companies(id)
-        ON DELETE RESTRICT ON UPDATE RESTRICT
-);
+    CONSTRAINT message_fk_company_id FOREIGN KEY (company_id) REFERENCES companies (id),
+    CONSTRAINT message_fk_appry_id FOREIGN KEY (appry_id) REFERENCES appry (id),
+    CONSTRAINT message_fk_user_id FOREIGN KEY (user_id) REFERENCES users (id));
