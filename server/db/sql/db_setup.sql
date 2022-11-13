@@ -1,14 +1,14 @@
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(255) NOT NULL UNIQUE KEY,
-    password varchar(255)    NOT NULL,
-    name varchar(50)    NOT NULL,
-    post_code varchar(7)    NOT NULL,
-    address varchar(255)    NOT NULL,
-    age varchar(3)  DEFAULT NULL,
-    sex varchar(1)  DEFAULT NULL,
+    password varchar(255) NOT NULL,
+    name varchar(50) NOT NULL,
+    post_code varchar(7) NOT NULL,
+    address varchar(255) NOT NULL,
+    age varchar(3) DEFAULT NULL,
+    sex varchar(1) DEFAULT NULL,
     tel varchar(20) NOT NULL,
-    image varchar(255)  NOT NULL,
+    image varchar(255) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -35,12 +35,22 @@ CREATE TABLE IF NOT EXISTS status (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+INSERT INTO status (name) VALUES ("選考中");
+INSERT INTO status (name) VALUES ("採用");
+INSERT INTO status (name) VALUES ("不採用");
+INSERT INTO status (name) VALUES ("辞退");
+
 CREATE TABLE IF NOT EXISTS saraly_category (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+INSERT INTO saraly_category (name) VALUES ("月給");
+INSERT INTO saraly_category (name) VALUES ("時給");
+INSERT INTO saraly_category (name) VALUES ("年俸");
+
 
 CREATE TABLE IF NOT EXISTS ofer (
     id INT PRIMARY KEY AUTO_INCREMENT,
