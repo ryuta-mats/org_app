@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $age = filter_input(INPUT_POST, 'age');
     $sex = filter_input(INPUT_POST, 'sex');
 
-
     $upload_file = $_FILES['image']['name'];
     $upload_tmp_file = $_FILES['image']['tmp_name'];
 
@@ -65,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $val_flag
     )
         = user_edit_validate(
+            $login_user['id'],
             $name,
             $email,
             $tel,

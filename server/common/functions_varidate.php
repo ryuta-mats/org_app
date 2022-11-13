@@ -88,8 +88,9 @@ function user_login_validate($email, $password)
 }
 
 //ユーザー情報変更時のバリデーションを行う関数
-function user_edit_validate($name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image, $flag)
+function user_edit_validate($id, $name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image, $flag)
 {
+    $user = find_user_by_id($id);
     $errors = [];
     $errors_name = [];
     $errors_email = [];
@@ -114,8 +115,10 @@ function user_edit_validate($name, $email, $tel,  $password, $post_code, $addres
         $val_flag = false;
     }
     if (check_exist_user($email)) {
-        $errors_email[] =  MSG_EMAIL_DUPLICATE;
-        $val_flag = false;
+        if ($user['email'] != $email) {
+            $errors_email[] =  MSG_EMAIL_DUPLICATE;
+            $val_flag = false;
+        }
     }
 
     if (empty($tel)) {
