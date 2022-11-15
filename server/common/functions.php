@@ -110,7 +110,7 @@ function send_mail_pre_user($mail, $url)
     mb_internal_encoding('UTF-8');
 
     //Fromヘッダーを作成
-    $header = 'From: ' . mb_encode_mimeheader(MAIL_ADDRESS) . ' <' . MAIL_ADDRESS . '>';
+    $header = 'From: ' . mb_encode_mimeheader(MAIL_ADDRESS) . ' niseko work<' . MAIL_ADDRESS . '>';
 
     if (mb_send_mail($mailTo, PRE_SIGN_UP_MAIL_SUBJECT, $body, $header, '-f' . MAIL_ADDRESS)) {
         return $message = "メールをお送りしました。24時間以内にメールに記載されたURLからご登録下さい。";

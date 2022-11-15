@@ -15,6 +15,7 @@ if (isset($_SESSION['current_user'])) {
 }
 
 $email = '';
+$send_msg_flag = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email');
@@ -25,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         $urltoken = hash('sha256', uniqid(rand(), 1));
         $url = "http://localhost/users/signup.php?urltoken=" . $urltoken;
+        //$url = "https://xs618728.xsrv.jp/server/users/signup.php?urltoken=" . $urltoken;
         //ここでデータベースに登録する
         if (insert_pre_user($email, $urltoken)) {
-            $pre_user_msg = send_mail_pre_user($email, $urltoken);
-
-            header('Location: user_login.php');
-            exit;
+            $send_msg_flag = send_mail_pre_user($email, $url);
+        }else{
+            $errors['DB'][] = MSG_DB_ERR;
         }
     }
 }
@@ -67,6 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>仮登録完了</p>
             <p>↓TEST用(後ほど削除)：このURLが記載されたメールが届きます。</p>
             <a href="<?= $url ?>"><?= $url ?></a>
+            <a href="../users/user_signup.php" class="bg_btn user_btn">新規登録</a>
+
         <?php else : ?>
             <!-- 登録画面 -->
             <form class="form" method="post" action="user_pre_signup.php" enctype="multipart/form-data">
