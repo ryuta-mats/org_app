@@ -6,6 +6,20 @@ require_once __DIR__ . '/config.php';
 //---------------------------------------
 //user
 
+//ユーザー仮登録のバリデーションを行う関数
+function user_pre_signup_validate($email)
+{
+    $errors = [];
+    if (empty($email)) {
+        $errors['email'][] = MSG_EMAIL_REQUIRED;
+    }elseif (check_exist_user($email)) {
+        $errors['email'][] =  MSG_EMAIL_DUPLICATE;
+    }
+
+
+    return $errors;
+}
+
 //ユーザーサインアップのバリデーションを行う関数
 function user_signup_validate($name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image, $flag)
 {
@@ -219,7 +233,7 @@ function company_signup_validate($name, $password, $post_code, $address, $manage
 
     return $errors;
 }
-function company_edit_validate($id,$name, $password, $post_code, $address, $manager_name, $email, $profile, $image, $flag)
+function company_edit_validate($id, $name, $password, $post_code, $address, $manager_name, $email, $profile, $image, $flag)
 {
     $company = find_company_by_id($id);
     $errors = [];
@@ -246,9 +260,9 @@ function company_edit_validate($id,$name, $password, $post_code, $address, $mana
 
     if (empty($email)) {
         $errors['email'][] =  MSG_EMAIL_REQUIRED;
-    }elseif(check_exist_company($email)) {
-        if($company['email'] != $email){
-        $errors['email'][] =  MSG_EMAIL_DUPLICATE;
+    } elseif (check_exist_company($email)) {
+        if ($company['email'] != $email) {
+            $errors['email'][] =  MSG_EMAIL_DUPLICATE;
         }
     }
 

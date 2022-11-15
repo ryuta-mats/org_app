@@ -7,6 +7,33 @@ require_once __DIR__ . '/config.php';
 //user
 
 //新しいユーザーをデータベースに保存する関数
+
+function insert_pre_user($email, $urltoken)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        INSERT INTO
+            pre_users
+            (urltoken, mail)
+        VALUES
+            (:urltoken, :mail);
+        EOM;
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':urltoken', $urltoken, PDO::PARAM_STR);
+        $stmt->bindValue(':mail', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+
+//新しいユーザーをデータベースに保存する関数
 function insert_user($name, $email, $tel, $password, $post_code, $address, $age, $sex, $image)
 {
     try {
@@ -589,20 +616,20 @@ function find_job_by_sort($sort_int)
         o.start_date <= :now
     EOM;
 
-    if($sort_int == 0){
-    //登録順
-    $sql .= ' ORDER BY o.created_at;';
-    }elseif($sort_int == 1){
-    //公開が新しい順
-    $sql .= ' ORDER BY o.start_date DESC;';
-    }elseif($sort_int == 2){
-    //終了が近い順
-    $sql .= ' ORDER BY o.end_date;';
-    }elseif($sort_int == 3){
-    //給料が高い順
-    $sql .= ' ORDER BY o.price DESC;';
-    }else{
-    //
+    if ($sort_int == 0) {
+        //登録順
+        $sql .= ' ORDER BY o.created_at;';
+    } elseif ($sort_int == 1) {
+        //公開が新しい順
+        $sql .= ' ORDER BY o.start_date DESC;';
+    } elseif ($sort_int == 2) {
+        //終了が近い順
+        $sql .= ' ORDER BY o.end_date;';
+    } elseif ($sort_int == 3) {
+        //給料が高い順
+        $sql .= ' ORDER BY o.price DESC;';
+    } else {
+        //
         $sql .= ';';
     }
 
