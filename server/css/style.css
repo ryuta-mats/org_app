@@ -207,7 +207,7 @@ input[type="submit"] {
 }
 
 .page_header_index {
-    background-image: url(../images/index/bg_img.svg);
+    background-image: url(../common/image/index/bg_img.svg);
     background-size: cover;
     height: 120vh;
     z-index: 0;
