@@ -9,7 +9,7 @@ define('PASSWORD', '1234');
 //define('USER', 'xs618728_nw');
 //define('PASSWORD', 'matsu1987');
 
-//test
+//test2
 
 define('MAIL_PASSWORD', 'NMki5Ujax#6FUgP');
 define('MAIL_ADDRESS', 'info@xs618728.xsrv.jp');
