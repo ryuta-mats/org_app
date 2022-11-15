@@ -9,7 +9,9 @@ define('PASSWORD', '1234');
 //define('USER', 'xs618728_nw');
 //define('PASSWORD', 'matsu1987');
 
-//テスト2
+define('MAIL_PASSWORD', 'NMki5Ujax#6FUgP');
+define('MAIL_ADDRESS', 'info@xs618728.xsrv.jp');
+define('PRE_SIGN_UP_MAIL_SUBJECT', '仮登録のご連絡');
 
 define('EXTENSION_IMAGE', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
 define('EXTENSION_PDF', ['pdf']);
