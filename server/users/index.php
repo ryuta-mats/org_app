@@ -5,22 +5,32 @@ session_start();
 
 $login_user = '';
 $serch_word = '';
-
+$sort_int = '0';
 if (!empty($_SESSION['current_user'])) {
     $login_user = $_SESSION['current_user'];
     $user_id = $_SESSION['current_user']['id'];
 }
 
 if (
+    //検索ワードがあるとき
     $_SERVER['REQUEST_METHOD'] === 'POST' &&
     !empty($_POST['serch_word'])
 ) {
     $serch_word = filter_input(INPUT_POST, 'serch_word');
     $jobs = find_job_by_serch_word($serch_word);
+} elseif (
+    //並び替えのとき
+    $_SERVER['REQUEST_METHOD'] === 'POST' &&
+    !empty($_POST['sort'])
+) {
+    $sort_int = filter_input(INPUT_POST, 'sort');
+    $jobs = find_job_by_sort($sort_int);
 } else {
 
     $jobs = find_all_job();
 }
+
+
 
 $job_count = count($jobs);
 
@@ -30,16 +40,32 @@ $job_count = count($jobs);
 <?php include_once __DIR__ . "/../common/_head.html" ?>
 
 <body>
-    <?php include_once __DIR__ . "/../common/_header_user.php" ?>
-
+    <?php include_once __DIR__ . "/../common/_header_index.php" ?>
     <div id="main" class="wrapper index_main">
-        <div class="tit_wrap">
+        <div class="tit_wrap" id="title_job_list">
             <h1 class="title user_bg_title"><span>job list</span>現在募集中の求人</h1>
         </div>
 
         <?php if (!empty($serch_word)) : ?>
             <p class="serch_word_echo">検索ワード: <?= h($serch_word) ?></p>
         <?php endif; ?>
+
+        <div class="sort wrapper">
+            <form action="index.php?#serch_position" method="POST">
+                <label class="sort_items sort_btn" for="sort">
+                    <i class="fa-solid fa-sort"></i>
+                </label>
+
+                <select class="sort_items" name="sort" id="">
+                    <option value="0" <?php $sort_int == '0' && print 'selected' ?>>登録順(デフォルト)</option>
+                    <option value="1" <?php $sort_int == '1' && print 'selected' ?>>公開が新しい順</option>
+                    <option value="2" <?php $sort_int == '2' && print 'selected' ?>>終了が近い順</option>
+                    <option value="3" <?php $sort_int == '3' && print 'selected' ?>>給料の高い順</option>
+                </select>
+                <input id="sort" type="submit" value="">
+
+            </form>
+        </div>
 
         <div id="job" class="wrapper">
             <?php foreach ($jobs as $job) : ?>
@@ -61,7 +87,7 @@ $job_count = count($jobs);
         </div>
     </div>
 
-    <?php include_once __DIR__ . "/../common/_footer_user.html" ?>
+    <?php include_once __DIR__ . "/../common/_footer_index.php" ?>
 </body>
 
 </html>
