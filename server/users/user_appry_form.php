@@ -13,23 +13,17 @@ if (empty($_SESSION['current_user'])) {
     header('Location: ../users/index.php');
     exit;
 }
+$login_user = find_user_by_id($_SESSION['current_user']['id']);
 $job = find_job_by_id($_GET['job_id']);
-$login_user = find_user_by_id($_SESSION['current_user']);
-
 $company = find_company_by_id($job['company_id']);
 $category = find_category_by_id($job['category_id']);
-
 $appry_flag = user_appry_flag($login_user['id'], $_GET['job_id']);
-
-
 $motivation = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $motivation = filter_input(INPUT_POST, 'motivation');
-
     $upload_file = $_FILES['resume']['name'];
     $upload_tmp_file = $_FILES['resume']['tmp_name'];
-
     $errors = user_appry_validate($motivation, $upload_file);
 
     //バリデーションエラーがないか確認

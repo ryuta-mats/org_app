@@ -5,14 +5,12 @@ session_start();
 $login_user = '';
 
 // セッションにidが保持されていなければログイン画面にリダイレクト
-// パラメータを受け取れなけれらば一覧画面にリダイレクト
 if (empty($_SESSION['current_user'])) {
     header('Location: ../users/user_login.php');
     exit;
 }
 
-$id = $_SESSION['current_user']['id'];
-$login_user = find_user_by_id($id);
+$login_user = find_user_by_id($_SESSION['current_user']['id']);
 
 $name = $login_user['name'];
 $email = $login_user['email'];
@@ -72,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($image_change_flag && move_uploaded_file($upload_tmp_file, $path)) {
                 unlink($old_image);
             };
-            if (update_user($id, $name, $email, $tel, $password, $post_code, $address, $age, $sex, $image_name)) {
+            if (update_user($login_user['id'], $name, $email, $tel, $password, $post_code, $address, $age, $sex, $image_name)) {
                 header('Location: user_show.php?edit=1');
                 exit;
             };

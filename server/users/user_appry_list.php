@@ -5,6 +5,7 @@ session_start();
 
 $login_user = '';
 
+// セッションにidが保持されていなければログイン画面にリダイレクト
 if (empty($_SESSION['current_user'])) {
     header('Location: ../users/user_login.php');
     exit;
