@@ -98,9 +98,11 @@ function company_login($company)
 }
 
 //仮登録メールを送信する関数
-function send_mail_pre_user($mail, $url)
+function send_mail_pre_user($mail, $urltoken)
 {
     $mailTo = $mail;
+    $url = SIGN_UP_URL . $urltoken;
+
     $body = <<< EOM
         この度はご登録いただきありがとうございます。
         24時間以内に下記のURLからご登録下さい。
@@ -110,11 +112,11 @@ function send_mail_pre_user($mail, $url)
     mb_internal_encoding('UTF-8');
 
     //Fromヘッダーを作成
-    $header = 'From: ' . mb_encode_mimeheader(MAIL_ADDRESS) . ' niseko work<' . MAIL_ADDRESS . '>';
+    $header = 'From:niseko work <' . MAIL_ADDRESS . '>';
 
     if (mb_send_mail($mailTo, PRE_SIGN_UP_MAIL_SUBJECT, $body, $header, '-f' . MAIL_ADDRESS)) {
         return $message = "メールをお送りしました。24時間以内にメールに記載されたURLからご登録下さい。";
-    }else{
+    } else {
         return false;
     };
 }

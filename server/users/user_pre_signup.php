@@ -15,7 +15,6 @@ if (isset($_SESSION['current_user'])) {
 }
 
 $email = '';
-$send_msg_flag = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = filter_input(INPUT_POST, 'email');
@@ -25,11 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //エラーがない場合、pre_userテーブルにインサート
     if (empty($errors)) {
         $urltoken = hash('sha256', uniqid(rand(), 1));
-        $url = "http://localhost/users/signup.php?urltoken=" . $urltoken;
-        //$url = "https://xs618728.xsrv.jp/server/users/signup.php?urltoken=" . $urltoken;
         //ここでデータベースに登録する
         if (insert_pre_user($email, $urltoken)) {
-            $send_msg_flag = send_mail_pre_user($email, $url);
+            //メール送信する
+            $send_msg_flag = send_mail_pre_user($email, $urltoken);
         }else{
             $errors['DB'][] = MSG_DB_ERR;
         }
@@ -48,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="main" class="wrapper">
 
         <div class="tit_wrap">
-            <h1 class="title user_bg_title"><span>pre sign up</span>ユーザー仮登録</h1>
+            <h1 class="title user_bg_title"><span>pre signup</span>ユーザー仮登録</h1>
         </div>
 
         <?php if (!empty($errors)) : ?>
@@ -66,9 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($errors)) : ?>
             <!-- 登録完了画面 -->
             <p>仮登録完了</p>
-            <p>↓TEST用(後ほど削除)：このURLが記載されたメールが届きます。</p>
-            <a href="<?= $url ?>"><?= $url ?></a>
-            <a href="../users/user_signup.php" class="bg_btn user_btn">新規登録</a>
+            <p>メールをお送りしました。24時間以内にメールに記載されたURLからご登録を完了して下さい。</p>
 
         <?php else : ?>
             <!-- 登録画面 -->

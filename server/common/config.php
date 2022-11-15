@@ -14,6 +14,9 @@ define('PASSWORD', '1234');
 define('MAIL_PASSWORD', 'NMki5Ujax#6FUgP');
 define('MAIL_ADDRESS', 'info@xs618728.xsrv.jp');
 define('PRE_SIGN_UP_MAIL_SUBJECT', '仮登録のご連絡');
+define('SIGN_UP_URL', 'http://localhost/users/user_signup.php?urltoken=');
+//define('SIGN_UP_URL', 'https://xs618728.xsrv.jp/server/users/user_signup.php?urltoken=');
+
 
 define('EXTENSION_IMAGE', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
 define('EXTENSION_PDF', ['pdf']);
