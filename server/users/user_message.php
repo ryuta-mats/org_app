@@ -11,8 +11,7 @@ if (empty($_SESSION['current_user'])) {
     exit;
 }
 
-$id = $_SESSION['current_user']['id'];
-$login_user = find_user_by_id($id);
+$login_user = find_user_by_id($_SESSION['current_user']['id']);
 
 $appry_id = $_GET['appry_id'];
 $appry = find_appry_by_appry_id($appry_id);

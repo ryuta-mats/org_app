@@ -4,10 +4,6 @@ include_once __DIR__ . '/../common/functions.php';
 session_start();
 $login_user = '';
 
-if (isset($_SESSION['current_user'])) {
-    $login_user = find_user_by_id($_SESSION['current_user']['id']);
-}
-
 // ログイン判定
 if (isset($_SESSION['current_user'])) {
     header('Location: ../users/index.php');

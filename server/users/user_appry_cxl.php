@@ -11,7 +11,7 @@ if (empty($_SESSION['current_user'])) {
     exit;
 }
 
-$login_user = $_SESSION['current_user'];
+$login_user = find_user_by_id($_SESSION['current_user']['id']);
 $appry_id = $_GET['appry_id'];
 
 //関数でキャンセルフラグを0にしステイタスも変更する
