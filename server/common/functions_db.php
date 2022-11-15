@@ -549,6 +549,70 @@ function find_job_by_serch_word($serch_word)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function find_job_by_sort($sort_int)
+{
+    $dbh = connect_db();
+
+    $now = date("Y/m/d H:i:s");
+
+    $sql = <<<EOM
+    SELECT
+        o.id AS job_id,
+        o.name AS job_name,
+        o.company_id,
+        c.name AS company,
+        c.profile AS company_profile,
+        o.category_id,
+        sa.name AS category,
+        o.price,
+        o.profile,
+        o.area,
+        o.cxl_flag,
+        o.image,
+        o.created_at,
+        o.updated_at,
+        o.start_date,
+        o.end_date
+    FROM
+        ofer AS o
+    INNER JOIN
+        saraly_category AS sa
+    ON
+        o.category_id = sa.id
+    INNER JOIN
+        companies AS c
+    ON
+        o.company_id = c.id
+    WHERE
+        o.end_date >= :now
+    AND
+        o.start_date <= :now
+    EOM;
+
+    if($sort_int == 0){
+    //登録順
+    $sql .= ' ORDER BY o.created_at;';
+    }elseif($sort_int == 1){
+    //公開が新しい順
+    $sql .= ' ORDER BY o.start_date DESC;';
+    }elseif($sort_int == 2){
+    //終了が近い順
+    $sql .= ' ORDER BY o.end_date;';
+    }elseif($sort_int == 3){
+    //給料が高い順
+    $sql .= ' ORDER BY o.price DESC;';
+    }else{
+    //
+        $sql .= ';';
+    }
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':now', $now, PDO::PARAM_STR);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 //給与カデコリidから給与を探す関数
 function find_category_by_id($id)
