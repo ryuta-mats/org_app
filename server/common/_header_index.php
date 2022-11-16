@@ -8,7 +8,7 @@
         </div>
 
         <div class="head_btn_area">
-            <a href="../users/user_signup.php" class="bg_btn user_btn head_btn"><div>働きたい！</div>
+            <a href="../users/user_pre_signup.php" class="bg_btn user_btn head_btn"><div>働きたい！</div>
                 <div class="head_btn_text">
                     いますぐ登録 <i class="fa-solid fa-circle-arrow-right"></i>
                 </div>
@@ -50,7 +50,7 @@
                         <li><a class="nav_link" href="../users/user_edit.php">登録情報変更</a></li>
                         <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
                     <?php else : ?>
-                        <li><a class="nav_link" href="../users/user_signup.php">新規登録</a></li>
+                        <li><a class="nav_link" href="../users/user_pre_signup.php">新規登録</a></li>
                     <?php endif; ?>
 
                     <?php if ($login_user) : ?>

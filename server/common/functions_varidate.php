@@ -21,42 +21,28 @@ function user_pre_signup_validate($email)
 }
 
 //ユーザーサインアップのバリデーションを行う関数
-function user_signup_validate($name, $email, $tel,  $password, $post_code, $address, $age, $sex, $image, $flag)
+function user_signup_validate($name, $tel,  $password, $post_code, $address, $age, $sex, $image)
 {
     $errors = [];
-    $val_flag = $flag;
 
     if (empty($name)) {
         $errors['name'][] = MSG_NAME_REQUIRED;
-        $val_flag = false;
-    }
-
-    if (empty($email)) {
-        $errors['email'][] = MSG_EMAIL_REQUIRED;
-        $val_flag = false;
-    }
-    if (check_exist_user($email)) {
-        $errors['email'][] =  MSG_EMAIL_DUPLICATE;
     }
 
     if (empty($tel)) {
         $errors['tel'][] = MSG_TEL_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($password)) {
         $errors['password'][] = MSG_PASSWORD_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($post_code)) {
         $errors['podt_code'][] = MSG_POSTCODE_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($address)) {
         $errors['address'][] = MSG_ADDRESS_REQUIRED;
-        $val_flag = false;
     }
 
     if (empty($age)) {
@@ -67,22 +53,13 @@ function user_signup_validate($name, $email, $tel,  $password, $post_code, $addr
 
     if (empty($image)) {
         $errors['image'][] =  MSG_NO_IMAGE;
-        $val_flag = false;
     } else {
         if (check_file_image_ext($image)) {
             $errors['image'][] = MSG_NOT_ABLE_EXT;
         }
     }
 
-    if (
-        empty($errors) &&
-        check_exist_user($email)
-    ) {
-        $errors['email'][] = MSG_EMAIL_DUPLICATE;
-        $val_flag = false;
-    }
-
-    return array($errors, $val_flag);
+    return $errors;
 }
 
 //ユーザーのログイン時のバリデーションを行う関数

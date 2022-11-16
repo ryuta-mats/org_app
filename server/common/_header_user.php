@@ -16,7 +16,7 @@
                     <li><a class="nav_link" href="../users/user_edit.php">登録情報変更</a></li>
                     <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
                 <?php else : ?>
-                    <li><a class="nav_link" href="../users/user_signup.php">新規登録</a></li>
+                    <li><a class="nav_link" href="../users/user_pre_signup.php">新規登録</a></li>
                 <?php endif; ?>
 
                 <?php if ($login_user) : ?>
