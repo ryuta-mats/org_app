@@ -16,14 +16,14 @@ function insert_pre_user($email, $urltoken)
         $sql = <<<EOM
         INSERT INTO
             pre_users
-            (urltoken, mail)
+            (urltoken, email)
         VALUES
-            (:urltoken, :mail);
+            (:urltoken, :email);
         EOM;
 
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':urltoken', $urltoken, PDO::PARAM_STR);
-        $stmt->bindValue(':mail', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         return true;
     } catch (PDOException $e) {
@@ -31,7 +31,77 @@ function insert_pre_user($email, $urltoken)
         return false;
     }
 }
+//仮登録が有効かチェックする
+//opution = 0 :
+//opution = 1 :仮予約flagを1にアップデートし無効にする
+function pre_signup_check($urltoken, $option)
+{
 
+    $errors = [];
+
+    //データベースurlトークンがあるか
+    $dbh = connect_db();
+
+    $sql = <<<EOM
+    SELECT 
+        * 
+    FROM 
+        pre_users
+    WHERE 
+        urltoken = :urltoken
+    AND
+        flag = 1
+    AND
+        created_at > now() - interval 24 hour;
+    EOM;
+
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':urltoken', $urltoken, PDO::PARAM_STR);
+    $stmt->execute();
+    $pre_user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $email = '';
+
+    if (empty($pre_user)) {
+        $errors['urltoken'] = NOT_PRE_SIGNIN;
+    } else {
+        $email = $pre_user["email"];
+    }
+
+    //もしオプション1の場合アップデート
+    if (empty($errors) && $option == 1) {
+        update_pre_user_flag_false($urltoken);
+    }
+
+    return array($errors, $email);
+}
+
+//仮登録ユーザーのflagをfalseにする
+function update_pre_user_flag_false($urltoken)
+{
+    try {
+        $dbh = connect_db();
+
+        $sql = <<<EOM
+        UPDATE
+            pre_users
+        SET
+            flag = :flag
+        WHERE
+            urltoken = :urltoken;
+        EOM;
+
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':flag', 0, PDO::PARAM_INT);
+        $stmt->bindValue(':urltoken', $urltoken, PDO::PARAM_STR);
+
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
 
 //新しいユーザーをデータベースに保存する関数
 function insert_user($name, $email, $tel, $password, $post_code, $address, $age, $sex, $image)

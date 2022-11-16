@@ -16,6 +16,7 @@ define('MAIL_ADDRESS', 'info@xs618728.xsrv.jp');
 define('PRE_SIGN_UP_MAIL_SUBJECT', '仮登録のご連絡');
 define('SIGN_UP_URL', 'http://localhost/users/user_signup.php?urltoken=');
 //define('SIGN_UP_URL', 'https://xs618728.xsrv.jp/server/users/user_signup.php?urltoken=');
+define('NOT_PRE_SIGNIN', 'このURLはご利用できません。有効期限が過ぎたかURLが間違えている可能性がございます。もう一度仮登録からやりなおして下さい。');
 
 
 define('EXTENSION_IMAGE', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
