@@ -45,7 +45,7 @@ $apprys = find_appry_by_user_id($user_id);
 
                         <div class="user_info_wrap">
                             <p class="job-text">志望動機 <?= h($appry['motivation']) ?></p>
-                            <a class="bg_btn user_resume" href="../files/resume/" <?= h($appry['resume']) ?>>履歴書</a>
+                            <a class="bg_btn user_resume" href="../files/resume/<?= h($appry['resume']) ?>">履歴書</a>
                         </div>
 
                         <div class="icons_wrap">

@@ -694,7 +694,7 @@ input[type="submit"] {
 }
 .appry_status {
     width: 50%;
-    margin: 15px 0;
+    margin: 15px auto;
     border-radius: 5px;
     text-align: center;
     border: #696969 1px solid;
@@ -711,11 +711,12 @@ input[type="submit"] {
     padding: 0px 10px;
     width: 100%;
 }
-.user_info_wrap{
+.user_info_wrap {
     padding: 15px 10px;
     width: 100%;
     border-top: 1px solid#cccccc;
     border-bottom: 1px solid#cccccc;
+    text-align: center;
 }
 
 .job_name_text {
@@ -758,6 +759,13 @@ input[type="submit"] {
 
 .user_resume {
     margin: 0 0 0 auto;
+}
+
+.user_info_name {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+
 }
 /*user_login
 --------------------------------------*/
@@ -1060,6 +1068,27 @@ input[type="submit"] {
 .new_ofer_btn {
     margin: 5% auto 0;
 }
+
+/*company_appry_list
+--------------------------------------*/
+
+.company_appry_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.user_image {
+    max-width: 100%;
+    max-height: 300px;
+
+}
+
+@media(max-width: 768px) {
+    .company_appry_list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
 /*company_job_show
 --------------------------------------*/
 

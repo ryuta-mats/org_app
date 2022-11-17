@@ -26,6 +26,58 @@ $apprys = find_appry_by_company_id($id);
         <div class="tit_wrap">
             <h1 class="title company_bg_title"><span>Apply list</span>応募者リスト</h1>
         </div>
+
+        <div class="wrapper company_appry_list">
+            <?php foreach ($apprys as $appry) : ?>
+                <?php if ($appry['appry_cxl'] == 1) : ?>
+                    <div class="job-content">
+                        <h3 class="company-name"><?= h($appry['job_name']) ?></h3>
+                        <div class="job_info_wrap">
+                            <div class="saraly_text">
+                                <?= $appry['category_name'] ?> <?= h($appry['price']) ?>円
+                            </div>
+                            <div class="job-span">募集期間 <?= date("Y/m/d", strtotime(h($appry['start_date']))) ?> から <?= date("Y/m/d", strtotime(h($appry['end_date']))) ?> まで</div>
+                            <div class="job-area">勤務地 <?= h($appry['area']) ?></div>
+                        </div>
+
+                        <div class="user_info_wrap">
+                            <div class="appry_status<?php $appry['status_id'] == 2 ? print ' user_adopted' : print ''; ?>"><?= h($appry['status']) ?></div>
+                            <div class="user_info_name"><?= h($appry['user']) ?></div>
+                            <img class="user_image" src="../images/user/<?php print h($appry['user_image']) ?>" alt="<?= h($appry['user']) ?>">
+                            <div class="job-area">電話番号 <?= h($appry['user_tel']) ?></div>
+                            <div class="job-area">メール <?= h($appry['user_email']) ?></div>
+                            <div class="job-area">年齢 <?= h($appry['user_age']) ?></div>
+                            <div class="job-area">性別 <?= h($appry['user_sex']) ?></div>
+
+                            <p class="job-text">志望動機 <?= h($appry['motivation']) ?></p>
+                            <a class="bg_btn user_resume" href="../files/resume/<?= h($appry['resume']) ?>">履歴書</a>
+                        </div>
+
+                        <div class="icons_wrap">
+                            <a href="company_appry_ado.php?appry_id=<?= $appry['appry_id'] ?>" class="icon icon_appry_detail icon_wrap">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                <p>採用</p>
+                            </a>
+                            <a href="company_appry_cxl.php?appry_id=<?= $appry['appry_id'] ?>" class="icon icon_appry_detail icon_wrap">
+                                <i class="fa-solid fa-trash"></i>
+                                <p>不採用</p>
+                            </a>
+
+                            <a href="company_message.php?appry_id=<?php print $appry['appry_id'] ?>" class="icon icon_appry_detail icon_wrap">
+                                <i class="fa-solid fa-message"></i>
+                                <p>メッセージ</p>
+                            </a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+
+
+
+
+
+
         <table class="base_table">
             <thead>
                 <tr class="headline">
