@@ -276,6 +276,23 @@ input[type="submit"] {
 .nav_link:hover::after {
     transform: scale(1, 1);
 }
+@media(min-width: 768px) {
+    .nav_icon {
+        display: none;
+    }
+}
+
+@media(max-width: 768px) {
+    .nav_icon {
+        display: inline-block;
+        font-size: 1.4rem;
+    }
+    .nav_link span,
+    .nav_link_btn span,
+    .login_wrap p {
+        display: none;
+    }
+}
 
 .login_flag {
     width: fit-content;
@@ -304,6 +321,11 @@ input[type="submit"] {
 .status_user_login {
     display: flex;
     align-items: center;
+}
+@media(max-width: 768px) {
+    .status_user_login {
+        display: inline-block;
+    }
 }
 .login_wrap {
     display: flex;

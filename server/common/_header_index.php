@@ -8,12 +8,14 @@
         </div>
 
         <div class="head_btn_area">
-            <a href="../users/user_pre_signup.php" class="bg_btn user_btn head_btn"><div>働きたい！</div>
+            <a href="../users/user_pre_signup.php" class="bg_btn user_btn head_btn">
+                <div>働きたい！</div>
                 <div class="head_btn_text">
                     いますぐ登録 <i class="fa-solid fa-circle-arrow-right"></i>
                 </div>
             </a>
-            <a href="../companys/company_signup.php" class="bg_btn company_btn head_btn"><div>求人を出したい！</div>
+            <a href="../companys/company_signup.php" class="bg_btn company_btn head_btn">
+                <div>求人を出したい！</div>
                 <div class="head_btn_text">
                     いますぐ登録 <i class="fa-solid fa-circle-arrow-right"></i>
                 </div>
@@ -41,16 +43,16 @@
                             </label>
                         </form>
                     </li>
-                    
-                        <li class="bg_btn company_btn nav_btn"><a class="nav_link_btn" href="../companys/company_login.php">企業向け</a></li>
-                    
-                    <li><a class="nav_link" href="../users/index.php">トップ</a></li>
+
+                    <li class="bg_btn company_btn nav_btn"><a class="nav_link_btn" href="../companys/company_login.php"><span>企業向け</span><i class="fa-solid fa-building nav_icon"></i></a></li>
+
+                    <li><a class="nav_link" href="../users/index.php"><span>トップ</span><i class="fa-solid fa-house nav_icon"></i></a></a></li>
                     <?php if (!empty($login_user)) : ?>
-                        <li><a class="nav_link" href="../users/user_appry_list.php">応募リスト</a></li>
-                        <li><a class="nav_link" href="../users/user_edit.php">登録情報変更</a></li>
-                        <li><a class="nav_link" href="../users/user_logout.php">ログアウト</a></li>
+                        <li><a class="nav_link" href="../users/user_appry_list.php"><span>応募リスト</span><i class="fa-solid fa-list nav_icon"></i></a></li>
+                        <li><a class="nav_link" href="../users/user_edit.php"><span>登録情報変更</span><i class="fa-solid fa-pen-to-square nav_icon"></i></li>
+                        <li><a class="nav_link" href="../users/user_logout.php"><span>ログアウト</span><i class="fa-solid fa-right-from-bracket nav_icon"></i></a></li>
                     <?php else : ?>
-                        <li><a class="nav_link" href="../users/user_pre_signup.php">新規登録</a></li>
+                        <li><a class="nav_link" href="../users/user_pre_signup.php"><span>新規登録</span><i class="fa-solid fa-user-plus nav_icon"></i></a></li>
                     <?php endif; ?>
 
                     <?php if ($login_user) : ?>
@@ -63,12 +65,10 @@
                             </a>
                         </li>
                     <?php else : ?>
-                        <a class="nav_link_btn" href="../users/user_login.php">
-                            <li class="bg_btn user_btn nav_btn">ログイン</li>
-                        </a>
+                        <li class="bg_btn user_btn nav_btn"><a class="nav_link_btn" href="../users/user_login.php">ログイン</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>
         </div>
     </header>
-<div id="serch_position"></div>
+    <div id="serch_position"></div>
