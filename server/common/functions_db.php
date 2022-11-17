@@ -737,17 +737,49 @@ function find_job_by_comapny_id($company_id)
 {
     $dbh = connect_db();
 
+    $now = date("Y/m/d H:i:s");
+
+
     $sql = <<<EOM
     SELECT
-        *
+        o.id AS job_id,
+        o.name AS job_name,
+        o.company_id,
+        c.name AS company,
+        c.profile AS company_profile,
+        o.category_id,
+        sa.name AS category,
+        o.price,
+        o.profile,
+        o.area,
+        o.cxl_flag,
+        o.image,
+        o.created_at,
+        o.updated_at,
+        o.start_date,
+        o.end_date
     FROM
-        ofer
+        ofer AS o
+    INNER JOIN
+        saraly_category AS sa
+    ON
+        o.category_id = sa.id
+    INNER JOIN
+        companies AS c
+    ON
+        o.company_id = c.id
     WHERE
         company_id = :company_id;
+    AND
+        o.end_date >= :now
+    AND
+        o.start_date <= :now;
     EOM;
 
     $stmt = $dbh->prepare($sql);
     $stmt->bindValue(':company_id', $company_id, PDO::PARAM_INT);
+    $stmt->bindValue(':now', $now, PDO::PARAM_INT);
+    
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
