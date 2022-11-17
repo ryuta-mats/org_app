@@ -6,10 +6,10 @@
             <p class="logo-sub-text">ニセコのお仕事マッチング</p>
         </h1>
         <nav class="menu-content">
-            <ul class="menu-nav">
-                <a class="nav_link_btn" href="../companys/company_login.php">
-                    <li class="bg_btn company_btn nav_btn">企業向け</li>
-                </a>
+            <ul class="menu-nav user_menu-nav">
+                
+                    <li class="bg_btn company_btn nav_btn"><a class="nav_link_btn" href="../companys/company_login.php">企業向け</a></li>
+                
                 <li><a class="nav_link" href="../users/index.php">トップ</a></li>
                 <?php if (!empty($login_user)) : ?>
                     <li><a class="nav_link" href="../users/user_appry_list.php">応募リスト</a></li>

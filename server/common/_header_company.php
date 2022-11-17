@@ -6,32 +6,18 @@
             <p class="logo-sub-text">ニセコのお仕事マッチング</p>
         </h1>
         <nav class="menu-content">
-            <ul class="menu-nav">
-                <li><a class="nav_link" href="../users/index.php">トップ</a></li>
-                <?php if (!empty($login_company)) : ?>
-                    <li><a class="nav_link" href="../companys/company_job_list.php">求人リスト</a></li>
-                    <li><a class="nav_link" href="../companys/company_appry_list.php">応募者リスト</a></li>
-                    <li><a class="nav_link" href="../companys/company_job_create.php">新規求人登録</a></li>
-                    <li><a class="nav_link" href="../companys/company_edit.php">登録情報変更</a></li>
-                    <li><a class="nav_link" href="../companys/company_logout.php">ログアウト</a></li>
-                <?php else : ?>
-                    <li><a class="nav_link" href="../companys/company_signup.php">新規登録</a></li>
-                <?php endif; ?>
+            <div class="menu-content_wrap">
+                <?php include __DIR__ . "/../common/_header_company_nav.php" ?>
+            </div>
+            <div class="hamburger-menu">
+                <input type="checkbox" id="menu-btn-check">
+                <label for="menu-btn-check" class="menu-btn"><span></span></label>
+                <div class="hamburger-menu-content">
+                    <?php include __DIR__ . "/../common/_header_company_nav.php" ?>
+                </div>
 
-                <?php if ($login_company) : ?>
-                    <li class="login_flag status_login">
-                        <a class="status_user_login" href="../companys/company_show.php">
-                            <img class="login_image" src="../images/company/<?= h($login_company['image']) ?>" alt="<?= $login_company['name'] ?>">
-                            <div class="login_wrap">
-                                <p><?= h($login_company['name']) ?></p>
-                            </div>
-                        </a>
-                    </li>
-                <?php else : ?>
-                    <a class="nav_link_btn" href="../companys/company_login.php">
-                        <li class="bg_btn company_btn">ログイン</li>
-                    </a>
-                <?php endif; ?>
-            </ul>
+            </div>
+
         </nav>
+
     </header>
