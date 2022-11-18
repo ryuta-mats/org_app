@@ -14,4 +14,4 @@ if (isset($_COOKIE[session_name()])) {
 session_destroy();
 
 // ログイン画面へリダイレクト
-header('Location: company_login.php');
+header('Location: company_true_message.php?page=logput');

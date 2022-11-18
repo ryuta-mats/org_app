@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = find_user_by_email($email);
         if (!empty($user) && password_verify($password, $user['password'])) {
             user_login($user);
+            header('Location: ../users/user_true_message.php?page=user_login');
+            exit;
         } else {
             $errors[] = MSG_EMAIL_PASSWORD_NOT_MATCH;
         }

@@ -19,6 +19,7 @@ if (update_appry_cange_status($appry_id, APPRY_STATUS_DECLINE)) {
 } else {
     //falseの場合、リストにリダイレクトする
     header('Location: user_appry_list.php');
+    exit;
 }
 $appry =  find_appry_by_appry_id($appry_id);
 

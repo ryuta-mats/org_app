@@ -46,11 +46,11 @@ $apprys = find_appry_by_company_id($id);
                             <img class="user_image" src="../images/user/<?php print h($appry['user_image']) ?>" alt="<?= h($appry['user']) ?>">
                             <div class="job-area">電話番号 <?= h($appry['user_tel']) ?></div>
                             <div class="job-area">メール <?= h($appry['user_email']) ?></div>
-                            <div class="job-area">年齢 <?= h($appry['user_age']) ?></div>
-                            <div class="job-area">性別 <?= h($appry['user_sex']) ?></div>
+                            <div class="job-area">年齢 <?php $appry['user_age']==0 ? print '未回答' : h($appry['user_age']) ; ?></div>
+                            <div class="job-area">性別 <?= rt_str_sex($appry['user_sex']) ?></div>
 
                             <p class="job-text">志望動機 <?= h($appry['motivation']) ?></p>
-                            <a class="bg_btn user_resume" href="../files/resume/<?= h($appry['resume']) ?>">履歴書</a>
+                            <a class="bg_btn user_resume" href="../files/resume/<?= h($appry['resume']) ?>" target="_blank">履歴書</a>
                         </div>
 
                         <div class="icons_wrap">
@@ -72,61 +72,6 @@ $apprys = find_appry_by_company_id($id);
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
-
-
-
-
-
-
-        <table class="base_table">
-            <thead>
-                <tr class="headline">
-                    <th>名前</th>
-                    <th>応募先求人</th>
-                    <th>電話番号</th>
-                    <th>メールアドレス</th>
-                    <th>志望動機</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($apprys as $appry) : ?>
-                    <?php if ($appry['appry_cxl'] == 1) : ?>
-                        <tr>
-                            <td class="td_center"><?= h($appry['user']) ?></td>
-                            <td class="td_center">
-                                <a href="company_job_show.php?job_id=<?php print $appry['job_id'] ?>"><?= h($appry['job_name']) ?></a>
-                            </td>
-                            <td class="td_center"><?= h($appry['user_tel']) ?></td>
-                            <td class="td_center"><?= h($appry['user_email']) ?></td>
-                            <td><?= h($appry['motivation']) ?></td>
-
-                            <td class="icon_td">
-                                <div class="icons_wrap">
-                                    <a href="../files/resume/<?= h($appry['resume']) ?>" class="icon icon_appry_detail icon_wrap">
-                                        <i class="fa-solid fa-file"></i>
-                                        <p>履歴書</p>
-                                    </a>
-                                    <a href="company_appry_ado.php?appry_id=<?= $appry['appry_id'] ?>" class="icon icon_appry_detail icon_wrap">
-                                        <i class="fa-solid fa-thumbs-up"></i>
-                                        <p>採用</p>
-                                    </a>
-                                    <a href="company_appry_cxl.php?appry_id=<?= $appry['appry_id'] ?>" class="icon icon_appry_detail icon_wrap">
-                                        <i class="fa-solid fa-trash"></i>
-                                        <p>不採用</p>
-                                    </a>
-
-                                    <a href="company_message.php?appry_id=<?php print $appry['appry_id'] ?>" class="icon icon_appry_detail icon_wrap">
-                                        <i class="fa-solid fa-message"></i>
-                                        <p>メッセージ</p>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
     </div>
 
     <?php include_once __DIR__ . "/../common/_footer_company.html" ?>

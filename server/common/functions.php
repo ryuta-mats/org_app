@@ -77,8 +77,6 @@ function user_login($user)
     $_SESSION['current_user']['age'] = $user['age'];
     $_SESSION['current_user']['sex'] = $user['sex'];
 
-    header('Location: ../users/index.php');
-    exit;
 }
 
 //--------------------------------------------
@@ -93,8 +91,6 @@ function company_login($company)
     $_SESSION['current_company']['manager_name'] = $company['manager_name'];
     $_SESSION['current_company']['image'] = $company['image'];
 
-    header('Location: ../companys/company_job_list.php');
-    exit;
 }
 
 //仮登録メールを送信する関数
