@@ -35,7 +35,7 @@ if (empty($url_errors)) {
     $password = '';
     $post_code = '';
     $address = '';
-    $age = 'EMPTY';
+    $age = '';
     $sex = '';
     $image = '';
     $description = '';
@@ -49,7 +49,6 @@ if (empty($url_errors)) {
         $post_code = filter_input(INPUT_POST, 'post_code');
         $address = filter_input(INPUT_POST, 'address');
         $age = filter_input(INPUT_POST, 'age');
-        if($age==0){$age='EMPTY';};
         $sex = filter_input(INPUT_POST, 'sex');
 
         $image = filter_input(INPUT_POST, 'image');

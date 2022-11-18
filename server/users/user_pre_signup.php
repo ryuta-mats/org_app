@@ -61,7 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- 登録完了画面 -->
             <p>仮登録完了</p>
             <p>メールをお送りしました。24時間以内にメールに記載されたURLからご登録を完了して下さい。</p>
+            <!--
             <p>仮表示:<a href="<?= SIGN_UP_URL . $urltoken ?>"><?= SIGN_UP_URL . $urltoken ?></a></p>
+            -->
 
         <?php else : ?>
             <!-- 登録画面 -->

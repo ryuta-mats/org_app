@@ -186,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="user_age" class="small_label">
                     <div class="form_title user_title">年齢</div>
                     <div class="input_item_wrap">
-                        <input class="input_item edit_item user_input_small <?php empty($errors['age']) ?: print 'err_input'; ?>" id="user_age" type="number" name="age" value="<?php $login_user['age']==0 ? print '' : h($login_user['age']) ; ?>">
+                        <input class="input_item edit_item user_input_small <?php empty($errors['age']) ?: print 'err_input'; ?>" id="user_age" type="number" name="age" value="<?php $login_user['age']==0 ? print '' : print h($login_user['age']) ; ?>">
                         <?php if (!empty($errors['age'])) : ?>
                             <ul class="err_msg">
                                 <?php foreach ($errors['age'] as $error) : ?>

@@ -46,7 +46,7 @@ $apprys = find_appry_by_company_id($id);
                             <img class="user_image" src="../images/user/<?php print h($appry['user_image']) ?>" alt="<?= h($appry['user']) ?>">
                             <div class="job-area">電話番号 <?= h($appry['user_tel']) ?></div>
                             <div class="job-area">メール <?= h($appry['user_email']) ?></div>
-                            <div class="job-area">年齢 <?php $appry['user_age']==0 ? print '未回答' : h($appry['user_age']) ; ?></div>
+                            <div class="job-area">年齢 <?php $appry['user_age']==0 ? print '未回答' : print h($appry['user_age']) ; ?></div>
                             <div class="job-area">性別 <?= rt_str_sex($appry['user_sex']) ?></div>
 
                             <p class="job-text">志望動機 <?= h($appry['motivation']) ?></p>

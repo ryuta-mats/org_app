@@ -30,8 +30,8 @@ if (!empty($_SESSION['current_user'])) {
         <!--user_signup成功からのリダイレクト-->
         <?php if ($_GET['page'] == 'user_signup') : ?>
             <h1>ユーザー登録成功</h1>
-            <p>さっそく仕事を探しましょう！</p>
-            <a href="../users/index.php?#serch_position" class="bg_btn">トップ画面</a>
+            <p>さっそくログインして仕事を探しましょう！</p>
+            <a href="../users/user_login.php" class="bg_btn">ログイン</a>
         <?php endif; ?>
 
         <!--user_logout成功からのリダイレクト-->
