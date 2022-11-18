@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (move_uploaded_file($upload_tmp_file, $path)) {
             if (insert_company($name, $password, $post_code, $address, $manager_name, $email, $profile, $image_name, $url)) {
-                header('Location: company_login.php');
+                header('Location: company_true_message.php?page=company_signup');
                 exit;
             } else {
                 $errors['db'][] = MSG_DB_ERR;

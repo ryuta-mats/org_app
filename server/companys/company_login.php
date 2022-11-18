@@ -29,6 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $company = find_company_by_email($email);
         if (!empty($company) && password_verify($password, $company['password'])) {
             company_login($company);
+            header('Location: ../companys/company_true_message.php?page=company_login');
+            exit;
         } else {
             $errors[] = MSG_EMAIL_PASSWORD_NOT_MATCH;
         }

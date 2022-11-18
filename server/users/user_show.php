@@ -84,7 +84,7 @@ if (!empty($_GET['edit'])) {
         <div class="show_wrap">
             <div class="form_title user_title  ">年齢</div>
             <div class="input_item_wrap">
-                <div><?= h($login_user['age']); ?></div>
+                <div><?php $login_user['age']==0 ? print '未回答' : h($login_user['age']) ; ?></div>
             </div>
         </div>
 

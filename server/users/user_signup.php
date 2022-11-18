@@ -35,7 +35,7 @@ if (empty($url_errors)) {
     $password = '';
     $post_code = '';
     $address = '';
-    $age = '';
+    $age = 'EMPTY';
     $sex = '';
     $image = '';
     $description = '';
@@ -49,6 +49,7 @@ if (empty($url_errors)) {
         $post_code = filter_input(INPUT_POST, 'post_code');
         $address = filter_input(INPUT_POST, 'address');
         $age = filter_input(INPUT_POST, 'age');
+        if($age==0){$age='EMPTY';};
         $sex = filter_input(INPUT_POST, 'sex');
 
         $image = filter_input(INPUT_POST, 'image');
@@ -90,7 +91,7 @@ if (empty($url_errors)) {
                 //セッションを破棄する
                 session_destroy();
 
-                header('Location: ../users/user_login.php');
+                header('Location: ../users/user_true_message.php?page=user_signup');
                 exit;
             } else {
             }
@@ -153,7 +154,7 @@ if (empty($url_errors)) {
                 <label for="user_email">
                     <div class="form_title user_title">メールアドレス</div>
                     <div class="input_item_wrap">
-                        <?= $email ?>
+                        <?= h($email) ?>
                     </div>
                 </label>
 

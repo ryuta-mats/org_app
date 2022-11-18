@@ -21,7 +21,7 @@ function user_pre_signup_validate($email)
 }
 
 //ユーザーサインアップのバリデーションを行う関数
-function user_signup_validate($name, $tel,  $password, $post_code, $address, $age, $sex, $image)
+function user_signup_validate($name, $tel, $password, $post_code, $address, $age, $sex, $image)
 {
     $errors = [];
 
@@ -38,7 +38,7 @@ function user_signup_validate($name, $tel,  $password, $post_code, $address, $ag
     }
 
     if (empty($post_code)) {
-        $errors['podt_code'][] = MSG_POSTCODE_REQUIRED;
+        $errors['post_code'][] = MSG_POSTCODE_REQUIRED;
     }
 
     if (empty($address)) {
