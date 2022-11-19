@@ -480,12 +480,16 @@ input[type="submit"] {
 .serch-btn {
     border-radius: 2px;
     color: #ffffff;
-    background-color: #ddd;
+    background-color: #696969;
     display: inline-block;
     padding: 1px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.serch-btn:hover {
+color: #696969;
+background-color: #eeeeee;
 }
 
 @media(max-width: 768px) {
@@ -686,6 +690,11 @@ input[type="submit"] {
     border-radius: 3px;
     color: #ffffff;
 }
+.sort_btn:hover {
+color: #808080;
+background-color: #e4e4e4;
+}
+
 
 #job {
     background-color: #f6f6f6c4;
