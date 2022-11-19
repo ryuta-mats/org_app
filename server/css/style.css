@@ -908,8 +908,10 @@ input[type="submit"] {
 }
 
 .user_motivation {
+    min-width: 300px;
+    max-width: 1000px;
+    width: 50%;
     height: 10rem;
-    width: 500px;
 }
 
 .up_load {
@@ -930,6 +932,30 @@ input[type="submit"] {
     margin: 30px;
     text-align: center;
 }
+.job_detail_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.job_detail_wrap {
+    width: clamp(300px, 60%, 700px);
+    ;
+    padding: 5px;
+    border-bottom: 1px solid #808080;
+}
+.job_detail_title {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #ffffff;
+    background-color: #808080;
+    margin: 5px;
+    padding: 0 5px;
+    width: fit-content;
+}
+.job_detail_content {
+    padding: 0 0 0 15px;
+}
+
 
 /*user_appry_list
 --------------------------------------*/
