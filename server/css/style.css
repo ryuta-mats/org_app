@@ -256,6 +256,8 @@ input[type="submit"] {
 }
 .nav_link_btn {
     color: #ffffff;
+    width: 100%;
+    margin-left: 30%;
 }
 
 .nav_btn {
@@ -603,6 +605,9 @@ input[type="submit"] {
     border-left: none;
     list-style: none;
     color: #000000;
+    background: none;
+    margin: 0px 0px 0px 0px;
+    border-radius: inherit;
 }
 .hamburger-menu-content .status_user_login {
     justify-content: center;
@@ -625,6 +630,7 @@ input[type="submit"] {
     text-decoration: none;
     padding: 9px 15px 10px 0;
     position: relative;
+    margin: 0;
 }
 .hamburger-menu-content ul li a::before {
     content: "";
