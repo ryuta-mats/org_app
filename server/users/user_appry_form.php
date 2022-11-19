@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="user_motivation">
                     <div class="form_title user_title">志望動機</div><span class="required">必須</span>
                     <div class="input_item_wrap">
-                        <textarea class="input_item user_motivation" id="user_motivation" type="text" name="motivation" cols="30" rows="10"><?= h($motivation) ?></textarea>
+                        <textarea class="input_item user_motivation" id="user_motivation" type="text" name="motivation"><?= h($motivation) ?></textarea>
                         <?php if (!empty($errors['motivation'])) : ?>
                             <ul class="err_msg">
                                 <?php foreach ($errors['motivation'] as $error) : ?>
@@ -96,6 +96,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="user_resume">
                     <div class="form_title user_title">履歴書</div><span class="required">必須</span>
                     <div class="input_item_wrap">
+                        <ul class="err_msg">
+                            <li><i class="fa-solid fa-circle-exclamation"></i>PDFファイルのみ添付可能です</li>
+                        </ul>
                         <input class="input_item up_load" id="user_resume" type="file" accept="application/pdf" name="resume">
                         <?php if (!empty($errors['resume'])) : ?>
                             <ul class="err_msg">

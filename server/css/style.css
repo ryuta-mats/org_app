@@ -256,6 +256,8 @@ input[type="submit"] {
 }
 .nav_link_btn {
     color: #ffffff;
+    width: 100%;
+    margin-left: 30%;
 }
 
 .nav_btn {
@@ -478,12 +480,16 @@ input[type="submit"] {
 .serch-btn {
     border-radius: 2px;
     color: #ffffff;
-    background-color: #ddd;
+    background-color: #696969;
     display: inline-block;
     padding: 1px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.serch-btn:hover {
+color: #696969;
+background-color: #eeeeee;
 }
 
 @media(max-width: 768px) {
@@ -603,6 +609,9 @@ input[type="submit"] {
     border-left: none;
     list-style: none;
     color: #000000;
+    background: none;
+    margin: 0px 0px 0px 0px;
+    border-radius: inherit;
 }
 .hamburger-menu-content .status_user_login {
     justify-content: center;
@@ -625,6 +634,7 @@ input[type="submit"] {
     text-decoration: none;
     padding: 9px 15px 10px 0;
     position: relative;
+    margin: 0;
 }
 .hamburger-menu-content ul li a::before {
     content: "";
@@ -680,6 +690,11 @@ input[type="submit"] {
     border-radius: 3px;
     color: #ffffff;
 }
+.sort_btn:hover {
+color: #808080;
+background-color: #e4e4e4;
+}
+
 
 #job {
     background-color: #f6f6f6c4;
@@ -902,8 +917,10 @@ input[type="submit"] {
 }
 
 .user_motivation {
+    min-width: 300px;
+    max-width: 1000px;
+    width: 50%;
     height: 10rem;
-    width: 500px;
 }
 
 .up_load {
@@ -924,6 +941,30 @@ input[type="submit"] {
     margin: 30px;
     text-align: center;
 }
+.job_detail_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.job_detail_wrap {
+    width: clamp(300px, 60%, 700px);
+    ;
+    padding: 5px;
+    border-bottom: 1px solid #808080;
+}
+.job_detail_title {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #ffffff;
+    background-color: #808080;
+    margin: 5px;
+    padding: 0 5px;
+    width: fit-content;
+}
+.job_detail_content {
+    padding: 0 0 0 15px;
+}
+
 
 /*user_appry_list
 --------------------------------------*/
